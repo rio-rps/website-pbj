@@ -11,6 +11,7 @@ use App\Http\Controllers\MappingJenisNPDController;
 use App\Http\Controllers\MappingNPDDokumenContoller;
 use App\Http\Controllers\NPDController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\SlideShowController;
 use App\Http\Controllers\TTDDokumenController;
 use App\Http\Controllers\UnitBidangController;
 use App\Models\JenisDokumenModel;
@@ -36,6 +37,9 @@ use Illuminate\Support\Facades\Route;
 //Route::get('beranda', [BerandaController::class, 'index'])->middleware('auth');
 Route::get('/', [LayoutController::class, 'index'])->name('index');
 Route::get('/utama', [LayoutUtamaController::class, 'index'])->name('layoututama.index');
+
+//admin
+Route::resource('slideshow', SlideShowController::class);
 
 // Route::controller(LoginController::class)->group(function () {
 //     route::get('login', 'index')->name('login');

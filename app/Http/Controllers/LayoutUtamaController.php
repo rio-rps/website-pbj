@@ -9,6 +9,6 @@ class LayoutUtamaController extends Controller
 {
     public function index()
     {
-        return view('layout.private.beranda');
+        return view('private.layout.beranda');
     }
 }
