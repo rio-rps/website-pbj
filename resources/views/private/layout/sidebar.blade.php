@@ -82,7 +82,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=" ">
+                        <a href="{{ route('linkterkait.index') }}">
                             <i class="fa fa-link"></i>
                             <span class="menu-title" data-i18n="Link Terkait">Link Terkait</span>
                         </a>

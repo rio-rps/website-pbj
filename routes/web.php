@@ -6,6 +6,7 @@ use App\Http\Controllers\JenisDokumenController;
 use App\Http\Controllers\JenisNPDController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\LayoutUtamaController;
+use App\Http\Controllers\LinkTerkaitController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MappingJenisNPDController;
 use App\Http\Controllers\MappingNPDDokumenContoller;
@@ -40,6 +41,7 @@ Route::get('/utama', [LayoutUtamaController::class, 'index'])->name('layoututama
 
 //admin
 Route::resource('slideshow', SlideShowController::class);
+Route::resource('linkterkait', LinkTerkaitController::class);
 
 // Route::controller(LoginController::class)->group(function () {
 //     route::get('login', 'index')->name('login');

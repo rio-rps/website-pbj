@@ -80,6 +80,8 @@
                             $('#modalFormData').modal('hide');
                             if(response.myReload =='slideShowData'){
                                 slideShowData();
+                            } else {
+                                myTable.ajax.reload();
                             }
                         })  
                     }

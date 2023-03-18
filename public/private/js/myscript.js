@@ -48,11 +48,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     dataType: "json",
+                    beforeSend: function() {
+                        $('#loading-spinner').removeClass('d-none');
+                    },
+                    complete: function() {
+                        $('#loading-spinner').addClass('d-none');
+                    },
                     success: function(response) {
                         if (response.success) {
                             Swal.fire('Berhasil', response.success, 'success').then((result) => {
                                 if(response.myReload =='slideShowData'){
                                     slideShowData();
+                                } else {
+                                    myTable.ajax.reload();
                                 }
                             })
                         } else if (response.error) {

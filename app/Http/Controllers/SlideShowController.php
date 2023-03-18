@@ -118,8 +118,6 @@ class SlideShowController extends Controller
     public function destroy(Request $r, $id)
     {
         if (request()->ajax()) {
-            //echo $r->myTable;
-
             $row = SlideShowModel::where('id_slide', $id)->first();
             $imagePath = public_path('images/gambar_slide') . '/' . $row->gambar_slide;
             if (file_exists($imagePath)) {
