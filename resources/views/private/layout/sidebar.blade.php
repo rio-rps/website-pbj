@@ -20,9 +20,9 @@
                 </a>
                 <ul class="menu-content">
                     <li class="nav-item">
-                        <a href=" ">
+                        <a href="{{route('kategori.index')}}">
                             <i class="feather icon-edit"></i>
-                            <span class="menu-title" data-i18n="Kategori">Kategori</span>
+                            <span class="menu-title" data-i18n="Kategori">Kategori Post</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -40,7 +40,7 @@
                 </a>
                 <ul class="menu-content">
                     <li class="nav-item">
-                        <a href=" ">
+                        <a href="{{route('photo.index')}}">
                             <i class="fa fa-photo"></i>
                             <span class="menu-title" data-i18n="Photo">Photo</span>
                         </a>
