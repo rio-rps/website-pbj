@@ -7,22 +7,14 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('linkterkait.store') }}" class="formData" method="POST">
+            <form action="{{ route('video.store') }}" class="formData" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-body">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label border-bottom">Nama Situs</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="nm_situs" maxlength="50">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-body">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label border-bottom">Link Situs</label>
-                            <div class="col-md-9">
-                                <input class="form-control" type="url" value="http://" name="link_situs" placeholder="http://">
+                            <label class="col-sm-4 col-form-label border-bottom">Link Video YouTube</label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="url" value="http://" name="link_video" placeholder="http://">
                             </div>
                         </div>
                     </div>

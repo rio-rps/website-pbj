@@ -19,6 +19,7 @@ use App\Http\Controllers\PhotoRincianController;
 use App\Http\Controllers\SlideShowController;
 use App\Http\Controllers\TTDDokumenController;
 use App\Http\Controllers\UnitBidangController;
+use App\Http\Controllers\VideoController;
 use App\Models\JenisDokumenModel;
 use App\Models\KategoriModel;
 use App\Models\UnitBidangModel;
@@ -51,6 +52,7 @@ Route::resource('linkterkait', LinkTerkaitController::class);
 Route::resource('kategori', KategoriController::class);
 Route::resource('photo', PhotoController::class);
 Route::resource('photodetail', PhotoDetailController::class);
+Route::resource('video', VideoController::class);
 
 // Route::controller(LoginController::class)->group(function () {
 //     route::get('login', 'index')->name('login');

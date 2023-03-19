@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/core/colors/palette-gradient.css">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/vendors/css/extensions/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/core/colors/palette-callout.css">
     <!-- END: Page CSS-->
     <!-- <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/plugins/forms/switch.css"> -->
 

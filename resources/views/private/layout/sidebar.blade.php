@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=" ">
+                        <a href="{{route('video.index')}}">
                             <i class="fa fa-youtube-play"></i>
                             <span class="menu-title" data-i18n="Video">Video</span>
                         </a>
