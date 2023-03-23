@@ -36,22 +36,20 @@ class VideoController extends Controller
     {
         if (request()->ajax()) {
             $validator = Validator::make($r->all(), [
-                'judul_video' => 'required',
                 'link_video' => 'required|url',
             ], [
-                'judul_video.required' => 'Judul Video Tidak Boleh Kosong',
                 'link_video.required' => 'Link Tidak Boleh Kosong',
                 'link_video.url' => 'Format URL salah',
             ]);
 
 
             $post = VideoModel::create([
-                'judul_video'   => $r->judul_video,
                 'link_video'   => $r->link_video,
             ]);
             if ($post = true) {
                 return response()->json([
                     'success' => 'Data berhasil disimpan',
+                    'myReload' => 'slideShowData'
                 ]);
             }
         } else {
@@ -62,57 +60,24 @@ class VideoController extends Controller
     public function show()
     {
         if (request()->ajax()) {
-            return  DataTablesDataTables::of(VideoModel::query())
-                ->addColumn('action', 'private.video.action')
-                ->addColumn('updated_at', function ($row) {
-                    return cek_date_ddmmyyyy_his_v1($row->updated_at);
-                })
-                ->make(true);
-        } else {
-            exit('Maaf Tidak Dapat diproses...');
-        }
-    }
-
-    public function edit($id)
-    {
-        if (request()->ajax()) {
-            $row = VideoModel::where('id_galeri_video', $id)->first();
             $data = [
-                'id'  => $id,
-                'row' => $row,
-                'title_form' => 'FORM EDIT DATA',
+                'result' => VideoModel::all()
             ];
-            return view('private.video.formedit', $data);
-        } else {
-            exit('Maaf, request tidak dapat diproses');
-        }
-    }
-
-    public function update(Request $r, $id)
-    {
-        if (request()->ajax()) {
-            $validator = Validator::make($r->all(), [
-                'judul_video' => 'required',
-                'link_video' => 'required|url',
-            ], [
-                'judul_video.required' => 'Judul Video Tidak Boleh Kosong',
-                'link_video.required' => 'Link Tidak Boleh Kosong',
-                'link_video.url' => 'Format URL salah',
-            ]);
-
-            if ($validator->fails()) {
-                $errors = $validator->errors();
-                return response()->json(['errors' => $errors], 422);
-            } else {
-                $post = VideoModel::where('id_galeri_video', $id)->update([
-                    'judul_video'  => $r->judul_video,
-                    'link_video' => $r->link_video,
-                ]);
-                return response()->json(['success' => 'Data berhasil disimpan']);
-            }
+            return view('private.video.data', $data);
         } else {
             exit('Maaf Tidak Dapat diproses...');
         }
+    }
+
+    public function edit(VideoModel $videoModel)
+    {
+        //
+    }
+
+
+    public function update(Request $request, VideoModel $videoModel)
+    {
+        //
     }
 
     public function destroy(Request $r, $id)

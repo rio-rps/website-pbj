@@ -18,7 +18,7 @@ class CekUserLogin
     public function handle(Request $request, Closure $next, $rules)
     {
         if (!Auth::check()) {
-            return redirect('login');
+            return redirect('/');
         }
 
         $user = Auth::user();

@@ -21,11 +21,11 @@
                                         <li><a href="#" class=" tooltip-bottom" data-tooltip="Twitter"><i class="fa fa-twitter"></i></a>
                                         </li>
                                         <li><a href="#" class=" tooltip-bottom" data-tooltip="Instagram"><i class="fa fa-instagram"></i></a>
-                                        </li> 
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="header-btn">
-                                    <a class="ttm-btn ttm-btn-size-md  ttm-btn-bgcolor-skincolor" href="#">Login</a>
+                                    <a class="ttm-btn ttm-btn-size-md  ttm-btn-bgcolor-skincolor" href="{{route('login')}}">Login</a>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                             <div class="widget_info d-flex flex-row align-items-center justify-content-end">
                                 <div class="widget_icon"><i class="flaticon-global-1"></i></div>
                                 <div class="widget_content">
-                                    <h5 class="widget_title">Jl. Kapten A. Rivai  </h5>
+                                    <h5 class="widget_title">Jl. Kapten A. Rivai </h5>
                                     <p class="widget_desc">Provinsi Sumatera Selatan</p>
                                 </div>
                             </div><!-- widget-info end -->
@@ -70,10 +70,10 @@
                 <div class="container">
                     <!--site-navigation -->
                     <div id="site-navigation" class="site-navigation">
-                        <div class="ttm-rt-contact"  >
+                        <div class="ttm-rt-contact">
                             <!-- header-icons -->
-                            <div class="ttm-header-icons" >
-                                <div class="ttm-header-icon ttm-header-search-link" >
+                            <div class="ttm-header-icons">
+                                <div class="ttm-header-icon ttm-header-search-link">
                                     <a href="#"><i class="ti ti-search"></i></a>
                                     <div class="ttm-search-overlay">
                                         <form method="get" class="ttm-site-searchform" action="#">
@@ -114,9 +114,10 @@
                                         <li><a href="home-3.html">Struktur Organisasi</a></li>
                                         <li class="active"><a href="#">Tupoksi</a>
                                             <ul>
-                                                <li><a href="index.html">Tupoksi 1</a></li>
-                                                <li><a href="header-style-02.html">Tupoksi 2</a></li>
-                                                <li><a href="header-style-02.html">Tupoksi 3</a></li>
+                                                <li style="margin-bottom:-15px;"><a href="index.html">Pengelolaan Pengadaan Barang/ Jasa</a></li>
+                                                <li style="margin-bottom:-15px;"><a href="header-style-02.html">Pengelolaan Layanan Pengadaan Secara Elektronik</a></li>
+                                                <li style="margin-bottom:-15px;"><a href="header-style-02.html">Pembinaan dan Advokasi Pengadaan Barang/ Jasa</a></li>
+                                                <li><a href="header-style-02.html">Pelaksanaan Tugas Kedinasan Lainnya yang diberikan Oleh Pimpinan</a></li>
                                             </ul>
                                         </li>
                                     </ul>

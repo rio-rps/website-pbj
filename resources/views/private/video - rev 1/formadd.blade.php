@@ -12,14 +12,6 @@
                 <div class="modal-body">
                     <div class="form-body">
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label border-bottom">Judul Video YouTube</label>
-                            <div class="col-md-8">
-                                <input class="form-control" type="text" name="judul_video">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-body">
-                        <div class="form-group row">
                             <label class="col-sm-4 col-form-label border-bottom">Link Video YouTube</label>
                             <div class="col-md-8">
                                 <input class="form-control" type="url" value="http://" name="link_video" placeholder="http://">

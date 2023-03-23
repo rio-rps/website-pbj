@@ -11,5 +11,5 @@ class VideoModel extends Model
 
     public $table = "ddd_galeri_video";
     protected $primarykey = "id_galeri_video";
-    protected $fillable = ['link_video',];
+    protected $fillable = ['judul_video', 'link_video',];
 }

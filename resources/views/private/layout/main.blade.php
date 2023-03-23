@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/vendors/css/vendors.min.css">
     <!-- END: Vendor CSS-->
 
+
+
+
     <!-- datatables -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/vendors/css/tables/datatable/datatables.min.css">
     <!-- END: Vendor CSS-->
@@ -30,8 +33,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/vendors/css/extensions/sweetalert2.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/core/colors/palette-callout.css">
-    <!-- END: Page CSS-->
-    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/plugins/forms/switch.css"> -->
+
 
 
     <!-- DATE -->
@@ -58,9 +60,11 @@
 
 </head>
 
-<!-- BEGIN: Body-->
 
 <body class="vertical-layout vertical-menu 2-columns fixed-navbar content-left-sidebar email-application" data-open="click" data-menu="vertical-menu" data-col="2-columns content-left-sidebar">
+
+
+
 
     <!-- BEGIN: Header-->
     @include('private/layout/header')
@@ -90,37 +94,27 @@
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('/') }}private/vendors/js/vendors.min.js"></script>
-    <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Page Vendor JS-->
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
     <script src="{{ asset('/') }}private/js/core/app-menu.js"></script>
     <script src="{{ asset('/') }}private/js/core/app.js"></script>
-    <!-- END: Theme JS-->
 
-    <!-- BEGIN: Page JS-->
-    <!-- <script src="{{ asset('/') }}private/js/scripts/forms/custom-file-input.js"></script> -->
-    <!-- END: Page JS-->
-    <!-- <script src="{{ asset('/') }}private/vendors/js/forms/quill/quill.js"></script>
-    <script src="{{ asset('/') }}private/js/scripts/pages/app-email.js"></script> -->
-    <!-- datatables -->
     <script src="{{ asset('/') }}private/vendors/js/tables/datatable/datatables.min.js"></script>
     <script src="{{ asset('/') }}private/js/scripts/tables/datatables/datatable-basic.js"></script>
 
     <script src="{{ asset('/') }}private/vendors/js/extensions/sweetalert2.all.min.js"></script>
     <script src="{{ asset('/') }}private/js/myscript.js"></script>
 
-    <!-- <script src="{{ asset('/') }}js/scripts/modal/components-modal.js"></script> -->
 
-    <!-- <script src="{{ asset('/') }}private/vendors/js/forms/toggle/bootstrap-checkbox.min.js"></script> -->
-    <!-- <script src="{{ asset('/') }}private/js/scripts/forms/switch.js"></script> -->
-    <!-- BEGIN: Page JS-->
-    <!-- END: Page JS-->
-
-
+    @if(session('status'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var status = "{{ session('status') }}";
+            var message = "{{ session('message') }}";
+            var icon = "{{ session('icon') }}";
+            Swal.fire(status, message, icon);
+        });
+    </script>
+    @endif
 </body>
-<!-- END: Body-->
 
 </html>

@@ -12,7 +12,7 @@ class LoginController extends Controller
         //echo bcrypt('123456');
         if (Auth::user()) {
             $user = Auth::user();
-            return redirect()->intended('/');
+            return redirect()->intended('/panel');
         }
 
         return view('login.view_login');
@@ -41,7 +41,7 @@ class LoginController extends Controller
             //     return redirect()->intended('kasir');
             // }
             if ($user) {
-                return redirect()->intended('/utama');
+                return redirect()->intended('/panel');
             }
         }
 
@@ -56,6 +56,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+        return redirect('/');
     }
 }

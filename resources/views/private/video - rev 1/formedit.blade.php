@@ -7,24 +7,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('video.update',$id) }}" class="formData" method="PUT">
+            <form action="{{ route('slideshow.update',$id) }}" class="formData" method="PUT">
                 @csrf
 
                 <div class="modal-body">
-                    <div class="form-body">
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label border-bottom">Judul Video YouTube</label>
-                            <div class="col-md-8">
-                                <input class="form-control" type="text" name="judul_video" value="{{$row->judul_video}}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-body">
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label border-bottom">Link Video YouTube</label>
-                            <div class="col-md-8">
-                                <input class="form-control" type="url" value="{{$row->link_video}}" name="link_video" placeholder="http://">
-                            </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label border-bottom">Status Tampilkan Slide</label>
+                        <div class="col-sm-6">
+                            <select name="status_actived" class="form-control">
+                                <option value="" {{ $row->status_actived == '' ? 'selected' : '' }}>--Pilih--</option>
+                                <option value="1" {{ $row->status_actived == 1 ? 'selected' : '' }}>Aktif</option>
+                                <option value="2" {{ $row->status_actived == 2 ? 'selected' : '' }}>Tidak Aktif</option>
+                            </select>
                         </div>
                     </div>
                 </div>

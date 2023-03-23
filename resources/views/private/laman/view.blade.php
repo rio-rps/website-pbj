@@ -6,12 +6,6 @@
     <div class="card">
         <div class="card-header">
             <h4 class="card-title"><b>{{ $title }}</b></h4>
-            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-            <div class="heading-elements">
-                <ul class="list-inline mb-0">
-                    <li><a href="javascript:void(0)" class="btn btn-primary" id="tombol-form-modal" data-url="{{ route('video.create') }}"><i class="feather icon-plus-square"></i> Tambah Data</a></li>
-                </ul>
-            </div>
         </div>
         <hr>
         <div class="col-md-12">
@@ -20,10 +14,8 @@
                     <thead>
                         <tr>
                             <th width=" 1%">No</th>
-                            <th>Judul</th>
-                            <th>Link</th>
-                            <th width="20%">Tanggal Update</th>
-                            <th width="15%" align="center">Action</th>
+                            <th>Nama Laman</th>
+                            <th width="10%" align="center">Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -39,7 +31,7 @@
         myTable = $('#myTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{url('video/show')}}",
+            ajax: "{{url('laman/show')}}",
             // "data": null,
             // "class": "align-top",
             // "orderable": false,
@@ -55,17 +47,8 @@
                     }
                 },
                 {
-                    data: 'judul_video',
-                    name: 'judul_video'
-                },
-                {
-                    data: 'link_video',
-                    name: 'link_video'
-                },
-                {
-                    className: 'text-center',
-                    data: 'updated_at',
-                    name: 'updated_at'
+                    data: 'nm_laman',
+                    name: 'nm_laman'
                 },
                 {
                     data: 'action',

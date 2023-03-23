@@ -5,6 +5,8 @@ use App\Http\Controllers\DPARincianController;
 use App\Http\Controllers\JenisDokumenController;
 use App\Http\Controllers\JenisNPDController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LamanController;
+use App\Http\Controllers\LamanDetailController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\LayoutUtamaController;
 use App\Http\Controllers\LinkTerkaitController;
@@ -12,17 +14,21 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MappingJenisNPDController;
 use App\Http\Controllers\MappingNPDDokumenContoller;
 use App\Http\Controllers\NPDController;
+use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PengaturanAkunController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PhotoDetailController;
 use App\Http\Controllers\PhotoRincianController;
 use App\Http\Controllers\SlideShowController;
 use App\Http\Controllers\TTDDokumenController;
 use App\Http\Controllers\UnitBidangController;
+use App\Http\Controllers\UserSessionController;
 use App\Http\Controllers\VideoController;
 use App\Models\JenisDokumenModel;
 use App\Models\KategoriModel;
 use App\Models\UnitBidangModel;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,22 +49,40 @@ use Illuminate\Support\Facades\Route;
 //Route::get('login', [LoginController::class, 'index'])->name('login');
 //Route::get('beranda', [BerandaController::class, 'index'])->middleware('auth');
 Route::get('/', [LayoutController::class, 'index'])->name('index');
-Route::get('/utama', [LayoutUtamaController::class, 'index'])->name('layoututama.index');
+Route::get('/panel', [PanelController::class, 'index'])->name('panel.index');
+
+Route::controller(LoginController::class)->group(function () {
+    route::get('login', 'index')->name('login');
+    Route::post('login/proses', 'proses');
+    Route::get('logout', 'logout')->name('logout');
+});
+
+// Route::post('/image-upload', function (Request $request) {
+//     $path = $request->file('image')->store('public/images');
+//     return response()->json(['file_path' => asset($path)]);
+// })->name('image.upload');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['cekUserLogin:1']], function () {
+        // UMUM
+        Route::get('pengaturanakun', [PengaturanAkunController::class, 'index'])->name('pengaturanakun.index');
+        Route::put('pengaturanakun/updatepassword/{id}', [PengaturanAkunController::class, 'updatepassword'])->name('pengaturanakun.updatepassword');
+        Route::put('pengaturanakun/updateemail', [PengaturanAkunController::class, 'updateemail'])->name('pengaturanakun.updateemail');
 
 
-//admin
-Route::resource('slideshow', SlideShowController::class);
-Route::resource('linkterkait', LinkTerkaitController::class);
-Route::resource('kategori', KategoriController::class);
-Route::resource('photo', PhotoController::class);
-Route::resource('photodetail', PhotoDetailController::class);
-Route::resource('video', VideoController::class);
+        //admin
+        Route::resource('slideshow', SlideShowController::class);
+        Route::resource('linkterkait', LinkTerkaitController::class);
+        Route::resource('kategori', KategoriController::class);
+        Route::resource('photo', PhotoController::class);
+        Route::resource('photodetail', PhotoDetailController::class);
+        Route::resource('video', VideoController::class);
+        Route::resource('laman', LamanController::class);
+        Route::resource('lamandetail', LamanDetailController::class);
+    });
+});
 
-// Route::controller(LoginController::class)->group(function () {
-//     route::get('login', 'index')->name('login');
-//     Route::post('login/proses', 'proses');
-//     Route::get('logout', 'logout')->name('logout');
-// });
+
 
 // Route::group(['middleware' => ['auth']], function () {
 //     Route::group(['middleware' => ['cekUserLogin:1']], function () {

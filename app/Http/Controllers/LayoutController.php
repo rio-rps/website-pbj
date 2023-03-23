@@ -10,8 +10,8 @@ class LayoutController extends Controller
     public function index()
     {
         $data = [
-            'content' => view('layout/content'),
+            'content' => view('public/layout/content'),
         ];
-        return view('layout.content', $data);
+        return view('public.layout.content', $data);
     }
 }

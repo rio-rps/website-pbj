@@ -9,7 +9,7 @@
         $video_id = $params["v"];
 
         @endphp
-        <div class="col-sm-4 mb-1">
+        <div class="col-sm-3 mb-1">
             <p>
                 <a href="#"><span class="badge bg-blue-grey pull-right" style="margin-left: 5px;">{{cek_date_ddmmyyyy_his_v1($ddresult->updated_at)}}</span></a>
                 <a href="#" class="btn btn-sm btn-danger pull-right" id="tombol-hapus" data-url="{{ route('video.destroy',['video' => $ddresult->id_galeri_video,'myReload' =>'slideShowData'])}}" title="Hapus Data" style="margin-left: 5px;">

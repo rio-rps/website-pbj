@@ -91,12 +91,12 @@
                                 <img src="{{ asset('/') }}images/user/user.png" alt="avatar">
                                 <i></i>
                             </div>
-                            aa
+                            <span id="idemail">{{Auth::user()->email}}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{route('pengaturanakun.index')}}">
                                 <i class="feather icon-unlock"></i>
-                                Edit Password</a>
+                                Pengaturan Akun</a>
                             <div class="dropdown-divider">
                             </div><a class="dropdown-item" href="">
                                 <i class="feather icon-power"></i>

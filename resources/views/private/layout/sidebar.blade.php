@@ -7,7 +7,7 @@
                 <i class="feather icon-minus" data-toggle="tooltip" data-placement="right" data-original-title="Main"></i>
             </li>
             <li class="nav-item ">
-                <a href="{{route('layoututama.index')}}">
+                <a href="{{route('panel.index')}}">
                     <i class="feather icon-home"></i>
                     <span class="menu-title" data-i18n="Beranda">Beranda</span>
                 </a>
@@ -54,7 +54,7 @@
                 </ul>
             </li>
             <li class="nav-item  ">
-                <a href=" ">
+                <a href="{{route('laman.index')}}">
                     <i class="fa fa-clone"></i>
                     <span class="menu-title" data-i18n="Laman">Laman</span>
                 </a>

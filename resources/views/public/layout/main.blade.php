@@ -54,16 +54,16 @@
 
     <div class="page">
 
-        <div id="preloader">
+        <!-- <div id="preloader">
             <div id="status">&nbsp;</div>
-        </div>
+        </div> -->
 
         <header id="masthead" class="header ttm-header-style-02">
-            @include('layout/header')
+            @include('public/layout/header')
         </header>
 
         <rs-module-wrap id="rev_slider_1_2_wrapper" data-source="gallery">
-            @include('layout/slider')
+            @include('public/layout/slider')
         </rs-module-wrap>
 
 
@@ -72,7 +72,7 @@
         </div>
         <!--footer start-->
         <footer class="footer widget-footer clearfix">
-        @include('layout/footer')
+            @include('public/layout/footer')
         </footer>
         <!--footer end-->
 
