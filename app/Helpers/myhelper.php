@@ -85,3 +85,13 @@ function status_actived($angka)
     }
     return $isi;
 }
+
+function cekStatusPost($angka)
+{
+    if ($angka == 1) {
+        $isi = "Publish";
+    } elseif ($angka == 2) {
+        $isi = "Draft";
+    }
+    return $isi;
+}

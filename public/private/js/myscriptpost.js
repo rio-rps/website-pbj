@@ -7,12 +7,14 @@
 
             var formData = new FormData(this);
             $.ajax({
-                type: "POST",
+                //type: "POST",
+                type: $(this).attr('method'),
                 url: $(this).attr('action'),
                 data: formData,
                 cache: false,
                 contentType: false,
                 processData: false,
+                
                 beforeSend: function() {
                     $('#tombolSave').prop('disabled', true);
                     $('#tombolSave').html("<i class='fa fa-spin fa-spinner'></i>");
@@ -30,6 +32,8 @@
                             $('#modalFormData').modal('hide');
                             if(response.myReload =='slideShowData'){
                                 slideShowData();
+                            } else if(response.myReload =='href'){
+                                window.location.href=response.route;
                             }
                         })  
                     } 

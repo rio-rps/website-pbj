@@ -10,7 +10,7 @@
                 <li class="nav-item">
                     <a class="navbar-brand" href="">
                         <img class="brand-logo" alt="Sumselprov" src="{{ asset('/') }}images/logo/logo_prov.png">
-                        <h2 class="brand-text" style="font-size:15px;margin-top:-22px;">Biro PBJ</h2>
+                        <h2 class="brand-text" style="font-size:15px;margin-top:-22px;"></h2>
                     </a>
                 </li>
                 <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
@@ -98,7 +98,7 @@
                                 <i class="feather icon-unlock"></i>
                                 Pengaturan Akun</a>
                             <div class="dropdown-divider">
-                            </div><a class="dropdown-item" href="">
+                            </div><a class="dropdown-item" href="{{route('logout')}}">
                                 <i class="feather icon-power"></i>
                                 Logout</a>
                         </div>

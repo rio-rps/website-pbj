@@ -20,6 +20,7 @@ use App\Http\Controllers\PengaturanAkunController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PhotoDetailController;
 use App\Http\Controllers\PhotoRincianController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SlideShowController;
 use App\Http\Controllers\TTDDokumenController;
 use App\Http\Controllers\UnitBidangController;
@@ -71,6 +72,10 @@ Route::group(['middleware' => ['auth']], function () {
 
 
         //admin
+
+        Route::get('post/editstatus/{id}', [PostController::class, 'editstatus'])->name('post.editstatus');
+        Route::put('post/updatestatus/{id}', [PostController::class, 'updatestatus'])->name('post.updatestatus');
+
         Route::resource('slideshow', SlideShowController::class);
         Route::resource('linkterkait', LinkTerkaitController::class);
         Route::resource('kategori', KategoriController::class);
@@ -79,6 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('video', VideoController::class);
         Route::resource('laman', LamanController::class);
         Route::resource('lamandetail', LamanDetailController::class);
+        Route::resource('post', PostController::class);
     });
 });
 

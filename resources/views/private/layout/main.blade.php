@@ -36,6 +36,9 @@
 
 
 
+
+
+    <!-- END: Page CSS-->
     <!-- DATE -->
     <style>
         #loading-spinner {
@@ -103,6 +106,7 @@
 
     <script src="{{ asset('/') }}private/vendors/js/extensions/sweetalert2.all.min.js"></script>
     <script src="{{ asset('/') }}private/js/myscript.js"></script>
+
 
 
     @if(session('status'))

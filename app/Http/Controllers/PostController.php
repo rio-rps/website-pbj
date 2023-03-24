@@ -1,0 +1,284 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\KategoriModel;
+use App\Models\PostKategoriRelationshipsModel;
+use App\Models\PostModel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables as DataTablesDataTables;
+use Illuminate\Support\Str;
+
+class PostController extends Controller
+{
+
+    public function createSlug($title)
+    {
+        $slug = Str::slug($title);
+        $count = PostModel::whereRaw("slug_title  RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+        return ($count > 0) ? "{$slug}-{$count}" : $slug;
+    }
+
+    public function index()
+    {
+        $data = [
+            'title' => 'POST',
+        ];
+        return view('private/post/view')->with($data);
+    }
+
+    public function create()
+    {
+        $data = [
+            'title' => 'FORM INPUT DATA BARU',
+            'resultKategori' => KategoriModel::all()
+        ];
+        return view('private.post.formadd', $data);
+    }
+
+    public function store(Request $r)
+    {
+        if (request()->ajax()) {
+            $validator = Validator::make($r->all(), [
+                'post_title' => 'required',
+                'post_thumbnail' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+                'post_content' => 'required',
+                'post_status' => 'required',
+                'id_kategori' => 'required',
+            ], [
+                'post_title.required' => 'Judul Tidak Boleh Kosong',
+                'post_thumbnail.required' => 'Thumbnail Tidak Boleh Kosong',
+                'post_thumbnail.mimes' => 'Thumbnail Hanya di perbolehkan ekstensi JPEG, JPG, PNG',
+                'post_content.required' => 'Isi Tidak Boleh Kosong',
+                'post_status.required' => 'Status Tidak Boleh Kosong',
+                'id_kategori.required' => 'kategori Tidak Boleh Kosong',
+            ]);
+
+
+
+
+            if ($validator->fails()) {
+                $errors = $validator->errors();
+                return response()->json(['errors' => $errors], 422);
+            } else {
+
+                $gambar_name = "";
+                if ($image = $r->file('post_thumbnail')) {
+                    $gambar_path = public_path('images/thumbnail');
+                    $gambar_ekstensi = $image->getClientOriginalExtension();
+                    $gambar_name = date('ymdhis') . "." . $gambar_ekstensi;
+                    $image->move($gambar_path, $gambar_name);
+                }
+
+                PostModel::create([
+                    'post_title'  => $r->post_title,
+                    'slug_title'  =>  $this->createSlug($r->post_title),
+                    'post_thumbnail' => $gambar_name,
+                    'post_content' => $r->post_content,
+                    'post_status' => $r->post_status,
+                ]);
+
+
+                $id = DB::getPdo()->lastInsertId();
+
+                $kat = $r->input('id_kategori');
+                $jml_kat = count($kat);
+                for ($i = 0; $i < $jml_kat; $i++) {
+                    $post =  PostKategoriRelationshipsModel::create([
+                        'id_kategori'  => $r->id_kategori[$i],
+                        'post_kd'  => $id,
+                    ]);
+                }
+
+                $row = PostModel::where('post_kd', $id)->first();
+                return response()->json(['success' => 'Data berhasil disimpan', 'myReload' => 'href', 'route' => route('post.edit', $row->slug_title)]);
+            }
+        } else {
+            exit('Maaf Tidak Dapat diproses...');
+        }
+    }
+
+
+    public function show()
+    {
+        if (request()->ajax()) {
+            return  DataTablesDataTables::of(PostModel::query()->orderby('updated_at', 'DESC'))
+                ->addColumn('action', 'private.post.action')
+                ->addColumn('kategori', function ($row) {
+                    $result = PostKategoriRelationshipsModel::where('post_kd', $row->post_kd)->get();
+                    $isi = '';
+                    foreach ($result as $dt) {
+                        $isi .= "<span class='badge badge-secondary'>" . $dt->JKategori->nm_kategori . "</span> ";
+                    }
+                    return $isi;
+                })
+                ->addColumn('status', function ($row) {
+                    if ($row->post_status == 1) {
+                        $badge = "badge-secondary";
+                    } else if ($row->post_status == 2) {
+                        $badge = "badge-danger";
+                    }
+                    return "<span class='badge " . $badge . "'>" . cekStatusPost($row->post_status) . "</span>";
+                })
+                ->addColumn('tanggal', function ($row) {
+                    return cek_date_ddmmyyyy_his_v1($row->updated_at);
+                })
+                ->rawColumns(['kategori', 'action', 'status'])
+                ->make(true);
+        } else {
+            exit('Maaf Tidak Dapat diproses...');
+        }
+    }
+
+
+    public function edit($id)
+    {
+
+        $row = PostModel::where('slug_title', $id)->first();
+        $data = [
+            'title' => 'FORM EDIT DATA',
+            'resultKategori' => KategoriModel::all(),
+            'dtKategori' => PostKategoriRelationshipsModel::where('post_kd', $row->post_kd)->get(),
+            'id' => $row->post_kd,
+            'row' => $row
+        ];
+        return view('private.post.formedit', $data);
+    }
+
+    public function update(Request $r, $id)
+    {
+        if (request()->ajax()) {
+            $validator = Validator::make($r->all(), [
+                'post_title' => 'required',
+                'post_thumbnail' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+                'post_content' => 'required',
+                'post_status' => 'required',
+                'id_kategori' => 'required',
+            ], [
+                'post_title.required' => 'Judul Tidak Boleh Kosong',
+                'post_thumbnail.nullable' => 'Thumbnail Tidak Boleh Kosong',
+                'post_thumbnail.mimes' => 'Thumbnail Hanya di perbolehkan ekstensi JPEG, JPG, PNG',
+                'post_content.required' => 'Isi Tidak Boleh Kosong',
+                'post_status.required' => 'Status Tidak Boleh Kosong',
+                'id_kategori.required' => 'kategori Tidak Boleh Kosong',
+            ]);
+
+
+            $rowPost = PostModel::where('post_kd', $id)->first();
+
+            if ($validator->fails()) {
+                $errors = $validator->errors();
+                return response()->json(['errors' => $errors], 422);
+            } else {
+
+                if ($r->hasFile('post_thumbnail')) {
+                    // code untuk upload file gambar baru
+
+                    $gambar_name = "";
+                    $image = $r->file('post_thumbnail');
+                    $gambar_path = public_path('images/thumbnail');
+                    $gambar_ekstensi = $image->getClientOriginalExtension();
+                    $gambar_name = date('ymdhis') . "." . $gambar_ekstensi;
+                    $image->move($gambar_path, $gambar_name);
+
+                    $old_thumbnail = $rowPost->post_thumbnail;
+
+                    if ($old_thumbnail) {
+                        $old_thumbnail_path = public_path('images/thumbnail/' . $old_thumbnail);
+                        if (file_exists($old_thumbnail_path)) {
+                            unlink($old_thumbnail_path);
+                        }
+                    }
+                } else {
+                    // code untuk mempertahankan file gambar lama
+                    $gambar_name =  $rowPost->post_thumbnail;
+                }
+
+
+
+                PostModel::where('post_kd', $id)->update([
+                    'post_title'  => $r->post_title,
+                    'slug_title'  =>  $this->createSlug($r->post_title),
+                    'post_thumbnail' => $gambar_name,
+                    'post_content' => $r->post_content,
+                    'post_status' => $r->post_status,
+                ]);
+
+                PostKategoriRelationshipsModel::where('post_kd', $id)->delete();
+
+                $kat = $r->input('id_kategori');
+                $jml_kat = count($kat);
+                for ($i = 0; $i < $jml_kat; $i++) {
+                    $post =  PostKategoriRelationshipsModel::create([
+                        'id_kategori'  => $r->id_kategori[$i],
+                        'post_kd'  => $id,
+                    ]);
+                }
+
+                $row = PostModel::where('post_kd', $id)->first();
+                return response()->json(['success' => 'Data berhasil diupdate', 'myReload' => 'href', 'route' => route('post.edit', $row->slug_title)]);
+            }
+        } else {
+            exit('Maaf Tidak Dapat diproses...');
+        }
+    }
+
+    public function editStatus($id)
+    {
+
+        if (request()->ajax()) {
+            $row = PostModel::where('post_kd', $id)->first();
+            $data = [
+                'id'  => $id,
+                'row' => $row,
+                'title_form' => 'FORM EDIT DATA',
+            ];
+            return view('private.post.formeditstatus', $data);
+        } else {
+            exit('Maaf, request tidak dapat diproses');
+        }
+    }
+
+    public function updateStatus(Request $r, $id)
+    {
+        if (request()->ajax()) {
+            $validator = Validator::make($r->all(), [
+                'post_status' => 'required',
+            ], [
+                'post_status.required' => 'Status Tidak Boleh Kosong',
+            ]);
+
+            if ($validator->fails()) {
+                $errors = $validator->errors();
+                return response()->json(['errors' => $errors], 422);
+            } else {
+                $post = PostModel::where('post_kd', $id)->update([
+                    'post_status'  => $r->post_status,
+                ]);
+                return response()->json(['success' => 'Data berhasil disimpan']);
+            }
+        } else {
+            exit('Maaf Tidak Dapat diproses...');
+        }
+    }
+    public function destroy($id)
+    {
+        if (request()->ajax()) {
+            $row = PostModel::where('post_kd', $id)->first();
+            PostModel::where('post_kd', $id)->delete();
+
+            $old_thumbnail_path = public_path('images/thumbnail/' . $row->post_thumbnail);
+            if (file_exists($old_thumbnail_path)) {
+                unlink($old_thumbnail_path);
+            }
+
+            return response()->json([
+                'success' => 'Data berhasil dihapus',
+            ]);
+        } else {
+            exit('Maaf Tidak Dapat diproses...');
+        }
+    }
+}

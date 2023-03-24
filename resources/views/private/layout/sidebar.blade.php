@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=" ">
+                        <a href="{{route('post.index')}}">
                             <i class="feather icon-edit"></i>
                             <span class="menu-title" data-i18n="Post">Post</span>
                         </a>
