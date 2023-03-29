@@ -11,7 +11,7 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- favicon icon -->
-    <link rel="shortcut icon" href="{{ asset('/') }}images/logo/logo_prov.png" />
+    <link rel="shortcut icon" href="{{ asset('/') }}public/images/favicon.png" />
 
     <!-- bootstrap -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}public/css/bootstrap.min.css" />
@@ -50,27 +50,29 @@
 
 </head>
 
-<body>
+<body cz-shortcut-listen="true">
 
     <div class="page">
+
+        <!-- <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div> -->
+
         <header id="masthead" class="header ttm-header-style-02">
             @include('public/layout/header')
         </header>
         <div class="ttm-page-title-row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                    </div>
-                </div>
-            </div>
-        </div>
-        @yield('slide')
 
-        <div class="site-main ">
-            <div class="sidebar ttm-bgcolor-white ">
-                <div class="container ">
+        </div><!-- page-title end-->
+        <div class="site-main">
+            <div class="sidebar ttm-bgcolor-white">
+                <div class="container">
                     <div class="row">
                         <div class="col-lg-9 content-area">
+                            <article class="post ttm-blog-classic clearfix">
+                                @yield('slide')
+                            </article>
+
                             <article class="post ttm-blog-classic clearfix">
                                 @yield('content')
                             </article>
@@ -83,11 +85,18 @@
             </div>
         </div>
 
-        <!--footer start-->
+
+
+
+
+
+
+
+
+
         <footer class="footer widget-footer clearfix">
             @include('public/layout/footer')
         </footer>
-        <!--footer end-->
 
         <!--back-to-top start-->
         <a id="totop" href="#top">
@@ -116,7 +125,6 @@
     <script src="{{ asset('/') }}public/revolution/js/slider.js"></script>
 
     <!-- Javascript end-->
-
 </body>
 
 </html>

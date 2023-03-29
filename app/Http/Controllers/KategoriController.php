@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\KategoriModel;
+use App\Models\PostKategoriRelationshipsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables as DataTablesDataTables;
+use Illuminate\Support\Str;
 
 class KategoriController extends Controller
 {
 
+    public function createSlug($title)
+    {
+        $slug = Str::slug($title);
+        $count = KategoriModel::whereRaw("slug_kategori  RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+        return ($count > 0) ? "{$slug}-{$count}" : $slug;
+    }
     public function index()
     {
         $data = [
@@ -49,6 +57,7 @@ class KategoriController extends Controller
             } else {
                 $post = KategoriModel::create([
                     'nm_kategori'  => $r->nm_kategori,
+                    'slug_kategori' => $this->createSlug($r->nm_kategori),
                     'ket_kategori' => $r->ket_kategori,
                 ]);
                 return response()->json(['success' => 'Data berhasil disimpan']);
@@ -101,6 +110,7 @@ class KategoriController extends Controller
             } else {
                 $post = KategoriModel::where('id_kategori', $id)->update([
                     'nm_kategori'  => $r->nm_kategori,
+                    'slug_kategori'  => $this->createSlug($r->nm_kategori),
                     'ket_kategori' => $r->ket_kategori,
                 ]);
                 return response()->json(['success' => 'Data berhasil disimpan']);
@@ -114,10 +124,15 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         if (request()->ajax()) {
-            KategoriModel::where('id_kategori', $id)->delete();
-            return response()->json([
-                'success' => 'Data berhasil dihapus',
-            ]);
+            $cek = PostKategoriRelationshipsModel::where('id_kategori', $id)->count();
+            if ($cek > 0) {
+                return response()->json(['error' => 'Tidak Dapat di Hapus, Sudah digunakan/ Hubungi Admin']);
+            } else {
+                KategoriModel::where('id_kategori', $id)->delete();
+                return response()->json([
+                    'success' => 'Data berhasil dihapus',
+                ]);
+            }
         } else {
             exit('Maaf Tidak Dapat diproses...');
         }

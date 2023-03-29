@@ -26,6 +26,7 @@ use App\Http\Controllers\TTDDokumenController;
 use App\Http\Controllers\UnitBidangController;
 use App\Http\Controllers\UserSessionController;
 use App\Http\Controllers\VideoController;
+use App\Models\DokumenModel;
 use App\Models\JenisDokumenModel;
 use App\Models\KategoriModel;
 use App\Models\UnitBidangModel;
@@ -50,6 +51,18 @@ use Illuminate\Support\Facades\Route;
 //Route::get('login', [LoginController::class, 'index'])->name('login');
 //Route::get('beranda', [BerandaController::class, 'index'])->middleware('auth');
 Route::get('/', [LayoutController::class, 'index'])->name('index');
+Route::get('/page/{slug}', [LayoutController::class, 'page'])->name('page');
+Route::get('/jenis/{slug}', [LayoutController::class, 'jenis'])->name('jenis');
+Route::get('/postdetail/{slug}', [LayoutController::class, 'postdetail'])->name('postdetail');
+Route::get('/postarsip/{tahun}', [LayoutController::class, 'postarsip'])->name('postarsip');
+Route::get('/galeriphoto', [LayoutController::class, 'galeriphoto'])->name('galeriphoto');
+Route::get('/galeriphotodetail/{slug}', [LayoutController::class, 'galeriphotodetail'])->name('galeriphotodetail');
+Route::get('/galerivideo', [LayoutController::class, 'galerivideo'])->name('galerivideo');
+Route::get('/ambilDataPostGrid', [LayoutController::class, 'ambilDataPostGrid'])->name('ambilDataPostGrid');
+Route::get('/post_grid', [LayoutController::class, 'post_grid'])->name('post_grid');
+Route::post('/search', [LayoutController::class, 'search'])->name('search');
+
+
 Route::get('/panel', [PanelController::class, 'index'])->name('panel.index');
 
 Route::controller(LoginController::class)->group(function () {
@@ -85,6 +98,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('laman', LamanController::class);
         Route::resource('lamandetail', LamanDetailController::class);
         Route::resource('post', PostController::class);
+        Route::resource('dokumen', DokumenModel::class);
     });
 });
 

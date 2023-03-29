@@ -17,7 +17,7 @@
                             </ol>
                             <div class="carousel-inner" role="listbox">
                                 <div class="carousel-item active">
-                                    <img src="{{asset('/')}}images/carousel/01.jpg" style="width:100%; height:550px;" alt="First slide">
+                                    <img src="{{asset('/')}}images/carouselx/01.jpg" style="width:100%; height:550px;" alt="First slide">
                                 </div>
                             </div>
                         </div>

@@ -8,7 +8,7 @@
                     <div class="col-12">
                         <div class="ttm-topbar-content">
                             <ul class="top-contact text-left">
-                                <li><i class="fa fa-envelope-o"></i><a href="mailto:info@example.com.com">biropbj@example.com</a></li>
+                                <li><i class="fa fa-envelope-o"></i><a href="mailto:info@example.com.com">biropbj@gmail.com</a></li>
                             </ul>
                             <div class="topbar-right text-right">
                                 <ul class="top-contact">
@@ -40,8 +40,8 @@
                         <div class="d-flex flex-row align-items-center">
                             <!-- site-branding -->
                             <div class="site-branding mr-auto">
-                                <a class="home-link" href="index.html" title="Altech" rel="home">
-                                    <img id="logo-img" class="img-fluid" src="{{ asset('/') }}public/images/logo.png" alt="logo">
+                                <a class="home-link" href="{{route('index')}}" title="Altech" rel="home">
+                                    <img id="logo-img" class="img-fluid" src="{{ asset('/') }}images/logo/logo_pbj.png" alt="logo" style="width:422px; height:100%;">
                                 </a>
                             </div><!-- site-branding end -->
                             <!-- widget-info -->
@@ -56,7 +56,7 @@
                             <div class="widget_info d-flex flex-row align-items-center justify-content-end">
                                 <div class="widget_icon"><i class="flaticon-global-1"></i></div>
                                 <div class="widget_content">
-                                    <h5 class="widget_title">Jl. Kapten A. Rivai </h5>
+                                    <h5 class="widget_title">Jl. Kapten A. Rivai No. 3</h5>
                                     <p class="widget_desc">Provinsi Sumatera Selatan</p>
                                 </div>
                             </div><!-- widget-info end -->
@@ -76,11 +76,12 @@
                                 <div class="ttm-header-icon ttm-header-search-link">
                                     <a href="#"><i class="ti ti-search"></i></a>
                                     <div class="ttm-search-overlay">
-                                        <form method="get" class="ttm-site-searchform" action="#">
+                                        <form action="{{ route('search') }}" class="ttm-site-searchform" method="POST">
+                                            @csrf
                                             <div class="w-search-form-h">
                                                 <div class="w-search-form-row">
                                                     <div class="w-search-input">
-                                                        <input type="search" class="field searchform-s" name="s" placeholder="Type Word Then Enter...">
+                                                        <input type="search" class="field searchform-s" name="search" placeholder="Type Word Then Enter...">
                                                         <button type="submit">
                                                             <i class="ti ti-search"></i>
                                                         </button>
@@ -105,36 +106,35 @@
 
 
                             <ul class="dropdown">
-                                <li class="active"><a href="#">HOME</a></li>
+                                <li class="active"><a href="{{route('index')}}">HOME</a></li>
 
                                 <li class="active"><a href="#">PROFIL</a>
                                     <ul>
-                                        <li><a href="index.html">Visi & Misi</a></li>
-                                        <li><a href="home-2.html">Sejarah</a></li>
-                                        <li><a href="home-3.html">Struktur Organisasi</a></li>
+                                        <li><a href="{{route('page',['slug'=>'visi-misi'])}}">Visi & Misi</a></li>
+                                        <li><a href="{{route('page',['slug'=>'sejarah'])}}">Sejarah</a></li>
                                         <li class="active"><a href="#">Tupoksi</a>
                                             <ul>
-                                                <li style="margin-bottom:-15px;"><a href="index.html">Pengelolaan Pengadaan Barang/ Jasa</a></li>
-                                                <li style="margin-bottom:-15px;"><a href="header-style-02.html">Pengelolaan Layanan Pengadaan Secara Elektronik</a></li>
-                                                <li style="margin-bottom:-15px;"><a href="header-style-02.html">Pembinaan dan Advokasi Pengadaan Barang/ Jasa</a></li>
-                                                <li><a href="header-style-02.html">Pelaksanaan Tugas Kedinasan Lainnya yang diberikan Oleh Pimpinan</a></li>
+                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>'tupoksi-pengelolaan-pengadaan-barang-jasa'])}}">Pengelolaan Pengadaan Barang/ Jasa</a></li>
+                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>'tupoksi-pengelolaan-layanan-pengadaan-secara-elektronik'])}}">Pengelolaan Layanan Pengadaan Secara Elektronik</a></li>
+                                                <li><a href="{{route('page',['slug'=>'tupoksi-pembinaan-dan-advokasi-pengadaan-barang-jasa'])}}">Pembinaan dan Advokasi Pengadaan Barang/ Jasa</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">INFORMASI</a>
                                     <ul>
-                                        <li><a href="aboutus-01.html">Berita</a></li>
-                                        <li><a href="aboutus-02.html">Pengumuman</a></li>
+                                        @foreach($menuKategori as $item)
+                                        <li><a href="{{route('jenis',['slug'=> $item->slug_kategori])}}">{{ $item->nm_kategori }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="#">GALERI</a>
+                                <li><a href=" #">GALERI</a>
                                     <ul>
-                                        <li><a href="it-consultancy.html">Foto</a></li>
-                                        <li><a href="digital-services.html">Video</a></li>
+                                        <li><a href="{{route('galeriphoto')}}">Foto</a></li>
+                                        <li><a href="{{route('galerivideo')}}">Video</a></li>
                                     </ul>
                                 </li>
-                                <li class="active"><a href="#">KONTAK KAMI</a></li>
+                                <li class="active"><a href="{{route('page',['slug'=>'kontak'])}}">KONTAK KAMI</a></li>
                             </ul>
                         </nav>
                     </div><!-- site-navigation end-->

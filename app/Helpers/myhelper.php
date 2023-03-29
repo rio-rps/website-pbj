@@ -28,6 +28,26 @@ function cek_date_ddmmyyyy_his_v1($date)
     return $str['2'] . "-" . $bulan[$str[1]] . "-" . $str[0] . " (" . $time . ")";
 }
 
+function cek_month_v1($month)
+{
+    $bulan = array(
+        '0' => '00',
+        '1' => 'Januari',
+        '2' => 'Februari',
+        '3' => 'Maret',
+        '4' => 'April',
+        '5' => 'Mei',
+        '6' => 'Juni',
+        '7' => 'Juli',
+        '8' => 'Agustus',
+        '9' => 'September',
+        '10' => 'Oktober',
+        '11' => 'November',
+        '12' => 'Desember'
+    );
+    return $bulan[$month];
+}
+
 function cek_ddmmyy_v1($date)
 {
     $str = explode('-', $date);
@@ -70,6 +90,12 @@ function cek_ddmmyy_v2($date)
     return $str['2'] . " " . $bulan[$str[1]] . " " . $str[0];
 }
 
+function cek_ddmmyy_v3($tanggal)
+{
+    return date('M d, Y', strtotime($tanggal));
+}
+
+
 function format_rupiah($angka)
 {
     $hasil =  number_format($angka, 0, ',', '.');
@@ -94,4 +120,21 @@ function cekStatusPost($angka)
         $isi = "Draft";
     }
     return $isi;
+}
+
+function getYoutubeVideoID($url)
+{
+    $videoID = '';
+    $urlParts = explode('/', $url);
+    foreach ($urlParts as $part) {
+        if (strpos($part, 'watch?v=') !== false) {
+            $videoID = explode('watch?v=', $part)[1];
+            break;
+        }
+        if (strpos($part, 'youtu.be') !== false) {
+            $videoID = explode('youtu.be/', $part)[1];
+            break;
+        }
+    }
+    return $videoID;
 }

@@ -701,7 +701,7 @@
     
     .ttm-fid-view-topicon-row {margin-left: 15px !important;margin-right: 15px!important;}
 
-    .ttm-page-title-row { padding-top: 80px; padding-bottom: 80px;}
+    .ttm-page-title-row { padding-top: 0; padding-bottom: 0;}
 
     /* featured-imagebox */
 	.featured-imagebox-services.style1 .featured-content { padding: 20px 20px 20px;}

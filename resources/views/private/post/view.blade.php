@@ -23,7 +23,7 @@
                             <th>Judul</th>
                             <th>Kategori</th>
                             <th>Status</th>
-                            <th>Tanggal Update</th>
+                            <th>Tanggal Terbit</th>
                             <th width="15%" align="center">Action</th>
                         </tr>
                     </thead>

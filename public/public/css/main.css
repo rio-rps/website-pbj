@@ -1824,17 +1824,17 @@ ul.footer-nav-menu li:not(:last-child):after {
 
 .ttm-page-title-row { 
     position: relative;
-    background-image: url(https://via.placeholder.com/1920X380/888888.jpg);
+    /* background-image: url(https://via.placeholder.com/1920X380/888888.jpg); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
-div.ttm-page-title-row > .ttm-bg-layer { background-color: rgba(24,35,51,0.85); }
+/* div.ttm-page-title-row > .ttm-bg-layer { background-color: rgba(24,35,51,0.85); } */
 .ttm-page-title-row { 
     display: block;
-    padding-top: 195px;
-    padding-bottom: 110px;
-    z-index: 11;
+    padding-top: 0;
+    padding-bottom: 0;
+    z-index: 0;
 }
 .title-box .page-title-heading h1 {
     text-transform: capitalize;

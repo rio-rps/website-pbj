@@ -78,6 +78,7 @@ class PostController extends Controller
                     'post_thumbnail' => $gambar_name,
                     'post_content' => $r->post_content,
                     'post_status' => $r->post_status,
+                    'tgl_terbit' => date('Y-m-d H:i:s'),
                 ]);
 
 
@@ -104,7 +105,7 @@ class PostController extends Controller
     public function show()
     {
         if (request()->ajax()) {
-            return  DataTablesDataTables::of(PostModel::query()->orderby('updated_at', 'DESC'))
+            return  DataTablesDataTables::of(PostModel::query()->orderby('tgl_terbit', 'DESC'))
                 ->addColumn('action', 'private.post.action')
                 ->addColumn('kategori', function ($row) {
                     $result = PostKategoriRelationshipsModel::where('post_kd', $row->post_kd)->get();
@@ -123,7 +124,7 @@ class PostController extends Controller
                     return "<span class='badge " . $badge . "'>" . cekStatusPost($row->post_status) . "</span>";
                 })
                 ->addColumn('tanggal', function ($row) {
-                    return cek_date_ddmmyyyy_his_v1($row->updated_at);
+                    return cek_date_ddmmyyyy_his_v1($row->tgl_terbit);
                 })
                 ->rawColumns(['kategori', 'action', 'status'])
                 ->make(true);
@@ -204,6 +205,7 @@ class PostController extends Controller
                     'post_thumbnail' => $gambar_name,
                     'post_content' => $r->post_content,
                     'post_status' => $r->post_status,
+                    //'tgl_terbit' => date('Y-m-d H:i:s'),
                 ]);
 
                 PostKategoriRelationshipsModel::where('post_kd', $id)->delete();

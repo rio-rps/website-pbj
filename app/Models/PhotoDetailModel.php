@@ -11,4 +11,9 @@ class PhotoDetailModel extends Model
     public $table = "ddd_galeri_photo_detail";
     protected $primarykey = "id_galeri_photo_detail";
     protected $fillable = ['gambar_galeri_photo', 'id_galeri_photo'];
+
+    public function JPhoto()
+    {
+        return $this->belongsTo(PhotoModel::class, 'id_galeri_photo', 'id_galeri_photo');
+    }
 }
