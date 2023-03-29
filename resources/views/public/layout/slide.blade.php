@@ -13,7 +13,7 @@
  <style>
      .carousel-inner img {
          width: 100%;
-         height: 30em;
+         height: 20em;
          object-fit: fill;
      }
  </style>
@@ -25,7 +25,7 @@
                  <li data-target="#myCarousel" data-slide-to="{{ $key }}" {{ $key == 0 ? 'class=active' : '' }}></li>
                  @endforeach
              </ol>
-             <div class="carousel-inner">
+             <div class="carousel-inner" style="box-shadow: 1px 1px 1px 1px;">
                  @foreach($getRightData['resultSlide'] as $key => $slide)
                  <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                      <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[{{$slide->id_slide}}]" title="" data-rel="photoslide{{$slide->id_slide}}" href="{{ asset('images/gambar_slide/' . $slide->gambar_slide) }}">

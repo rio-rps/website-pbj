@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\DPAController;
 use App\Http\Controllers\DPARincianController;
 use App\Http\Controllers\JenisDokumenController;
@@ -98,7 +99,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('laman', LamanController::class);
         Route::resource('lamandetail', LamanDetailController::class);
         Route::resource('post', PostController::class);
-        Route::resource('dokumen', DokumenModel::class);
+        Route::resource('dokumen', DokumenController::class);
     });
 });
 

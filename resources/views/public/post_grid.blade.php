@@ -15,7 +15,7 @@
  <div class="row">
  	@foreach ($posts as $result)
  	<div class="col-md-6 col-lg-6">
- 		<div class="featured-imagebox featured-imagebox-blog style2 mb-20">
+ 		<div class="featured-imagebox featured-imagebox-blog style2 mb-20" style="box-shadow: 0px 0px 1px 1px;">
  			<div class="featured-thumbnail postImg">
  				<a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[{{$result->post_kd}}]" title="" data-rel="photoslide{{$result->post_kd}}" href="{{ asset('images/thumbnail/' . $result->post_thumbnail) }}">
  					<img src="{{ asset('images/thumbnail/' . $result->post_thumbnail) }}" alt="{{ $result->post_title }}" class="img-fluid img-{{$result->post_kd}}" title="{{$result->post_title}}">

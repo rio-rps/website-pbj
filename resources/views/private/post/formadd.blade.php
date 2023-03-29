@@ -73,12 +73,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 mr-1 border-primary border-darken-1">
+                    <!-- <div class="card mb-1 mr-1 border-primary border-darken-1">
                         <div class="card-content">
                             <div class="p-1">
                                 <h5 class="card-title" style="margin-bottom:-4px;"><b>TANGGAL PUBLISH</b></h5>
                                 <hr>
-                                <div class="form-group">
+                                <div class="form-group"> 
                                     <div class="input-group date" id="datetimepicker9">
                                         <input type="text" class="form-control" name="tgl_terbit">
                                         <div class="input-group-append">
@@ -92,7 +92,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="card mb-1 mr-1 border-primary border-darken-1">
                         <div class="card-content">
                             <div class="p-1">

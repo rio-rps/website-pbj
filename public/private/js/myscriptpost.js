@@ -34,6 +34,8 @@
                                 slideShowData();
                             } else if(response.myReload =='href'){
                                 window.location.href=response.route;
+                            } else {
+                                myTable.ajax.reload();
                             }
                         })  
                     } 

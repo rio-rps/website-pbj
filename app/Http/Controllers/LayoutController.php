@@ -83,7 +83,7 @@ class LayoutController extends Controller
             })
             ->withCount('JPostHistoriCount')
             ->orderBy('tgl_terbit', 'desc')
-            ->paginate(1);
+            ->paginate(8);
 
         $comp = [
             'slide' => "",
@@ -97,7 +97,7 @@ class LayoutController extends Controller
     {
         $tahun = $r->tahun;
         $bulan = $r->bulan;
-        $bulan_str = str_pad($bulan, 2, '0', STR_PAD_LEFT); 
+        $bulan_str = str_pad($bulan, 2, '0', STR_PAD_LEFT);
 
         $posts = PostModel::select(DB::raw('*, YEAR(tgl_terbit) AS year, MONTH(tgl_terbit) AS month, DAY(tgl_terbit) AS day'))
             ->where('post_status', '1')
@@ -109,7 +109,7 @@ class LayoutController extends Controller
             ->withQueryString();
         $comp = [
             'slide' => "",
-            'content' => view('public/post_grid', ['posts' => $posts,'title' => cek_month_v1($bulan) . " " . $tahun,]),
+            'content' => view('public/post_grid', ['posts' => $posts, 'title' => cek_month_v1($bulan) . " " . $tahun,]),
             'right' => view('public/layout/right', ['getRightData' => getRightData()]),
         ];
         return view('public.layout.main', $comp);
@@ -240,7 +240,7 @@ class LayoutController extends Controller
         //dd($posts);
         $comp = [
             'slide' => view('public/layout/slide', ['getRightData' => getRightData()]),
-            'content' => view('public/post_grid',  ['posts' => $posts,'title' => "SEARCH : ".$r->search]),
+            'content' => view('public/post_grid',  ['posts' => $posts, 'title' => "SEARCH : " . $r->search]),
             'right' => view('public/layout/right', ['getRightData' => getRightData()]),
         ];
         return view('public.layout.main', $comp);
