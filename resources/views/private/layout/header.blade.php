@@ -9,7 +9,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="navbar-brand" href="">
-                        <img class="brand-logo" alt="Sumselprov" src="{{ asset('/') }}images/logo/logo_prov.png">
+                        <img class="brand-logo" alt="Sumselprov" src="{{ asset('images/logo/logo_prov.png')}}">
                         <h3 class="brand-text" style="font-size:20px;margin-top:-22px;">Biro PBJ</h3>
                     </a>
                 </li>
@@ -28,7 +28,7 @@
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                             <div class="avatar avatar-online">
-                                <img src="{{ asset('/') }}images/user/user.png" alt="avatar">
+                                <img src="{{ asset('images/user/user.png')}}" alt="avatar">
                                 <i></i>
                             </div>
                             <span id="idemail">{{Auth::user()->email}}</span>

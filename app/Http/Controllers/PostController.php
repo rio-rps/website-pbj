@@ -38,67 +38,96 @@ class PostController extends Controller
         return view('private.post.formadd', $data);
     }
 
+    public function uploadImage(Request $request) {    
+        if($request->hasFile('upload')) {
+                  $originName = $request->file('upload')->getClientOriginalName();
+                  $fileName = pathinfo($originName, PATHINFO_FILENAME);
+                  $extension = $request->file('upload')->getClientOriginalExtension();
+                  $fileName = $fileName.'_'.time().'.'.$extension;
+               
+                  $request->file('upload')->move(public_path('images/post'), $fileName);
+          
+                  $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+                  $url = asset('images/post/'.$fileName); 
+                  $msg = 'Image uploaded successfully'; 
+                  $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+                      
+                  @header('Content-type: text/html; charset=utf-8'); 
+                  echo $response;
+        }
+     }  
+     
     public function store(Request $r)
-    {
-        if (request()->ajax()) {
-            $validator = Validator::make($r->all(), [
-                'post_title' => 'required',
-                'post_thumbnail' => 'required|image|mimes:jpg,png,jpeg|max:2048',
-                'post_content' => 'required',
-                'post_status' => 'required',
-                'id_kategori' => 'required',
-            ], [
-                'post_title.required' => 'Judul Tidak Boleh Kosong',
-                'post_thumbnail.required' => 'Thumbnail Tidak Boleh Kosong',
-                'post_thumbnail.mimes' => 'Thumbnail Hanya di perbolehkan ekstensi JPEG, JPG, PNG',
-                'post_content.required' => 'Isi Tidak Boleh Kosong',
-                'post_status.required' => 'Status Tidak Boleh Kosong',
-                'id_kategori.required' => 'kategori Tidak Boleh Kosong',
-            ]);
+    { 
 
-
-
-
-            if ($validator->fails()) {
-                $errors = $validator->errors();
-                return response()->json(['errors' => $errors], 422);
-            } else {
-
-                $gambar_name = "";
-                if ($image = $r->file('post_thumbnail')) {
-                    $gambar_path = public_path('images/thumbnail');
-                    $gambar_ekstensi = $image->getClientOriginalExtension();
-                    $gambar_name = date('ymdhis') . "." . $gambar_ekstensi;
-                    $image->move($gambar_path, $gambar_name);
-                }
-
-                PostModel::create([
-                    'post_title'  => $r->post_title,
-                    'slug_title'  =>  $this->createSlug($r->post_title),
-                    'post_thumbnail' => $gambar_name,
+        PostModel::create([
+                    'post_title'  => "",
+                    'slug_title'  =>  "",
+                    'post_thumbnail' => "",
                     'post_content' => $r->post_content,
-                    'post_status' => $r->post_status,
+                    'post_status' => "1",
                     'tgl_terbit' => date('Y-m-d H:i:s'),
                 ]);
+            // $validator = Validator::make($r->all(), [
+            //     'post_title' => 'required',
+            //     'post_thumbnail' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            //     'post_content' => 'required',
+            //     'post_status' => 'required',
+            //     'id_kategori' => 'required',
+            // ], [
+            //     'post_title.required' => 'Judul Tidak Boleh Kosong',
+            //     'post_thumbnail.required' => 'Thumbnail Tidak Boleh Kosong',
+            //     'post_thumbnail.mimes' => 'Thumbnail Hanya di perbolehkan ekstensi JPEG, JPG, PNG',
+            //     'post_content.required' => 'Isi Tidak Boleh Kosong',
+            //     'post_status.required' => 'Status Tidak Boleh Kosong',
+            //     'id_kategori.required' => 'kategori Tidak Boleh Kosong',
+            // ]);
 
 
-                $id = DB::getPdo()->lastInsertId();
 
-                $kat = $r->input('id_kategori');
-                $jml_kat = count($kat);
-                for ($i = 0; $i < $jml_kat; $i++) {
-                    $post =  PostKategoriRelationshipsModel::create([
-                        'id_kategori'  => $r->id_kategori[$i],
-                        'post_kd'  => $id,
-                    ]);
-                }
 
-                $row = PostModel::where('post_kd', $id)->first();
-                return response()->json(['success' => 'Data berhasil disimpan', 'myReload' => 'href', 'route' => route('post.edit', $row->slug_title)]);
-            }
-        } else {
-            exit('Maaf Tidak Dapat diproses...');
-        }
+            // if ($validator->fails()) {
+            //     $errors = $validator->errors();
+            //     return response()->json(['errors' => $errors], 422);
+            // } else {
+
+            //     $gambar_name = "";
+            //     if ($image = $r->file('post_thumbnail')) {
+            //         $gambar_path = public_path('images/thumbnail');
+            //         $gambar_ekstensi = $image->getClientOriginalExtension();
+            //         $gambar_name = date('ymdhis') . "." . $gambar_ekstensi;
+            //         $image->move($gambar_path, $gambar_name);
+            //     }
+
+            //     PostModel::create([
+            //         'post_title'  => $r->post_title,
+            //         'slug_title'  =>  $this->createSlug($r->post_title),
+            //         'post_thumbnail' => $gambar_name,
+            //         'post_content' => $r->post_content,
+            //         'post_status' => $r->post_status,
+            //         'tgl_terbit' => date('Y-m-d H:i:s'),
+            //     ]);
+
+
+            //     $id = DB::getPdo()->lastInsertId();
+
+            //     $kat = $r->input('id_kategori');
+            //     $jml_kat = count($kat);
+            //     for ($i = 0; $i < $jml_kat; $i++) {
+            //         $post =  PostKategoriRelationshipsModel::create([
+            //             'id_kategori'  => $r->id_kategori[$i],
+            //             'post_kd'  => $id,
+            //         ]);
+            //     }
+
+            //     $row = PostModel::where('post_kd', $id)->first();
+            //     return response()->json(['success' => 'Data berhasil disimpan', 'myReload' => 'href', 'route' => route('post.edit', $row->slug_title)]);
+            // }
+      
+
+//             $input = $request->all();
+//        Product::create($input);
+//        return redirect('/')->with('flash_message', 'New Product Addedd!');  
     }
 
 
@@ -149,8 +178,7 @@ class PostController extends Controller
     }
 
     public function update(Request $r, $id)
-    {
-        if (request()->ajax()) {
+    { 
             $validator = Validator::make($r->all(), [
                 'post_title' => 'required',
                 'post_thumbnail' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
@@ -221,10 +249,7 @@ class PostController extends Controller
 
                 $row = PostModel::where('post_kd', $id)->first();
                 return response()->json(['success' => 'Data berhasil diupdate', 'myReload' => 'href', 'route' => route('post.edit', $row->slug_title)]);
-            }
-        } else {
-            exit('Maaf Tidak Dapat diproses...');
-        }
+            } 
     }
 
     public function editStatus($id)
@@ -265,6 +290,9 @@ class PostController extends Controller
             exit('Maaf Tidak Dapat diproses...');
         }
     }
+
+  
+
     public function destroy($id)
     {
         if (request()->ajax()) {

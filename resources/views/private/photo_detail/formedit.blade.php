@@ -7,9 +7,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('slideshow.update',$id) }}" class="formData" method="PUT">
+            <form action="{{ route('slideshow.update',$id) }}" class="formData" method="POST">
                 @csrf
-
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label class="col-sm-6 col-form-label border-bottom">Status Tampilkan Slide</label>
@@ -36,4 +37,4 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('/') }}private/js/myscriptpost.js"></script>
+<script src="{{ asset('private/js/myscriptpost.js')}}"></script>

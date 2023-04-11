@@ -33,4 +33,4 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('/') }}private/js/myscriptpost.js"></script>
+<script src="{{ asset('private/js/myscriptpost.js')}}"></script>

@@ -23,7 +23,7 @@
                             <label class="col-sm-4 col-form-label border-bottom">File Dokumen </label>
                             <div class="col-md-8">
                                 <input type="file" class="form-control" name="file_dokumen" accept=".pdf,.doc,.docx,.xlsx,.pptx">
-                                <span class="badge badge-danger pull-right">pdf, doc, docx, xlsx, pptx | max:2048 MB</span>
+                                <span class="badge badge-danger pull-right">pdf, doc, docx, xlsx, pptx | max:10000 MB</span>
                             </div>
                         </div>
                     </div>
@@ -41,4 +41,4 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('/') }}private/js/myscriptpost.js"></script>
+<script src="{{ asset('private/js/myscriptpost.js')}}"></script>

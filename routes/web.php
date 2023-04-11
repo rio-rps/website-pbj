@@ -62,6 +62,7 @@ Route::get('/galerivideo', [LayoutController::class, 'galerivideo'])->name('gale
 Route::get('/ambilDataPostGrid', [LayoutController::class, 'ambilDataPostGrid'])->name('ambilDataPostGrid');
 Route::get('/post_grid', [LayoutController::class, 'post_grid'])->name('post_grid');
 Route::post('/search', [LayoutController::class, 'search'])->name('search');
+Route::post('post/uploadImage', [PostController::class, 'uploadImage'])->name('post.uploadImage');
 
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel.index');

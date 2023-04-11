@@ -37,7 +37,7 @@
              <a href="{{route('postdetail',['slug'=>$dt->slug_title])}}" style="font-size:11px;">{{ Str::limit($dt->post_title,57) }}</a>
              <span class="post-date">
                  <i class="fa fa-calendar"></i> {{ cek_ddmmyy_v3($dt->tgl_terbit) }} |
-                 <i class="fa fa-eye"></i>{{ $dt->count; }}
+                 <i class="fa fa-eye"></i>{{ $dt->j_post_histori_count_count; }}
              </span>
          </li>
          @endforeach

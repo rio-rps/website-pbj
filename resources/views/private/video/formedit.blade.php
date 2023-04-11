@@ -7,9 +7,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('video.update',$id) }}" class="formData" method="PUT">
+            <form action="{{ route('video.update',$id) }}" class="formData" method="POST">
                 @csrf
-
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="modal-body">
                     <div class="form-body">
                         <div class="form-group row">
@@ -42,4 +43,4 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('/') }}private/js/myscriptpost.js"></script>
+<script src="{{ asset('private/js/myscriptpost.js')}}"></script>

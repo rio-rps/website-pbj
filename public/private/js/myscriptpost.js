@@ -22,7 +22,6 @@
                 complete: function() {
                     $('#tombolSave').prop('disabled', false);
                     $('#tombolSave').html("<i class='feather icon-play mr-25'></i> <span class='d-sm-inline'>SIMPAN</span>");
-
                 },
                 success: function(response) {
                     if (response.success) {
@@ -61,6 +60,9 @@
             return false;
         });
 
+          // form upload
+        
+
         // form tanpa upload
         $('.formData').submit(function(e) {
             e.preventDefault();
@@ -89,6 +91,8 @@
                             } else {
                                 myTable.ajax.reload();
                             }
+
+                            
                         })  
                     }
 

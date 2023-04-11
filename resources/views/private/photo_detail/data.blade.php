@@ -1,17 +1,38 @@
+<style>
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.button {
+  position: absolute;
+  top: 10%;
+  left: 6%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.image {
+  z-index: 0;
+}
+</style>
 <div class="card">
     <div class="row">
-
-
         @foreach ($result as $ddresult)
-        <div class="col-sm-4 mb-1">
-            <p>
-                <a href="#" class="btn btn-sm btn-danger pull-right" id="tombol-hapus" data-url="{{ route('photodetail.destroy',['photodetail' => $ddresult->id_galeri_photo_detail,'myReload' =>'slideShowData'])}}" title="Hapus Data" style="margin-left: 5px;">
-                    <i class="fa fa-trash"></i>
-                </a>
-            </p>
+        <div class="col-sm-4 mb-1">     
+            <div class="image-container">
+            <form method="POST" action="{{ route('photodetail.destroy',['photodetail' => $ddresult->id_galeri_photo_detail,'myReload' =>'slideShowData'])}}" class="formDelete button" >
+                    @csrf
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-sm btn-danger pull-right" id="tombolDelete"  title="Hapus Data" style="margin-left: 0px;">
+                        <i class="fa fa-trash"></i>  
+                    </button>
+                </form>  
             <a href="#" data-toggle="modal" data-target="#modalGambar" data-id="{{asset('images/galeri_photo/'.$ddresult->gambar_galeri_photo)}}">
-                <img src="{{asset('images/galeri_photo/'.$ddresult->gambar_galeri_photo)}}" class="img-thumbnail" style="height: 170px; width: 370px;" title="">
+                <img src="{{asset('images/galeri_photo/'.$ddresult->gambar_galeri_photo)}}" class="img-thumbnail image" style="height: 170px; width: 370px;" title="">
             </a>
+            </div>
         </div>
         @endforeach
         @if (count($result) ==0)

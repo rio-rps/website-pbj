@@ -42,7 +42,7 @@ class DokumenController extends Controller
         if (request()->ajax()) {
             $r->validate([
                 'nm_dokumen' => 'required|unique:edd_upload_dokumen,nm_dokumen',
-                'file_dokumen' =>  'required|file|mimes:pdf,docx,xlsx,pptx|max:2048',
+                'file_dokumen' =>  'required|file|mimes:pdf,docx,xlsx,pptx|max:10000',
             ], [
                 'nm_dokumen.required' => 'Nama Dokumen Tidak Boleh Kosong',
                 'nm_dokumen.unique' => 'Nama Dokumen Sudah Ada',
@@ -107,7 +107,7 @@ class DokumenController extends Controller
             // Validasi input
             $r->validate([
                 'nm_dokumen' => 'required|unique:edd_upload_dokumen,nm_dokumen,' . $id . ',id_dokumen',
-                'file_dokumen' => 'nullable|file|mimes:pdf,doc,docx,xlsx,pptx|max:2048',
+                'file_dokumen' => 'nullable|file|mimes:pdf,doc,docx,xlsx,pptx|max:10000',
             ], [
                 'nm_dokumen.required' => 'Nama Dokumen Tidak Boleh Kosong',
                 'nm_dokumen.unique' => 'Nama Dokumen Sudah Ada',

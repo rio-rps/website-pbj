@@ -7,39 +7,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <title>{{ config('app.name') }}</title>
-    <link rel="apple-touch-icon" href="{{ asset('/') }}private/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/') }}private/images/ico/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('images/logo/logo_prov.png')}}"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('private/images/ico/favicon.ico')}}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/private/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/vendors/css/forms/icheck/icheck.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/vendors/css/forms/icheck/custom.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/vendors/css/vendors.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/vendors/css/forms/icheck/icheck.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/vendors/css/forms/icheck/custom.css')}}">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/components.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/css/bootstrap-extended.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/css/colors.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/css/components.css')}}">
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/core/colors/palette-gradient.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/pages/login-register.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/css/core/menu/menu-types/vertical-menu.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/css/core/colors/palette-gradient.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/css/pages/login-register.css')}}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}private/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('private/css/style.css')}}">
     <!-- END: Custom CSS-->
 
 </head>
-<!-- END: Head-->
+<style>
+    .bg-utama {
+        /* background-image: url('public/images/profil/bg.jpg'); */
+        background-image: url("{{ asset('images/logo/bg.jpg') }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+</style>
 
-<!-- BEGIN: Body-->
-
-<body class="vertical-layout vertical-menu 1-column   blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column">
+<body class="vertical-layout vertical-menu 1-column  bg-utama blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column">
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
@@ -55,7 +62,7 @@
                                     <!-- <div class="card-title text-center">
                                         <div class="p-1"><img src="{{ asset('/') }}private/images/logo/stack-logo-dark.png" alt="branding logo"></div>
                                     </div> -->
-                                    <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2"><span>APLIKASI {{ config('app.name') }}</span></h6>
+                                    <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2"><span>APLIKASI BIRO PENGADAAN BARANG/JASA</span></h6>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
@@ -93,7 +100,7 @@
                                                         <label for="remember-me"> Remember Me</label>
                                                     </fieldset>
                                                 </div>
-                                                <div class="col-sm-6 col-12 text-center text-sm-right"><a href="recover-password.html" class="card-link">Forgot Password?</a></div>
+                                                <div class="col-sm-6 col-12 text-center text-sm-right"><a href="{{route('index')}}" class="card-link">Halaman Utama</a></div>
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="feather icon-unlock"></i> Login</button>
                                         </form>
@@ -110,21 +117,21 @@
 
 
     <!-- BEGIN: Vendor JS-->
-    <script src="{{ asset('/') }}private/vendors/js/vendors.min.js"></script>
+    <script src="{{ asset('private/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ asset('/') }}private/vendors/js/forms/icheck/icheck.min.js"></script>
-    <script src="{{ asset('/') }}private/vendors/js/forms/validation/jqBootstrapValidation.js"></script>
+    <script src="{{ asset('private/vendors/js/forms/icheck/icheck.min.js')}}"></script>
+    <script src="{{ asset('private/vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    <script src="{{ asset('/') }}private/js/core/app-menu.js"></script>
-    <script src="{{ asset('/') }}private/js/core/app.js"></script>
+    <script src="{{ asset('private/js/core/app-menu.js')}}"></script>
+    <script src="{{ asset('private/js/core/app.js')}}"></script>
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="{{ asset('/') }}private/js/scripts/forms/form-login-register.js"></script>
+    <script src="{{ asset('private/js/scripts/forms/form-login-register.js')}}"></script>
     <!-- END: Page JS-->
 
 </body>

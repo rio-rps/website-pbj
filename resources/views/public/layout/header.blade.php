@@ -40,8 +40,8 @@
                         <div class="d-flex flex-row align-items-center">
                             <!-- site-branding -->
                             <div class="site-branding mr-auto">
-                                <a class="home-link" href="{{route('index')}}" title="Altech" rel="home">
-                                    <img id="logo-img" class="img-fluid" src="{{ asset('/') }}images/logo/logo_pbj.png" alt="logo" style="width:422px; height:100%;">
+                                <a class="home-link" href="{{route('index')}}" title="Biro Pengadaan Barang/Jasa" rel="home">
+                                    <img id="logo-img" class="img-fluid" src="{{ asset('images/logo/logo_pbj.png')}}" alt="Biro Pengadaan Barang/Jasa">
                                 </a>
                             </div><!-- site-branding end -->
                             <!-- widget-info -->

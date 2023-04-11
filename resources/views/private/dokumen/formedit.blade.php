@@ -29,6 +29,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-body">
+                        <div class="form-group row"> 
+                            <div class="col-md-12">
+                            Apabila file dokumen tetap menggunakan yang lama maka tidak perlu di upload kembali
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">TUTUP</button>
@@ -44,4 +51,4 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('/') }}private/js/myscriptpost.js"></script>
+<script src="{{ asset('private/js/myscriptpost.js')}}"></script>
