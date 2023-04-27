@@ -29,6 +29,8 @@
 
             <div class="container">
                 <form action="{{route('lamandetail.update',$id)}}" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="slug" value="{{$row->slug_laman}}">
                     @csrf
                     @method('PUT')
@@ -45,7 +47,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('/') }}add-plugins/ckeditor/ckeditor.js"></script>
-    <script src="{{ asset('/') }}add-plugins/ckeditor/script.js"></script>
+    <script src="{{ asset('add-plugins/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('add-plugins/ckeditor/script.js') }}"></script>
 </body>
 @endsection

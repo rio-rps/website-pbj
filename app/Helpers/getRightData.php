@@ -39,6 +39,7 @@ function getRightData()
     $linkTerkait = LinkTerkaitModel::all();
     // arsip
     $arsip = PostModel::select(DB::raw('YEAR(tgl_terbit) AS year, MONTH(tgl_terbit) AS month, COUNT(*) AS count'))
+        ->where('post_status', '1')
         ->groupBy('year', 'month')
         ->orderByDesc('year')
         ->orderByDesc('month')

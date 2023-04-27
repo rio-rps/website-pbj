@@ -17,6 +17,7 @@ use App\Http\Controllers\MappingNPDDokumenContoller;
 use App\Http\Controllers\NPDController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\Pengaduancontroller;
 use App\Http\Controllers\PengaturanAkunController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PhotoDetailController;
@@ -61,9 +62,12 @@ Route::get('/galeriphotodetail/{slug}', [LayoutController::class, 'galeriphotode
 Route::get('/galerivideo', [LayoutController::class, 'galerivideo'])->name('galerivideo');
 Route::get('/ambilDataPostGrid', [LayoutController::class, 'ambilDataPostGrid'])->name('ambilDataPostGrid');
 Route::get('/post_grid', [LayoutController::class, 'post_grid'])->name('post_grid');
+
 Route::post('/search', [LayoutController::class, 'search'])->name('search');
 Route::post('post/uploadImage', [PostController::class, 'uploadImage'])->name('post.uploadImage');
 
+Route::get('layout/pengaduan', [LayoutController::class, 'pengaduan'])->name('pengaduan');
+Route::post('layout/storePengaduan', [LayoutController::class, 'storePengaduan'])->name('storePengaduan');
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel.index');
 
@@ -86,9 +90,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('pengaturanakun/updateemail', [PengaturanAkunController::class, 'updateemail'])->name('pengaturanakun.updateemail');
 
 
+        Route::get('pengaduan', [Pengaduancontroller::class, 'index'])->name('pengaduan.index');
+        Route::get('pengaduan/show', [Pengaduancontroller::class, 'show'])->name('pengaduan.show');
+        Route::get('pengaduan/detail/{id}', [Pengaduancontroller::class, 'detail'])->name('pengaduan.detail');
         //admin
 
         Route::get('post/editstatus/{id}', [PostController::class, 'editstatus'])->name('post.editstatus');
+
         Route::put('post/updatestatus/{id}', [PostController::class, 'updatestatus'])->name('post.updatestatus');
 
         Route::resource('slideshow', SlideShowController::class);

@@ -30,7 +30,7 @@
             </div>
         </div>
         <hr>
-        <form action="{{ route('post.update',$id)}}" class="formDataMultipartArtikel" id="formDataMultipartArtikel" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('post.update',$id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -143,64 +143,6 @@
         });
 
 
-
-        $('.formDataMultipartArtikel').submit(function(e) {
-            e.preventDefault();
-
-            var formData = new FormData(this);
-            $.ajax({
-                //type: "POST",
-                type: $(this).attr('method'),
-                url: $(this).attr('action'),
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-
-                beforeSend: function() {
-                    $('#tombolSave').prop('disabled', true);
-                    $('#tombolSave').html("<i class='fa fa-spin fa-spinner'></i>");
-                },
-                complete: function() {
-                    $('#tombolSave').prop('disabled', false);
-                    $('#tombolSave').html("<i class='feather icon-play mr-25'></i> <span class='d-sm-inline'>SIMPAN</span>");
-                },
-                success: function(response) {
-                    if (response.success) {
-
-                        Swal.fire('Berhasil', response.success, 'success').then((result) => {
-                            //window.location.reload(); 
-                            $('#modalFormData').modal('hide');
-                            if (response.myReload == 'slideShowData') {
-                                slideShowData();
-                            } else if (response.myReload == 'href') {
-                                window.location.href = response.route;
-                            } else {
-                                myTable.ajax.reload();
-                            }
-                        })
-                    }
-                },
-                error: function(xhr, ajaxOptons, throwError) {
-
-                    if (xhr.status >= 500) {
-                        // alert(xhr.status + '\n' + throwError);
-                        Swal.fire('Error', xhr.status + '\n' + throwError, 'error');
-                    }
-                    if (xhr.status == 422) {
-                        var errors = xhr.responseJSON.errors;
-                        var errorList = '';
-                        for (var key in errors) {
-                            if (errors.hasOwnProperty(key)) {
-                                errorList += '\n - ' + errors[key] + '</br>';
-                            }
-                        }
-                        Swal.fire('Gagal', errorList, 'warning');
-                    }
-                }
-            });
-            return false;
-        });
 
     });
 

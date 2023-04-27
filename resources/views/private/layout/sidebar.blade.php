@@ -53,7 +53,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item  ">
+            <li class="nav-item">
                 <a href="{{route('laman.index')}}">
                     <i class="fa fa-clone"></i>
                     <span class="menu-title" data-i18n="Laman">Laman</span>
@@ -63,6 +63,12 @@
                 <a href="{{route('dokumen.index')}}">
                     <i class="fa fa-th-large"></i>
                     <span class="menu-title" data-i18n="Dokumen">Dokumen</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('pengaduan.index')}}">
+                    <i class="fa fa-th-large"></i>
+                    <span class="menu-title" data-i18n="Pengaduan">Pengaduan</span>
                 </a>
             </li>
             <li class="navigation-header">

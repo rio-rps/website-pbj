@@ -25,9 +25,11 @@ $id = Auth::user()->id;
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label border-bottom">Ganti</label>
                                         <div class="col-md-9">
-                                            <form action="{{route('pengaturanakun.updateemail')}}" class="formDataPengaturanAkun" method="PUT">
+                                            <form action="{{route('pengaturanakun.updateemail')}}" class="formDataPengaturanAkun" method="POST">
                                                 <input type="hidden" name="id" class="form-control" value="{{$id}}">
                                                 @csrf
+                                                <input type="hidden" name="_method" value="PUT">
+                								<input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <div class="input-group">
                                                     <input type="text" name="email" id="email" class="form-control" placeholder="Masukkan disini e-Mail">
                                                     <button type="submit" class="btn-send btn btn-primary btn-glow" id="tombolSaveEmail">
@@ -47,8 +49,10 @@ $id = Auth::user()->id;
                                 AKUN LOGIN PASSWORD
                             </li>
                             <li class="list-group-item">
-                                <form action="{{route('pengaturanakun.updatepassword',$id)}}" class="formDataPengaturanAkun" method="PUT">
+                                <form action="{{route('pengaturanakun.updatepassword',$id)}}" class="formDataPengaturanAkun" method="POST">
                                     @csrf
+                                    <input type="hidden" name="_method" value="PUT">
+                					<input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label border-bottom">Password Lama</label>
                                         <div class="col-md-9">

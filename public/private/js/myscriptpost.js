@@ -33,6 +33,8 @@
                                 slideShowData();
                             } else if(response.myReload =='href'){
                                 window.location.href=response.route;
+                            } else if(response.action=="storePengaduan"){
+                                window.location.href=response.route;
                             } else {
                                 myTable.ajax.reload();
                             }
@@ -60,7 +62,7 @@
             return false;
         });
 
-          // form upload
+        // form upload
         
 
         // form tanpa upload

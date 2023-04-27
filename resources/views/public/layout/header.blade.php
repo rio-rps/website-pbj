@@ -8,7 +8,7 @@
                     <div class="col-12">
                         <div class="ttm-topbar-content">
                             <ul class="top-contact text-left">
-                                <li><i class="fa fa-envelope-o"></i><a href="mailto:info@example.com.com">biropbj@gmail.com</a></li>
+                                <li><i class="fa fa-envelope-o"></i><a href="#">biropbjss@gmail.com</a></li>
                             </ul>
                             <div class="topbar-right text-right">
                                 <ul class="top-contact">
@@ -110,13 +110,15 @@
 
                                 <li class="active"><a href="#">PROFIL</a>
                                     <ul>
+                                        <li><a href="{{route('page',['slug'=>'struktur-organisasi'])}}">Struktur Organisasi</a></li>
                                         <li><a href="{{route('page',['slug'=>'visi-misi'])}}">Visi & Misi</a></li>
                                         <li><a href="{{route('page',['slug'=>'sejarah'])}}">Sejarah</a></li>
                                         <li class="active"><a href="#">Tupoksi</a>
                                             <ul>
-                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>'tupoksi-pengelolaan-pengadaan-barang-jasa'])}}">Pengelolaan Pengadaan Barang/ Jasa</a></li>
-                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>'tupoksi-pengelolaan-layanan-pengadaan-secara-elektronik'])}}">Pengelolaan Layanan Pengadaan Secara Elektronik</a></li>
-                                                <li><a href="{{route('page',['slug'=>'tupoksi-pembinaan-dan-advokasi-pengadaan-barang-jasa'])}}">Pembinaan dan Advokasi Pengadaan Barang/ Jasa</a></li>
+                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>'kepala-biro'])}}">Kepala Biro</a></li>
+                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>'bagian-tupoksi-pengelolaan-pengadaan-barang-jasa'])}}">Bagian Pengelolaan Pengadaan Barang/ Jasa</a></li>
+                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>'bagian-tupoksi-pengelolaan-layanan-pengadaan-secara-elektronik'])}}">Bagian Pengelolaan Layanan Pengadaan Secara Elektronik</a></li>
+                                                <li><a href="{{route('page',['slug'=>'bagian-tupoksi-pembinaan-dan-advokasi-pengadaan-barang-jasa'])}}">Bagian Pembinaan dan Advokasi Pengadaan Barang/ Jasa</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -135,6 +137,7 @@
                                     </ul>
                                 </li>
                                 <li class="active"><a href="{{route('page',['slug'=>'kontak'])}}">KONTAK KAMI</a></li>
+                                <li class="active"><a href="{{route('pengaduan')}}">PENGADUAN</a></li>
                             </ul>
                         </nav>
                     </div><!-- site-navigation end-->

@@ -1,5 +1,29 @@
 @extends('private.layout.main')
 @section('isi')
+<link rel="stylesheet" type="text/css" href="{{asset('private/vendors/css/pickers/daterange/daterangepicker.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('private/vendors/css/pickers/datetime/bootstrap-datetimepicker.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{asset('private/css/core/menu/menu-types/vertical-menu.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('private/css/core/colors/palette-gradient.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('private/css/plugins/pickers/daterange/daterange.css')}}">
+
+<style>
+    #container {
+        width: 1000px;
+        margin: 20px auto;
+    }
+
+    .ck-editor__editable[role="textbox"] {
+        /* editing area */
+        min-height: 200px;
+    }
+
+    .ck-content .image {
+        /* block images */
+        max-width: 80%;
+        margin: 20px auto;
+    }
+</style>
 <div class="content-body">
     <div class="card">
         <div class="card-header" style="margin-bottom:-20px;">
@@ -12,26 +36,91 @@
             </div>
         </div>
         <hr>
-
-        <form action="{{ route('post.store') }}" class="form form-horizontal" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('post.store') }}" class="formDataMultipart" method="POST" enctype="multipart/form-data">
             @csrf
-
-
             <div class="row">
                 <div class="col-xl-9 col-md-8 col-12">
                     <div class="card ml-1 border-primary border-darken-1">
                         <div class="card-body">
-
-
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" id="summary-ckeditor" name="post_content"></textarea>
+                            <div class="form-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label border-bottom">JUDUL</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="post_title">
+                                    </div>
+                                </div>
                             </div>
-
+                            <div class="form-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label border-bottom">ISI</label>
+                                    <div class="col-md-12">
+                                        <textarea name="post_content" id="editor"></textarea>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
+                </div>
+                <div class="col-xl-3 col-md-4 col-12">
+                    <div class="card mb-1 mr-1 border-primary border-darken-1">
+                        <div class="card-content">
+                            <div class="p-1">
+                                <h5 class="card-title" style="margin-bottom:-4px;"><b>Thumbnail</b></h5>
+                                <hr>
+                                <img src="{{asset('images/logo/thumbnail.png')}}" alt="thumbnail" id="thumbnail_preview" style="max-width:100%;max-height:100%;">
+                                <input type="file" name="post_thumbnail" id="post_thumbnail" class="form-control" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="card mb-1 mr-1 border-primary border-darken-1">
+                        <div class="card-content">
+                            <div class="p-1">
+                                <h5 class="card-title" style="margin-bottom:-4px;"><b>TANGGAL PUBLISH</b></h5>
+                                <hr>
+                                <div class="form-group"> 
+                                    <div class="input-group date" id="datetimepicker9">
+                                        <input type="text" class="form-control" name="tgl_terbit">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <span class="fa fa-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
 
+
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="card mb-1 mr-1 border-primary border-darken-1">
+                        <div class="card-content">
+                            <div class="p-1">
+                                <h5 class="card-title" style="margin-bottom:-4px;"><b>Status</b></h5>
+                                <hr>
+                                <select name="post_status" class="form-control">
+                                    <option value="" selected>-- Pilih --</option>
+                                    <option value="1">Publish</option>
+                                    <option value="2">Draft</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-1 mr-1 border-primary border-darken-1">
+                        <div class="card-content">
+                            <div class="p-1">
+                                <h5 class="card-title" style="margin-bottom:-4px;"><b>Kategori</b></h5>
+                                <hr>
+                                @foreach ($resultKategori as $kat)
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="id_kategori[]" value="{{$kat->id_kategori}}" id="id_kategori"> {{ $kat->nm_kategori }}
+                                    </label>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                     <div class="card mb-1 ">
                         <div class="card-content">
                             <button type="submit" class="btn-send btn btn-primary btn-glow" id="tombolSave">
@@ -42,13 +131,35 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+<script src="{{asset('add-plugins/jquery-3.6.0.min.js')}}"></script>
+<script src="{{ asset('private/js/myscriptpost.js')}}"></script>
+<script src="{{ asset('add-plugins/ckeditor/ckeditor.js')}}"></script>
+<script src="{{ asset('add-plugins/ckeditor/script.js')}}"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-        <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
-        <script>
-            CKEDITOR.replace('summary-ckeditor', {
-                filebrowserUploadUrl: "{{route('post.uploadImage', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
-            });
-        </script>
-        @endsection
+
+<script src="{{ asset('private/vendors/js/pickers/dateTime/moment-with-locales.min.js')}}"></script>
+<script src="{{ asset('private/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js')}}"></script>
+<script src="{{ asset('private/vendors/js/pickers/pickadate/picker.js')}}"></script>
+<script src="{{ asset('private/vendors/js/pickers/pickadate/picker.date.js')}}"></script>
+<script src="{{ asset('private/vendors/js/pickers/pickadate/picker.time.js')}}"></script>
+<script src="{{ asset('private/vendors/js/pickers/pickadate/legacy.js')}}"></script>
+<script src="{{ asset('private/vendors/js/pickers/daterange/daterangepicker.js')}}"></script>
+<script src="{{ asset('private/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js')}}"></script>
+<script src="{{ asset('private/js/scripts/pickers/dateTime/bootstrap-datetime.js')}}"></script>
+<script src="{{ asset('private/js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        // ketika user memilih file gambar
+        $('#post_thumbnail').change(function() {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $('#thumbnail_preview').attr('src', event.target.result);
+            };
+            // membaca data gambar yang dipilih
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>
+@endsection

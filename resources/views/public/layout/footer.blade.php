@@ -27,7 +27,7 @@
                          <ul id="menu-footer-services">
                              <li><i class="ti ti-location-pin"></i> Jalan Kapten A. Rivai No. 3, Sungai Pangeran, Ilir Timur I, Sungai Pangeran, Kec. Ilir Tim. I, Kota Palembang, Sumatera Selatan 30121, Indonesia</li>
                              <li><i class="fa fa-phone"></i> (0711) 356-094</li>
-                             <li><i class="fa fa-envelope-o"></i> kontakbpj@gmail.com</li>
+                             <li><i class="fa fa-envelope-o"></i> biropbjss@gmail.com</li>
                          </ul>
 
                      </div>
