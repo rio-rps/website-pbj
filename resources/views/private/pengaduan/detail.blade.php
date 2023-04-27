@@ -26,7 +26,7 @@
                         {{ $row->no_hp }}
                     </label>
                     <label class="col-sm-12  border-bottom">
-                        <b>NO HP : </b><br>
+                        <b>JENIS PENGADUAN: </b><br>
                         {{ $row->JKategoriPengaduan->nm_kategori_pengaduan }}
                     </label>
                     <label class="col-sm-12  border-bottom">
