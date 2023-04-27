@@ -6,6 +6,7 @@ use App\Models\KategoriModel;
 use App\Models\PostModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class PanelController extends Controller
 {
