@@ -319,7 +319,7 @@ class LayoutController extends Controller
                     'tgl_kirim' =>  date('Y-m-d H:i:s'),
                 ]);
                 return response()->json([
-                    'success' => 'Pengaduan Anda Berhasil dikirim dan akan kami tindaki, terimakasih',
+                    'success' => 'Pengaduan Anda Berhasil dikirim dan akan kami tindaklanjuti, Terimakasih',
                     'action' => 'storePengaduan',
                     'route' => route('pengaduan')
                 ]);

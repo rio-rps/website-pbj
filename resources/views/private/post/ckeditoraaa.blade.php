@@ -17,12 +17,28 @@
             @csrf
             <input type="hidden" name="_method" value="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" class="form-control" name="post_title" value="post_title">
+            <input type="hidden" class="form-control" name="post_thumbnail" value="post_thumbnail.jpg">
+            <input type="hidden" class="form-control" name="post_status" value="1">
+
 
             <div class="row">
                 <div class="col-xl-9 col-md-8 col-12">
                     <div class="card ml-1 border-primary border-darken-1">
                         <div class="card-body">
-
+                            <div class="card-content">
+                                <div class="p-1">
+                                    <h5 class="card-title" style="margin-bottom:-4px;"><b>Kategori</b></h5>
+                                    <hr>
+                                    @foreach ($resultKategori as $kat)
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" name="id_kategori[]" value="{{$kat->id_kategori}}" id="id_kategori"> {{ $kat->nm_kategori }}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label>Description</label>

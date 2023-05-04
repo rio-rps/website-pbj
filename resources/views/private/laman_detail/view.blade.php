@@ -18,7 +18,7 @@
     </div>
     <hr>
     <div class="col-md-12 mb-1">
-        <a class="btn btn-sm  btn-danger" href="{{ route('laman.index')}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+        <!-- <a class="btn btn-sm  btn-danger" href="{{ route('laman.index')}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a> -->
         <a class="btn btn-sm btn-success" href="{{ route('lamandetail.edit',$row->slug_laman)}}" title="Edit Data"><i class="fa fa-edit"></i> Edit Data</a> |
         <label><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{cek_date_ddmmyyyy_his_v1($row->updated_at)}}</label>
     </div>

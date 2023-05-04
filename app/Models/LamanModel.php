@@ -10,5 +10,5 @@ class LamanModel extends Model
     use HasFactory;
     public $table = "dhh_laman";
     protected $primarykey = "id_laman";
-    protected $fillable = ['nm_laman', 'isi_laman', 'no_urut', 'slug_laman'];
+    protected $fillable = ['nm_laman', 'slug_laman', 'isi_laman', 'no_urut', 'icon_laman'];
 }

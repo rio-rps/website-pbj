@@ -109,6 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             Swal.fire('Berhasil', response.success, 'success').then((result) => {
                                 if(response.myReload =='slideShowData'){
                                     slideShowData();
+                                } else if(response.myReload =='lamanGambar'){
+                                    lamanGambar();
                                 } else {
                                     myTable.ajax.reload();
                                 }

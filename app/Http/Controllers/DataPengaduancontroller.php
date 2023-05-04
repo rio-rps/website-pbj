@@ -6,7 +6,7 @@ use App\Models\PengaduanModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables as DataTablesDataTables;
 
-class Pengaduancontroller extends Controller
+class DataPengaduancontroller extends Controller
 {
     public function index()
     {
@@ -19,7 +19,7 @@ class Pengaduancontroller extends Controller
     public function show()
     {
         if (request()->ajax()) {
-            return  DataTablesDataTables::of(PengaduanModel::query()->orderBy('tgl_kirim', 'DESC'))
+            return  DataTablesDataTables::of(PengaduanModel::where('validasi_pengaduan', '1')->orderBy('tgl_kirim', 'DESC'))
                 ->addColumn('action', 'private.pengaduan.action')
                 ->addColumn('tgl_kirim', function ($row) {
                     return cek_date_ddmmyyyy_his_v1($row->tgl_kirim);
@@ -41,6 +41,20 @@ class Pengaduancontroller extends Controller
                 'row' => PengaduanModel::where('id_pengaduan', $id)->first()
             ];
             return view('private.pengaduan.detail', $data);
+        } else {
+            exit('Maaf Tidak Dapat diproses...');
+        }
+    }
+
+    public function destroy($id)
+    {
+        if (request()->ajax()) {
+            PengaduanModel::where('id_pengaduan', $id)->update([
+                'validasi_pengaduan' => '3'
+            ]);
+            return response()->json([
+                'success' => 'Data berhasil dihapus',
+            ]);
         } else {
             exit('Maaf Tidak Dapat diproses...');
         }

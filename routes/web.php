@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataPengaduancontroller;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\DPAController;
 use App\Http\Controllers\DPARincianController;
@@ -66,8 +67,8 @@ Route::get('/post_grid', [LayoutController::class, 'post_grid'])->name('post_gri
 Route::post('/search', [LayoutController::class, 'search'])->name('search');
 Route::post('post/uploadImage', [PostController::class, 'uploadImage'])->name('post.uploadImage');
 
-Route::get('layout/pengaduan', [LayoutController::class, 'pengaduan'])->name('pengaduan');
-Route::post('layout/storePengaduan', [LayoutController::class, 'storePengaduan'])->name('storePengaduan');
+Route::get('/pengaduan', [LayoutController::class, 'pengaduan'])->name('pengaduan');
+Route::post('/storePengaduan', [LayoutController::class, 'storePengaduan'])->name('storePengaduan');
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel.index');
 
@@ -90,14 +91,37 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('pengaturanakun/updateemail', [PengaturanAkunController::class, 'updateemail'])->name('pengaturanakun.updateemail');
 
 
-        Route::get('pengaduan', [Pengaduancontroller::class, 'index'])->name('pengaduan.index');
-        Route::get('pengaduan/show', [Pengaduancontroller::class, 'show'])->name('pengaduan.show');
-        Route::get('pengaduan/detail/{id}', [Pengaduancontroller::class, 'detail'])->name('pengaduan.detail');
+        Route::get('datapengaduan', [DataPengaduancontroller::class, 'index'])->name('datapengaduan.index');
+        Route::get('datapengaduan/show', [DataPengaduancontroller::class, 'show'])->name('datapengaduan.show');
+        Route::get('datapengaduan/detail/{id}', [DataPengaduancontroller::class, 'detail'])->name('datapengaduan.detail');
+        Route::put('datapengaduan/destroy/{id}', [DataPengaduancontroller::class, 'destroy'])->name('datapengaduan.destroy');
         //admin
+
+
+
+        Route::put('post/updatedata/{id}', [Postcontroller::class, 'updatedata'])->name('post.updatedata');
+
+
 
         Route::get('post/editstatus/{id}', [PostController::class, 'editstatus'])->name('post.editstatus');
 
         Route::put('post/updatestatus/{id}', [PostController::class, 'updatestatus'])->name('post.updatestatus');
+
+
+        Route::get('lamandetail/getUploadGambar_ViewFormAddModal/{id}', [LamanDetailController::class, 'getUploadGambar_ViewFormAddModal'])->name('lamandetail.getUploadGambar_ViewFormAddModal');
+        Route::post('lamandetail/storeUploadGambar', [LamanDetailController::class, 'storeUploadGambar'])->name('lamandetail.storeUploadGambar');
+        Route::get('lamandetail/showUploadGambar/{id}', [LamanDetailController::class, 'showUploadGambar'])->name('lamandetail.showUploadGambar');
+        Route::delete('lamandetail/destroyUploadGambar', [LamanDetailController::class, 'destroyUploadGambar'])->name('lamandetail.destroyUploadGambar');
+
+        Route::get('lamandetail/showUploadDokumen/{id}', [LamanDetailController::class, 'showUploadDokumen'])->name('lamandetail.showUploadDokumen');
+        Route::get('lamandetail/createUploadDokumen', [LamanDetailController::class, 'createUploadDokumen'])->name('lamandetail.createUploadDokumen');
+        Route::post('lamandetail/storeUploadDokumen', [LamanDetailController::class, 'storeUploadDokumen'])->name('lamandetail.storeUploadDokumen');
+        Route::get('lamandetail/editUploadDokumen/{id}', [LamanDetailController::class, 'editUploadDokumen'])->name('lamandetail.editUploadDokumen');
+        Route::put('lamandetail/updateUploadDokumen/{id}', [LamanDetailController::class, 'updateUploadDokumen'])->name('lamandetail.updateUploadDokumen');
+        Route::delete('lamandetail/destroyUploadDokumen/{id}', [LamanDetailController::class, 'destroyUploadDokumen'])->name('lamandetail.destroyUploadDokumen');
+
+
+
 
         Route::resource('slideshow', SlideShowController::class);
         Route::resource('linkterkait', LinkTerkaitController::class);

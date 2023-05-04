@@ -13,6 +13,8 @@
                 </a>
             </li>
 
+
+
             <li class="nav-item">
                 <a href="#">
                     <i class="fa fa-newspaper-o"></i>
@@ -66,7 +68,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('pengaduan.index')}}">
+                <a href="{{route('datapengaduan.index')}}">
                     <i class="fa fa-th-large"></i>
                     <span class="menu-title" data-i18n="Pengaduan">Pengaduan</span>
                 </a>
@@ -95,9 +97,67 @@
                     </li>
                 </ul>
             </li>
+            <li class="navigation-header">
+                <span>MENU</span>
+                <i class="feather icon-minus" data-toggle="tooltip" data-placement="right" data-original-title="Pengaturan"></i>
+            </li>
+
+            @foreach($menulevel1 as $level1)
+            <li class="nav-item">
+                <a href="#">
+                    <i class="{{ $level1->icon_menu }}"></i>
+                    <span class="menu-title" data-i18n="{{ $level1->nm_menu }}">{{ $level1->nm_menu }}</span>
+                </a>
+                @foreach ($menuLevel2 as $level2)
+
+                @php
+                // Pisahkan kode menu level 2 menjadi kode menu level 1 dan kode menu level 2
+                $level2_code_parts = explode('.', $level2->kode_menu);
+                $level2_code_menu1 = $level2_code_parts[0];
+                $level2_code_menu2 = $level2_code_parts[1];
+                $linkLevel2 = $level2->id_laman;
+                @endphp
+                @if ($level2_code_menu1 == $level1->kode_menu)
+                <ul class="menu-content">
+                    <li class="nav-item ">
+                        @if ($linkLevel2 !='0')
+                        <a href="{{ ($linkLevel2 == 0) ? '#' :  route('lamandetail.show',$level2->JLaman->slug_laman) }}">
+                            <span class="menu-title" title="{{ $level2->nm_menu }}" data-i18n="{{ $level2->nm_menu }}">{{ $level2->nm_menu }}</span>
+                        </a>
 
 
+                        @elseif($linkLevel2 =='0')
+                    <li class="has-sub is-shown">
+                        <a class="menu-item" href="#" title="{{ $level2->nm_menu }}" data-i18n="{{ $level2->nm_menu }}">{{ $level2->nm_menu }}</a>
 
+
+                        @foreach ($menuLevel3 as $level3)
+
+                        @php
+                        $level3_code_parts = explode('.', $level3->kode_menu);
+                        $level3_code_menu1 = $level3_code_parts[0];
+                        $level3_code_menu2 = $level3_code_parts[1];
+                        $level3_code_menu3 = $level3_code_parts[2];
+                        $linkLevel3 = $level3->id_laman;
+                        @endphp
+
+                        @if ($level3_code_menu1 == $level1->kode_menu AND $level3_code_menu2 == $level2_code_menu2)
+                        <ul class="menu-content">
+                            <li><a class="menu-item" href="{{ ($linkLevel3 == 0) ? '#' :  route('lamandetail.show',$level3->JLaman->slug_laman) }}" title="{{ $level3->nm_menu }}" data-i18n="{{ $level3->nm_menu }}">{{$level3->nm_menu}}</a></li>
+                        </ul>
+                        @endif
+
+                        @endforeach
+
+                    </li>
+                    @endif
+            </li>
+        </ul>
+        @endif
+
+        @endforeach
+        </li>
+        @endforeach
 
         </ul>
     </div>

@@ -28,9 +28,12 @@
 
                         Swal.fire('Berhasil', response.success, 'success').then((result) => {
                             //window.location.reload(); 
+                            
                             $('#modalFormData').modal('hide');
                             if(response.myReload =='slideShowData'){
                                 slideShowData();
+                            } else if(response.myReload =='lamanGambar'){
+                                lamanGambar();
                             } else if(response.myReload =='href'){
                                 window.location.href=response.route;
                             } else if(response.action=="storePengaduan"){

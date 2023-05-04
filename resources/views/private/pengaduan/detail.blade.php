@@ -47,7 +47,7 @@
                     </label>
                     <label class="col-sm-12  border-bottom">
                         <b>BUKTI GAMBAR : </b><br>
-                        <a href="{{asset('images/pengaduan/'.$row->upload_bukti_dukung)}}" target="_blank"><img class="img-thumbnail" src="{{asset('images/pengaduan/'.$row->upload_bukti_dukung)}}" alt="gambar" style="width:100%;"></a>
+                        <a href="{{asset('images/pengaduan/'.$row->upload_bukti_dukung)}}" target="_blank"><img class="img-thumbnail" src="{{asset('images/pengaduan/'.$row->upload_bukti_dukung)}}" alt="gambar" style="width:100%;height:300px;"></a>
                     </label>
                 </div>
                 <div class="modal-footer">

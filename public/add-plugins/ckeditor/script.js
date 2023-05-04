@@ -14,11 +14,18 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
             '-',
             'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
             'alignment', '|',
-            'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+            'link', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
             'specialCharacters', 'horizontalLine', 'pageBreak', '|',
             'textPartLanguage', '|',
             'sourceEditing'
         ],
+
+
+        // example complate
+        // 'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+        // 'specialCharacters', 'horizontalLine', 'pageBreak', '|',
+
+
         shouldNotGroupWhenFull: true
     },
     // Changing the language of the interface requires loading the language file using the <script> tag.

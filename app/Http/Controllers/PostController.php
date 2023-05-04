@@ -35,7 +35,7 @@ class PostController extends Controller
             'title' => 'FORM INPUT DATA BARU',
             'resultKategori' => KategoriModel::all()
         ];
-        return view('private.post.formadd', $data);
+        return view('private.post.ckeditoraaa', $data);
     }
 
     public function uploadImage(Request $request)
@@ -64,14 +64,14 @@ class PostController extends Controller
 
         $validator = Validator::make($r->all(), [
             'post_title' => 'required',
-            'post_thumbnail' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            //'post_thumbnail' => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'post_content' => 'required',
             'post_status' => 'required',
             'id_kategori' => 'required',
         ], [
             'post_title.required' => 'Judul Tidak Boleh Kosong',
-            'post_thumbnail.required' => 'Thumbnail Tidak Boleh Kosong',
-            'post_thumbnail.mimes' => 'Thumbnail Hanya di perbolehkan ekstensi JPEG, JPG, PNG',
+            // 'post_thumbnail.required' => 'Thumbnail Tidak Boleh Kosong',
+            // 'post_thumbnail.mimes' => 'Thumbnail Hanya di perbolehkan ekstensi JPEG, JPG, PNG',
             'post_content.required' => 'Isi Tidak Boleh Kosong',
             'post_status.required' => 'Status Tidak Boleh Kosong',
             'id_kategori.required' => 'kategori Tidak Boleh Kosong',
@@ -166,6 +166,11 @@ class PostController extends Controller
         return view('private.post.formedit', $data);
     }
 
+    public function updatedata(Request $r, $id)
+    {
+        dd($r);
+    }
+
     public function update(Request $r, $id)
     {
         $validator = Validator::make($r->all(), [
@@ -218,7 +223,6 @@ class PostController extends Controller
 
             PostModel::where('post_kd', $id)->update([
                 'post_title'  => $r->post_title,
-                'slug_title'  =>  $this->createSlug($r->post_title),
                 'post_thumbnail' => $gambar_name,
                 'post_content' => $r->post_content,
                 'post_status' => $r->post_status,

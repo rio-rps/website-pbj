@@ -123,7 +123,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="#">INFORMASI</a>
+                                <!-- <li><a href="#">INFORMASI</a>
                                     <ul>
                                         @foreach($menuKategori as $item)
                                         <li><a href="{{route('jenis',['slug'=> $item->slug_kategori])}}">{{ $item->nm_kategori }}</a></li>
@@ -136,8 +136,14 @@
                                         <li><a href="{{route('galerivideo')}}">Video</a></li>
                                     </ul>
                                 </li>
-                                <li class="active"><a href="{{route('page',['slug'=>'kontak'])}}">KONTAK KAMI</a></li>
-                                <li class="active"><a href="{{route('pengaduan')}}">PENGADUAN</a></li>
+                                <li class="active"><a href="{{route('page',['slug'=>'kontak'])}}">KONTAK KAMI</a></li> -->
+                                <li class="active"><a href="{{route('pengaduan')}}">PROGRAM KERJA</a></li>
+                                <li class="active"><a href="{{route('pengaduan')}}">REGULASI</a></li>
+                                <li class="active"><a href="{{route('pengaduan')}}">LAPORAN</a></li>
+                                <li class="active"><a href="{{route('pengaduan')}}">GALERI</a></li>
+                                <li class="active"><a href="{{route('pengaduan')}}">UNDUHAN</a></li>
+                                <li class="active"><a href="{{route('pengaduan')}}">TAUTAN</a></li>
+                                <li class="active"><a href="{{route('pengaduan')}}">KONTAK</a></li>
                             </ul>
                         </nav>
                     </div><!-- site-navigation end-->

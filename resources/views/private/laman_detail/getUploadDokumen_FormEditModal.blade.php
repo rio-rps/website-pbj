@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('dokumen.update',$id) }}" class="formDataMultipart" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('lamandetail.updateUploadDokumen',$id) }}" class="formDataMultipart" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -17,6 +17,27 @@
                             <label class="col-sm-4 col-form-label border-bottom">Nama Dokumen</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="nm_dokumen" value="{{$row->nm_dokumen}}" maxlength="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label border-bottom">Keterangan Dokumen</label>
+                            <div class="col-md-8">
+                                <textarea name="ket_dokumen" cols="30" rows="3">{{$row->ket_dokumen}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label border-bottom">Kelompok Tahun Dokumen</label>
+                            <div class="col-md-4">
+                                <select name="tahun_dokumen" class="form-control">
+                                    <option value="" selected>-- Pilih --</option>
+                                    @for ($i=date("Y")+1; $i >=2015; $i--)
+                                    <option value="{{$i}}" {{ ($row->tahun_dokumen==$i)?'selected':''}}>{{$i}}</option>
+                                    @endfor
+                                </select>
                             </div>
                         </div>
                     </div>

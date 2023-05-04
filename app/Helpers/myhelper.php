@@ -122,6 +122,18 @@ function cekStatusPost($angka)
     return $isi;
 }
 
+function cekJenisLaman($angka)
+{
+    if ($angka == 1) {
+        $isi = "";
+    } elseif ($angka == 2) {
+        $isi = "( UPLOAD FILE PDF, WORD, EXCEL )";
+    } elseif ($angka == 3) {
+        $isi = "( UPLOAD JPG, JPEG, PNG )";
+    }
+    return $isi;
+}
+
 function getYoutubeVideoID($url)
 {
     $videoID = '';
