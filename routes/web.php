@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataKritikSaranController;
 use App\Http\Controllers\DataPengaduancontroller;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\DPAController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\JenisNPDController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LamanController;
 use App\Http\Controllers\LamanDetailController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\LayoutUtamaController;
 use App\Http\Controllers\LinkTerkaitController;
@@ -67,8 +69,13 @@ Route::get('/post_grid', [LayoutController::class, 'post_grid'])->name('post_gri
 Route::post('/search', [LayoutController::class, 'search'])->name('search');
 Route::post('post/uploadImage', [PostController::class, 'uploadImage'])->name('post.uploadImage');
 
+// pengaduan
 Route::get('/pengaduan', [LayoutController::class, 'pengaduan'])->name('pengaduan');
 Route::post('/storePengaduan', [LayoutController::class, 'storePengaduan'])->name('storePengaduan');
+
+// kritik dan saran
+Route::get('/kritiksaran', [LayoutController::class, 'kritiksaran'])->name('kritiksaran');
+Route::post('/storeKritikSaran', [LayoutController::class, 'storeKritikSaran'])->name('storeKritikSaran');
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel.index');
 
@@ -91,14 +98,24 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('pengaturanakun/updateemail', [PengaturanAkunController::class, 'updateemail'])->name('pengaturanakun.updateemail');
 
 
+        // pengaduan
         Route::get('datapengaduan', [DataPengaduancontroller::class, 'index'])->name('datapengaduan.index');
         Route::get('datapengaduan/show', [DataPengaduancontroller::class, 'show'])->name('datapengaduan.show');
         Route::get('datapengaduan/detail/{id}', [DataPengaduancontroller::class, 'detail'])->name('datapengaduan.detail');
         Route::put('datapengaduan/destroy/{id}', [DataPengaduancontroller::class, 'destroy'])->name('datapengaduan.destroy');
+
+        // kritik dan saran
+        Route::get('datakritiksaran', [DataKritikSaranController::class, 'index'])->name('datakritiksaran.index');
+        Route::get('datakritiksaran/show', [DataKritikSaranController::class, 'show'])->name('datakritiksaran.show');
+        Route::get('datakritiksaran/detail/{id}', [DataKritikSaranController::class, 'detail'])->name('datakritiksaran.detail');
+        Route::put('datakritiksaran/destroy/{id}', [DataKritikSaranController::class, 'destroy'])->name('datakritiksaran.destroy');
+
+        // laporan
+        Route::get('laporan/cetakPengaduanDetail/{id}', [LaporanController::class, 'cetakPengaduanDetail'])->name('laporan.cetakPengaduanDetail');
+        Route::get('laporan/cetakKritikSaran/{id}', [LaporanController::class, 'cetakKritikSaran'])->name('laporan.cetakKritikSaran');
+
+
         //admin
-
-
-
         Route::put('post/updatedata/{id}', [Postcontroller::class, 'updatedata'])->name('post.updatedata');
 
 

@@ -130,6 +130,24 @@ function cekJenisLaman($angka)
         $isi = "( UPLOAD FILE PDF, WORD, EXCEL )";
     } elseif ($angka == 3) {
         $isi = "( UPLOAD JPG, JPEG, PNG )";
+    } elseif ($angka == 4) {
+        $isi = "( DATA FORM )";
+    } else {
+        $isi = "";
+    }
+    return $isi;
+}
+
+function ceknNlaiPelayanan($angka)
+{
+    if ($angka == 1) {
+        $isi = "Buruk";
+    } else if ($angka == 2) {
+        $isi = "Cukup";
+    } else if ($angka == 3) {
+        $isi = "Baik";
+    } else if ($angka == 4) {
+        $isi = "Sangat Baik";
     }
     return $isi;
 }

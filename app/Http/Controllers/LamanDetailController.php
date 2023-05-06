@@ -26,13 +26,26 @@ class LamanDetailController extends Controller
             'row' => $row,
             'id_laman' => $row->id_laman
         ];
-
+        $cek = LamanModel::where('id_laman', $row->id_laman)->first();
         if ($row->jenis_laman == 1) {
             return view('private.laman_detail.view', $data);
         } elseif ($row->jenis_laman == 2) {
             return view('private.laman_detail.getUploadDokumen_View')->with($data);
         } elseif ($row->jenis_laman == 3) {
             return view('private.laman_detail.getUploadGambar_View', $data);
+        } elseif ($row->jenis_laman == 4) {
+
+            if ($cek->id_laman == '52') {
+                return  redirect()->to('datapengaduan');
+            } else  if ($cek->id_laman == '54') {
+                return  redirect()->to('datakritiksaran');
+            }
+        } elseif ($row->jenis_laman == 5) {
+            if ($cek->id_laman == '64') {
+                return  redirect()->to('photo');
+            } else  if ($cek->id_laman == '65') {
+                return  redirect()->to('video');
+            }
         }
     }
 
@@ -128,7 +141,7 @@ class LamanDetailController extends Controller
     {
         if (request()->ajax()) {
             $data = [
-                'result' => UploadGambarLamanModel::where('id_laman', $id)->get()
+                'result' => UploadGambarLamanModel::where('id_laman', $id)->orderBy('id_gambar', 'DESC')->get()
             ];
             return view('private.laman_detail.getUploadGambar_show', $data);
         } else {
@@ -159,7 +172,7 @@ class LamanDetailController extends Controller
     public function showUploadDokumen($id)
     {
         if (request()->ajax()) {
-            return  DataTables::of(UploadDokumenLamanModel::where('id_laman', $id)->get())
+            return  DataTables::of(UploadDokumenLamanModel::where('id_laman', $id)->orderBy('id_dokumen', 'DESC')->get())
                 ->addColumn('action', 'private.laman_detail.getUploadDokumen_Action')
                 ->addColumn('tgl', function ($row) {
                     return $row->created_at;

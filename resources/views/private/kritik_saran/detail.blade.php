@@ -14,44 +14,32 @@
                         {{ cek_date_ddmmyyyy_his_v1($row->tgl_kirim) }}
                     </label>
                     <label class="col-sm-12 border-bottom">
-                        <b>NAMA PELAPOR : </b><br>
-                        {{ $row->nm_pelapor }}
+                        <b>NAMA : </b><br>
+                        {{ $row->nm_pengirim }}
                     </label>
                     <label class="col-sm-12   border-bottom">
                         <b>EMAIL : </b><br>
-                        {{ $row->email }}
+                        {{ $row->email_pengirim }}
                     </label>
                     <label class="col-sm-12  border-bottom">
                         <b>NO HP : </b><br>
-                        {{ $row->no_hp }}
+                        {{ $row->no_tlp_pengirim }}
                     </label>
                     <label class="col-sm-12  border-bottom">
-                        <b>JENIS PENGADUAN: </b><br>
-                        {{ $row->JKategoriPengaduan->nm_kategori_pengaduan }}
+                        <b>ALAMAT: </b><br>
+                        {{ $row->alamat_pengirim }}
                     </label>
                     <label class="col-sm-12  border-bottom">
-                        <b>TANGGAL KEJADIAN : </b><br>
-                        {{ $row->tgl_kejadian }}
+                        <b>Penilaian Pelayanan : </b><br>
+                        {{ ceknNlaiPelayanan($row->nilai_pelayanan) }}
                     </label>
                     <label class="col-sm-12  border-bottom">
-                        <b>LOKASI KEJADIAN : </b><br>
-                        {{ $row->lokasi_kejadian }}
-                    </label>
-                    <label class="col-sm-12  border-bottom">
-                        <b>OKNUM TERLIBAT : </b><br>
-                        {{ $row->oknum_yang_terlibat }}
-                    </label>
-                    <label class="col-sm-12  border-bottom">
-                        <b>URAIAN : </b><br>
-                        {!! $row->uraian !!}
-                    </label>
-                    <label class="col-sm-12  border-bottom">
-                        <b>BUKTI GAMBAR : </b><br>
-                        <a href="{{asset('images/pengaduan/'.$row->upload_bukti_dukung)}}" target="_blank"><img class="img-thumbnail" src="{{asset('images/pengaduan/'.$row->upload_bukti_dukung)}}" alt="gambar" style="width:100%;height:300px;"></a>
+                        <b>URAIAN KRITIK DAN SARAN: </b><br>
+                        {!! $row->uraian_kritik_saran !!}
                     </label>
                 </div>
                 <div class="modal-footer">
-                    <a href="{{route('laporan.cetakPengaduanDetail',$row->id_pengaduan)}}" class="btn btn-success" target="_blank">CETAK</a>
+                    <a href="{{route('laporan.cetakKritikSaran',$row->id_kritik_saran)}}" class="btn btn-success" target="_blank">CETAK</a>
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">TUTUP</button>
                 </div>
             </div>

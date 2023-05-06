@@ -24,7 +24,7 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label border-bottom">Keterangan Dokumen</label>
                             <div class="col-md-8">
-                                <textarea name="ket_dokumen" cols="30" rows="3">{{$row->ket_dokumen}}</textarea>
+                                <textarea name="ket_dokumen" cols="30" rows="3" maxlength="225">{{$row->ket_dokumen}}</textarea>
                             </div>
                         </div>
                     </div>

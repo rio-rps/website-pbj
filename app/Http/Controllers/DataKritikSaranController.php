@@ -2,30 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PengaduanModel;
+use App\Models\DataKritikSaranModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables as DataTables;
 
-class DataPengaduancontroller extends Controller
+class DataKritikSaranController extends Controller
 {
     public function index()
     {
         $data = [
-            'title' => 'DATA PENGADUAN',
+            'title' => 'DATA KRITIK DAN SARAN',
         ];
-        return view('private/pengaduan/view')->with($data);
+        return view('private/kritik_saran/view')->with($data);
     }
 
     public function show()
     {
         if (request()->ajax()) {
-            return  DataTables::of(PengaduanModel::where('validasi_pengaduan', '!=', '3')->orderBy('tgl_kirim', 'DESC'))
-                ->addColumn('action', 'private.pengaduan.action')
+            return  DataTables::of(DataKritikSaranModel::where('validasi_kritik_saran', '!=', '3')->orderBy('tgl_kirim', 'DESC'))
+                ->addColumn('action', 'private.kritik_saran.action')
                 ->addColumn('tgl_kirim', function ($row) {
                     return cek_date_ddmmyyyy_his_v1($row->tgl_kirim);
-                })
-                ->addColumn('katPengaduan', function ($row) {
-                    return $row->JKategoriPengaduan->nm_kategori_pengaduan;
                 })
                 ->make(true);
         } else {
@@ -37,10 +34,10 @@ class DataPengaduancontroller extends Controller
     {
         if (request()->ajax()) {
             $data = [
-                'title_form' => 'INFORMASI PENGADUAN',
-                'row' => PengaduanModel::where('id_pengaduan', $id)->first()
+                'title_form' => 'INFORMASI KRITIK DAN SARAN',
+                'row' => DataKritikSaranModel::where('id_kritik_saran', $id)->first()
             ];
-            return view('private.pengaduan.detail', $data);
+            return view('private.kritik_saran.detail', $data);
         } else {
             exit('Maaf Tidak Dapat diproses...');
         }
@@ -49,8 +46,8 @@ class DataPengaduancontroller extends Controller
     public function destroy($id)
     {
         if (request()->ajax()) {
-            PengaduanModel::where('id_pengaduan', $id)->update([
-                'validasi_pengaduan' => '3'
+            DataKritikSaranModel::where('id_kritik_saran', $id)->update([
+                'validasi_kritik_saran' => '3'
             ]);
             return response()->json([
                 'success' => 'Data berhasil dihapus',

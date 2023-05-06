@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataKritikSaranModel;
 use App\Models\HistoriCountModel;
 use App\Models\HistoriCountPostModel;
+use App\Models\HistoriPengunjungWebsiteModel;
 use App\Models\HistoriPostModel;
 use App\Models\KategoriModel;
 use App\Models\KategoriPengaduanModel;
@@ -13,7 +15,10 @@ use App\Models\PhotoDetailModel;
 use App\Models\PhotoModel;
 use App\Models\PostModel;
 use App\Models\SlideShowModel;
+use App\Models\UploadDokumenLamanModel;
+use App\Models\UploadGambarLamanModel;
 use App\Models\VideoModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -24,8 +29,31 @@ use Illuminate\Support\Facades\Validator;
 
 class LayoutController extends Controller
 {
+
+    public function pengunjungWebsite()
+    {
+        $viewerData = [
+            'ip_address' => request()->ip(),
+            'hostname' => getHostname(),
+            'user_agent' => request()->header('User-Agent'),
+            'referer' => URL::previous(),
+        ];
+
+        $today = now()->format('Y-m-d');
+        $ipAddress = request()->ip();
+        $hostname = getHostname();
+        $existingData = HistoriPengunjungWebsiteModel::where('ip_address', $ipAddress)
+            ->where('hostname', $hostname)
+            ->whereDate('created_at', $today)
+            ->first();
+
+        if (!$existingData) {
+            HistoriPengunjungWebsiteModel::create($viewerData);
+        }
+    }
     public function index(Request $request)
     {
+        $this->pengunjungWebsite();
         $posts =  PostModel::select(DB::raw('*, YEAR(tgl_terbit) AS year, MONTH(tgl_terbit) AS month, DAY(tgl_terbit) AS day'))
             ->where('post_status', '1')
             ->withCount('JPostHistoriCount')
@@ -76,6 +104,7 @@ class LayoutController extends Controller
 
     public function jenis($slug)
     {
+        $this->pengunjungWebsite();
         $kat = KategoriModel::where('slug_kategori', $slug)->first();
         $id_kategori = $kat->id_kategori;
 
@@ -98,6 +127,7 @@ class LayoutController extends Controller
 
     public function postarsip(Request $r, $tahun)
     {
+        $this->pengunjungWebsite();
         $tahun = $r->tahun;
         $bulan = $r->bulan;
         $bulan_str = str_pad($bulan, 2, '0', STR_PAD_LEFT);
@@ -120,8 +150,32 @@ class LayoutController extends Controller
 
     public function page($slug)
     {
+        $this->pengunjungWebsite();
+        $cek = LamanModel::where('slug_laman', $slug)->first();
+        $jenis_laman = $cek->jenis_laman;
+        if ($jenis_laman == 1) {
+            $row = $cek;
+        } elseif ($jenis_laman == 2) {
+            $row = UploadDokumenLamanModel::where('id_laman', $cek->id_laman)->orderBy('id_dokumen', 'DESC')->get();
+        } elseif ($jenis_laman == 3) {
+            $row = UploadGambarLamanModel::where('id_laman', $cek->id_laman)->orderBy('id_gambar', 'DESC')->get();
+        } elseif ($jenis_laman == 4) {
+            if ($cek->id_laman == '52') {
+                return  redirect()->to('pengaduan');
+            } else  if ($cek->id_laman == '54') {
+                return  redirect()->to('kritiksaran');
+            }
+        } elseif ($jenis_laman == 5) {
+            if ($cek->id_laman == '64') {
+                return  redirect()->to('galeriphoto');
+            } else  if ($cek->id_laman == '65') {
+                return  redirect()->to('galerivideo');
+            }
+        }
         $data = [
-            'row' => LamanModel::where('slug_laman', $slug)->first(),
+            'row' => $row,
+            'title' => $cek->nm_laman,
+            'jenis_laman' => $jenis_laman
         ];
         $comp = [
             'slide' => "",
@@ -133,6 +187,8 @@ class LayoutController extends Controller
 
     public function postdetail($slug)
     {
+        $this->pengunjungWebsite();
+
         $post =  PostModel::select(DB::raw('*, YEAR(tgl_terbit) AS year, MONTH(tgl_terbit) AS month, DAY(tgl_terbit) AS day'))
             ->where('slug_title', $slug)
             ->whereHas('JPostKategoriRelations.JKategori')
@@ -177,6 +233,7 @@ class LayoutController extends Controller
 
     public function galeriphoto()
     {
+        $this->pengunjungWebsite();
         $photo = PhotoModel::all();
         $photoCount = $photo->map(function ($photo) {
             $Count = PhotoDetailModel::where('id_galeri_photo', $photo->id_galeri_photo)
@@ -199,6 +256,7 @@ class LayoutController extends Controller
 
     public function galeriphotodetail($id)
     {
+        $this->pengunjungWebsite();
         $dat = PhotoModel::where('slug_galeri_photo', $id)->first();
         $photodetail = PhotoDetailModel::where('id_galeri_photo', $dat->id_galeri_photo);
 
@@ -216,6 +274,7 @@ class LayoutController extends Controller
 
     public function galerivideo()
     {
+        $this->pengunjungWebsite();
         $video = VideoModel::all();
 
         $data = [
@@ -250,7 +309,7 @@ class LayoutController extends Controller
 
     public function pengaduan()
     {
-
+        $this->pengunjungWebsite();
         $data = [
             'title' => "FORM PENGADUAN",
             'resultKatPeng' => KategoriPengaduanModel::orderBy('no_urut', 'asc')->get()
@@ -322,6 +381,67 @@ class LayoutController extends Controller
                     'success' => 'Pengaduan Anda Berhasil dikirim dan akan kami tindaklanjuti, Terimakasih',
                     'action' => 'storePengaduan',
                     'route' => route('pengaduan')
+                ]);
+            }
+        } else {
+            exit('Maaf Tidak Dapat diproses...');
+        }
+    }
+
+    public function kritiksaran()
+    {
+        $this->pengunjungWebsite();
+        $data = [
+            'title' => "FORM KRITIK DAN SARAN",
+        ];
+        $comp = [
+            'slide' => "",
+            'content' => view('public/kritiksaran', $data),
+            'right' => view('public/layout/right', ['getRightData' => getRightData()]),
+        ];
+        return view('public.layout.main', $comp);
+    }
+
+    public function storeKritikSaran(Request $r)
+    {
+        if (request()->ajax()) {
+            $validator = Validator::make($r->all(), [
+                'nm_pengirim' => 'required',
+                'email_pengirim' => 'required|email',
+                'no_tlp_pengirim' => 'required|numeric',
+                'alamat_pengirim' => 'required',
+                'nilai_pelayanan' => 'required',
+                'uraian_kritik_saran' => 'required',
+            ], [
+                'nm_pengirim.required' => 'Nama Pengirim Tidak Boleh Kosong',
+                'email_pengirim.required' => 'Email Tidak Boleh Kosong',
+                'email_pengirim.email' => 'Format Email Salah',
+                'no_tlp_pengirim.required' => 'No Hp Tidak Boleh Kosong',
+                'no_tlp_pengirim.numeric' => 'Format Nomor Hp harus Angka',
+                'alamat_pengirim.required' => 'Alamat Tidak Boleh Kosong',
+                'nilai_pelayanan.required' => 'Nilai Pelayanan Tidak Boleh Kosong',
+                'uraian_kritik_saran.required' => 'Uraian Kritik dan Saran Tidak Boleh Kosong',
+            ]);
+
+
+            if ($validator->fails()) {
+                $errors = $validator->errors();
+                return response()->json(['errors' => $errors], 422);
+            } else {
+
+                $post = DataKritikSaranModel::create([
+                    'nm_pengirim'  => $r->nm_pengirim,
+                    'email_pengirim' => $r->email_pengirim,
+                    'no_tlp_pengirim' => $r->no_tlp_pengirim,
+                    'alamat_pengirim' => $r->alamat_pengirim,
+                    'uraian_kritik_saran' => $r->uraian_kritik_saran,
+                    'nilai_pelayanan' => $r->nilai_pelayanan,
+                    'tgl_kirim' =>  date('Y-m-d H:i:s'),
+                ]);
+                return response()->json([
+                    'success' => 'Kritik dan Saran Anda Berhasil dikirim, Terimakasih',
+                    'action' => 'storePengaduan',
+                    'route' => route('kritiksaran')
                 ]);
             }
         } else {

@@ -11,25 +11,25 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- favicon icon -->
-    <link rel="shortcut icon" href="{{ asset('images/logo/logo_prov.png')}}"/>
+    <link rel="shortcut icon" href="{{ asset('images/logo/logo_prov.png')}}" />
 
     <!-- bootstrap -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css')}}" />
 
     <!-- animate -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/animate.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/animate.css')}}" />
 
     <!-- owl-carousel -->
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/owl.carousel.css')}}">
 
     <!-- fontawesome -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/font-awesome.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/font-awesome.css')}}" />
 
     <!-- themify -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/themify-icons.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/themify-icons.css')}}" />
 
     <!-- flaticon -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/flaticon.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/flaticon.css')}}" />
 
 
     <!-- REVOLUTION LAYERS STYLES -->
@@ -40,17 +40,19 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/prettyPhoto.css')}}">
 
     <!-- shortcodes -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/shortcodes.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/shortcodes.css')}}" />
 
     <!-- main -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/main.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/main.css')}}" />
 
     <!-- responsive -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/responsive.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/responsive.css')}}" />
 
 </head>
 
 <body>
+
+
 
     <div class="page">
         <header id="masthead" class="header ttm-header-style-02">

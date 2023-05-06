@@ -6,12 +6,6 @@
     <div class="card">
         <div class="card-header">
             <h4 class="card-title"><b>{{ $title }}</b></h4>
-            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-            <div class="heading-elements">
-                <ul class="list-inline mb-0">
-                    <li><a href="javascript:void(0)" class="btn btn-primary" id="tombol-form-modal" data-url="{{ route('lamandetail.createUploadDokumen',['id_laman'=>$id_laman]) }}"><i class="feather icon-plus-square"></i> Tambah Data</a></li>
-                </ul>
-            </div>
         </div>
         <hr>
         <div class="col-md-12">
@@ -20,10 +14,10 @@
                     <thead>
                         <tr>
                             <th width=" 1%">No</th>
-                            <th>Nama Dok</th>
-                            <th>Keterangan</th>
-                            <th>Tahun Dok</th>
-                            <th>Tgl Upload</th>
+                            <th>Tgl Kirim</th>
+                            <th>Nama Pengirim</th>
+                            <th>Email</th>
+                            <th>No Hp</th>
                             <th width="10%" align="center">Action</th>
                         </tr>
                     </thead>
@@ -40,7 +34,7 @@
         myTable = $('#myTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{route('lamandetail.showUploadDokumen',$id_laman)}}",
+            ajax: "{{url('datakritiksaran/show')}}",
             // "data": null,
             // "class": "align-top",
             // "orderable": false,
@@ -56,21 +50,20 @@
                     }
                 },
                 {
-                    data: 'nm_dokumen',
-                    name: 'nm_dokumen'
+                    data: 'tgl_kirim',
+                    name: 'tgl_kirim'
                 },
                 {
-                    data: 'ket_dokumen',
-                    name: 'ket_dokumen'
+                    data: 'nm_pengirim',
+                    name: 'nm_pengirim'
                 },
                 {
-                    className: 'text-center',
-                    data: 'tahun_dokumen',
-                    name: 'tahun_dokumen'
+                    data: 'email_pengirim',
+                    name: 'email_pengirim'
                 },
                 {
-                    data: 'tgl',
-                    name: 'tgl'
+                    data: 'no_tlp_pengirim',
+                    name: 'no_tlp_pengirim'
                 },
                 {
                     data: 'action',

@@ -1,5 +1,6 @@
 @extends('private.layout.main')
 @section('isi')
+<link rel="stylesheet" href="{{ asset('add-plugins/datetime/flatpickr.min.css')}}" />
 
 <style>
     #container {
@@ -30,7 +31,7 @@
             </div>
         </div>
         <hr>
-        <form action="{{ route('post.update',$id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('post.update',$id)}}" class="formDataMultipart" id="formDataMultipart" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -69,7 +70,27 @@
 
 
                             </div>
-                            <a href="#" id="hapusThumbnail" class="ml-1" style="text-align: center; font-size:11px;"><u><i class="fa fa-trash"></i> Ganti gambar thumbnail</u></a>
+                            <!-- <a href="#" id="hapusThumbnail" class="ml-1" style="text-align: center; font-size:11px;"><u><i class="fa fa-trash"></i> Ganti gambar thumbnail</u></a> -->
+                        </div>
+                    </div>
+                    <div class="card mb-1 mr-1 border-primary border-darken-1">
+                        <div class="card-content">
+                            <div class="p-1">
+                                <h5 class="card-title" style="margin-bottom:-4px;"><b>TANGGAL PUBLISH</b></h5>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" name="tgl_terbit" id="datetime" class="form-control" value="{{$tgl_terbit}}" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <span class="fa fa-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
                     <div class="card mb-1 mr-1 border-primary border-darken-1">
@@ -123,36 +144,46 @@
 <script src="{{ asset('private/js/myscriptpost.js')}}"></script>
 <script src="{{ asset('add-plugins/ckeditor/ckeditor.js')}}"></script>
 <script src="{{ asset('add-plugins/ckeditor/script.js')}}"></script>
+<script src="{{ asset('add-plugins/datetime/flatpickr.js')}}"></script>
 <script>
     $(document).ready(function() {
+        //$('#post_thumbnail').hide();
+
+
+        flatpickr("#datetime", {
+            enableTime: true,
+            dateFormat: "d-m-Y H:i",
+        });
+
+
+
         TombolReset();
-        // ketika user memilih file gambar
-        $('#post_thumbnail').change(function() {
-            let reader = new FileReader();
-            reader.onload = function(event) {
-                $('#thumbnail_preview').attr('src', event.target.result);
-            };
-            // membaca data gambar yang dipilih
-            reader.readAsDataURL(this.files[0]);
-        });
-
-        $('#hapusThumbnail').click(function() {
-            $('#thumbnail_preview').attr('src', '{{asset("images/logo/thumbnail.png")}}');
-            $('#post_thumbnail').show();
-            $('#hapusThumbnail').hide();
-        });
-
-
 
     });
+
+    // ketika user memilih file gambar
+    $('#post_thumbnail').change(function() {
+        let reader = new FileReader();
+        reader.onload = function(event) {
+            $('#thumbnail_preview').attr('src', event.target.result);
+        };
+        // membaca data gambar yang dipilih
+        reader.readAsDataURL(this.files[0]);
+    });
+
+
+    // $('#hapusThumbnail').click(function() {
+    //     $('#thumbnail_preview').attr('src', '{{asset("images/logo/thumbnail.png")}}');
+    //     $('#post_thumbnail').show();
+    //     $('#hapusThumbnail').hide(); 
+    // });
 
     function TombolReset() {
         $('#thumbnail_preview').attr('src', '{{ asset("images/thumbnail/".$row->post_thumbnail) }}');
         document.getElementById("formDataMultipart").reset();
-        $('#post_thumbnail').hide();
-        $('#post_thumbnail').val('');
-        // $('#post_content').val("{!! $row->post_content !!}");
-        $('#hapusThumbnail').show();
+        // $('#post_thumbnail').hide();
+        // $('#post_thumbnail').val(''); 
+        //$('#hapusThumbnail').show();
     }
 </script>
 @endsection

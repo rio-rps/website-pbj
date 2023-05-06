@@ -1,12 +1,18 @@
 @extends('private.layout.main')
 @section('isi')
+<link rel="stylesheet" href="{{ asset('add-plugins/datetime/flatpickr.min.css')}}" />
+
+
+
+<!-- 
 <link rel="stylesheet" type="text/css" href="{{asset('private/vendors/css/pickers/daterange/daterangepicker.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('private/vendors/css/pickers/datetime/bootstrap-datetimepicker.css')}}">
 
 <link rel="stylesheet" type="text/css" href="{{asset('private/css/core/menu/menu-types/vertical-menu.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('private/css/core/colors/palette-gradient.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('private/css/plugins/pickers/daterange/daterange.css')}}">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ -->
 <style>
     #container {
         width: 1000px;
@@ -73,14 +79,14 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="card mb-1 mr-1 border-primary border-darken-1">
+                    <div class="card mb-1 mr-1 border-primary border-darken-1">
                         <div class="card-content">
                             <div class="p-1">
                                 <h5 class="card-title" style="margin-bottom:-4px;"><b>TANGGAL PUBLISH</b></h5>
                                 <hr>
-                                <div class="form-group"> 
-                                    <div class="input-group date" id="datetimepicker9">
-                                        <input type="text" class="form-control" name="tgl_terbit">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" name="tgl_terbit" id="datetime" class="form-control" />
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 <span class="fa fa-calendar"></span>
@@ -92,7 +98,7 @@
 
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="card mb-1 mr-1 border-primary border-darken-1">
                         <div class="card-content">
                             <div class="p-1">
@@ -138,7 +144,8 @@
 <script src="{{ asset('add-plugins/ckeditor/ckeditor.js')}}"></script>
 <script src="{{ asset('add-plugins/ckeditor/script.js')}}"></script>
 
-
+<script src="{{ asset('add-plugins/datetime/flatpickr.js')}}"></script>
+<!-- 
 <script src="{{ asset('private/vendors/js/pickers/dateTime/moment-with-locales.min.js')}}"></script>
 <script src="{{ asset('private/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js')}}"></script>
 <script src="{{ asset('private/vendors/js/pickers/pickadate/picker.js')}}"></script>
@@ -149,8 +156,18 @@
 <script src="{{ asset('private/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js')}}"></script>
 <script src="{{ asset('private/js/scripts/pickers/dateTime/bootstrap-datetime.js')}}"></script>
 <script src="{{ asset('private/js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
+ -->
+
 <script>
     $(document).ready(function() {
+
+        flatpickr("#datetime", {
+            enableTime: true,
+            dateFormat: "d-m-Y H:i",
+        });
+
+
+
         // ketika user memilih file gambar
         $('#post_thumbnail').change(function() {
             let reader = new FileReader();

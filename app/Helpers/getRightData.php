@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\PhotoDetailController;
+use App\Models\HistoriPengunjungWebsiteModel;
 use App\Models\KategoriModel;
 use App\Models\LinkTerkaitModel;
 use App\Models\PostKategoriRelationshipsModel;
 use App\Models\PostModel;
 use App\Models\SlideShowModel;
 use App\Models\VideoModel;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 function getRightData()
@@ -53,6 +55,17 @@ function getRightData()
     // video 
     $resultVideo = VideoModel::all();
 
+
+    // Pengunjung Website
+    $today = Carbon::today();
+    $monthNow = Carbon::now()->format('m');
+
+    $visitor = [
+        'visitor_today' => HistoriPengunjungWebsiteModel::whereDate('created_at', $today)->count(),
+        'visitor_month' => HistoriPengunjungWebsiteModel::whereMonth('created_at', $monthNow)->count(),
+        'visitor_all' => HistoriPengunjungWebsiteModel::all()->count(),
+    ];
+
     // return
     return [
         'resultSlide' => $resultSlide,
@@ -62,5 +75,6 @@ function getRightData()
         'resultPhoto' => $resultPhoto,
         'resultVideo' => $resultVideo,
         'populer' => $populer,
+        'visitor' => $visitor
     ];
 }

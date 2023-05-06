@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistoriCountPostModel;
 use App\Models\KategoriModel;
 use App\Models\PostKategoriRelationshipsModel;
 use App\Models\PostModel;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -14,12 +16,20 @@ use Illuminate\Support\Str;
 class PostController extends Controller
 {
 
-    public function createSlug($title)
+    public function createSlug($title, $post_kd = null)
     {
         $slug = Str::slug($title);
-        $count = PostModel::whereRaw("slug_title  RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+
+        // Cek apakah post yang diedit memiliki slug yang sama dengan post lain di database
+        $query = PostModel::where('slug_title', $slug);
+        if ($post_kd) {
+            $query->where('post_kd', '<>', $post_kd);
+        }
+        $count = $query->count();
+
         return ($count > 0) ? "{$slug}-{$count}" : $slug;
     }
+
 
     public function index()
     {
@@ -35,7 +45,7 @@ class PostController extends Controller
             'title' => 'FORM INPUT DATA BARU',
             'resultKategori' => KategoriModel::all()
         ];
-        return view('private.post.ckeditoraaa', $data);
+        return view('private.post.formadd', $data);
     }
 
     public function uploadImage(Request $request)
@@ -61,17 +71,18 @@ class PostController extends Controller
     public function store(Request $r)
     {
 
-
         $validator = Validator::make($r->all(), [
             'post_title' => 'required',
-            //'post_thumbnail' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            'post_thumbnail' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            'tgl_terbit' => 'required',
             'post_content' => 'required',
             'post_status' => 'required',
             'id_kategori' => 'required',
         ], [
             'post_title.required' => 'Judul Tidak Boleh Kosong',
-            // 'post_thumbnail.required' => 'Thumbnail Tidak Boleh Kosong',
-            // 'post_thumbnail.mimes' => 'Thumbnail Hanya di perbolehkan ekstensi JPEG, JPG, PNG',
+            'post_thumbnail.required' => 'Thumbnail Tidak Boleh Kosong',
+            'post_thumbnail.mimes' => 'Thumbnail Hanya di perbolehkan ekstensi JPEG, JPG, PNG',
+            'tgl_terbit.required' => 'Tanggal Terbit Tidak Boleh Kosong',
             'post_content.required' => 'Isi Tidak Boleh Kosong',
             'post_status.required' => 'Status Tidak Boleh Kosong',
             'id_kategori.required' => 'kategori Tidak Boleh Kosong',
@@ -80,10 +91,15 @@ class PostController extends Controller
 
 
 
+
         if ($validator->fails()) {
             $errors = $validator->errors();
             return response()->json(['errors' => $errors], 422);
         } else {
+
+            $date = DateTime::createFromFormat('d-m-Y H:i', $r->tgl_terbit);
+            $tgl_terbit =  $date->format('Y-m-d H:i:s');
+
 
             $gambar_name = "";
             if ($image = $r->file('post_thumbnail')) {
@@ -99,7 +115,7 @@ class PostController extends Controller
                 'post_thumbnail' => $gambar_name,
                 'post_content' => $r->post_content,
                 'post_status' => $r->post_status,
-                'tgl_terbit' => date('Y-m-d H:i:s'),
+                'tgl_terbit' => $tgl_terbit,
             ]);
 
 
@@ -156,9 +172,11 @@ class PostController extends Controller
     {
 
         $row = PostModel::where('slug_title', $id)->first();
+
         $data = [
             'title' => 'FORM EDIT DATA',
             'resultKategori' => KategoriModel::all(),
+            'tgl_terbit' => date("d-m-Y H:i", strtotime($row->tgl_terbit)),
             'dtKategori' => PostKategoriRelationshipsModel::where('post_kd', $row->post_kd)->get(),
             'id' => $row->post_kd,
             'row' => $row
@@ -176,6 +194,7 @@ class PostController extends Controller
         $validator = Validator::make($r->all(), [
             'post_title' => 'required',
             'post_thumbnail' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'tgl_terbit' => 'required',
             'post_content' => 'required',
             'post_status' => 'required',
             'id_kategori' => 'required',
@@ -183,6 +202,7 @@ class PostController extends Controller
             'post_title.required' => 'Judul Tidak Boleh Kosong',
             'post_thumbnail.nullable' => 'Thumbnail Tidak Boleh Kosong',
             'post_thumbnail.mimes' => 'Thumbnail Hanya di perbolehkan ekstensi JPEG, JPG, PNG',
+            'tgl_terbit.required' => 'Tanggal Terbit Tidak Boleh Kosong',
             'post_content.required' => 'Isi Tidak Boleh Kosong',
             'post_status.required' => 'Status Tidak Boleh Kosong',
             'id_kategori.required' => 'kategori Tidak Boleh Kosong',
@@ -195,6 +215,12 @@ class PostController extends Controller
             $errors = $validator->errors();
             return response()->json(['errors' => $errors], 422);
         } else {
+
+            $date = DateTime::createFromFormat('d-m-Y H:i', $r->tgl_terbit);
+            $tgl_terbit =  $date->format('Y-m-d H:i:s');
+
+
+
 
             if ($r->hasFile('post_thumbnail')) {
                 // code untuk upload file gambar baru
@@ -226,27 +252,74 @@ class PostController extends Controller
                 'post_thumbnail' => $gambar_name,
                 'post_content' => $r->post_content,
                 'post_status' => $r->post_status,
-                //'tgl_terbit' => date('Y-m-d H:i:s'),
+                //'slug_title' =>  $this->createSlug($r->post_title, $id),
+
+                'tgl_terbit' => $tgl_terbit,
             ]);
 
-            PostKategoriRelationshipsModel::where('post_kd', $id)->delete();
 
-            $kat = $r->input('id_kategori');
-            $jml_kat = count($kat);
-            for ($i = 0; $i < $jml_kat; $i++) {
-                $post =  PostKategoriRelationshipsModel::create([
-                    'id_kategori'  => $r->id_kategori[$i],
-                    'post_kd'  => $id,
-                ]);
+
+
+
+            //-------------
+            // kode lama
+            // PostKategoriRelationshipsModel::where('post_kd', $id)->delete();
+            // $kat = $r->input('id_kategori');
+            // $jml_kat = count($kat);
+            // for ($i = 0; $i < $jml_kat; $i++) {
+            //     $post =  PostKategoriRelationshipsModel::create([
+            //         'id_kategori'  => $r->id_kategori[$i],
+            //         'post_kd'  => $id,
+            //     ]);
+            // }
+            //-------------------
+
+            //-------------------
+            // kode baru
+            // $kat = $r->input('id_kategori');
+            // Mengambil semua id_kategori yang terkait dengan post
+            $existingCategories = PostKategoriRelationshipsModel::where('post_kd', $id)->pluck('id_kategori')->toArray();
+
+            // Mengambil semua id_kategori pada request
+            $newCategories = $r->input('id_kategori');
+
+            // Membandingkan dan hapus data yang tidak diperlukan
+            $deletedCategories = array_diff($existingCategories, $newCategories);
+            if (!empty($deletedCategories)) {
+                PostKategoriRelationshipsModel::where('post_kd', $id)
+                    ->whereIn('id_kategori', $deletedCategories)
+                    ->delete();
             }
+
+            // Menambahkan data baru
+            $jml_kat = count($newCategories);
+            for ($i = 0; $i < $jml_kat; $i++) {
+                $post =  PostKategoriRelationshipsModel::updateOrCreate(
+                    [
+                        'id_kategori'  => $newCategories[$i],
+                        'post_kd'  => $id,
+                    ],
+                    []
+                );
+            }
+            // end
+            //--------------------
+
 
 
             $row = PostModel::where('post_kd', $id)->first();
-            return redirect()->route('post.edit', $row->slug_title)->with([
-                'status' => 'Berhasil',
-                'message' => 'Data berhasil diupdate',
-                'icon' => 'success',
+
+            return response()->json([
+                'success' => 'Data berhasil diupdate',
+                //'myReload' => 'href',
+                // 'route' => route('post.edit', $row->slug_title)
             ]);
+
+            // return redirect()->route('post.edit', $row->slug_title)->with([
+            //     'status' => 'Berhasil',
+            //     'message' => 'Data berhasil diupdate',
+            //     'icon' => 'success',
+            // ]);
         }
     }
 
@@ -303,6 +376,7 @@ class PostController extends Controller
             }
 
             PostKategoriRelationshipsModel::where('post_kd', $id)->delete();
+            HistoriCountPostModel::where('post_kd', $id)->delete();
 
             return response()->json([
                 'success' => 'Data berhasil dihapus',

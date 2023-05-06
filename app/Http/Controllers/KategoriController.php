@@ -12,12 +12,20 @@ use Illuminate\Support\Str;
 class KategoriController extends Controller
 {
 
-    public function createSlug($title)
+    public function createSlug($title, $id_kategori = null)
     {
         $slug = Str::slug($title);
-        $count = KategoriModel::whereRaw("slug_kategori  RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+
+        // Cek apakah post yang diedit memiliki slug yang sama dengan post lain di database
+        $query = KategoriModel::where('slug_kategori', $slug);
+        if ($id_kategori) {
+            $query->where('id_kategori', '<>', $id_kategori);
+        }
+        $count = $query->count();
+
         return ($count > 0) ? "{$slug}-{$count}" : $slug;
     }
+
     public function index()
     {
         $data = [
@@ -110,7 +118,7 @@ class KategoriController extends Controller
             } else {
                 $post = KategoriModel::where('id_kategori', $id)->update([
                     'nm_kategori'  => $r->nm_kategori,
-                    'slug_kategori'  => $this->createSlug($r->nm_kategori),
+                    //'slug_kategori'  => $this->createSlug($r->nm_kategori, $id),
                     'ket_kategori' => $r->ket_kategori,
                 ]);
                 return response()->json(['success' => 'Data berhasil disimpan']);

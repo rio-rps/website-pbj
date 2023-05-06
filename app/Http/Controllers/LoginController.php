@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistoriLoginModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class LoginController extends Controller
 {
@@ -41,6 +43,7 @@ class LoginController extends Controller
             //     return redirect()->intended('kasir');
             // }
             if ($user) {
+                $this->pengunjungWebsite($user->id);
                 return redirect()->intended('/panel');
             }
         }
@@ -57,5 +60,17 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
+    }
+
+    public function pengunjungWebsite($id_user)
+    {
+        $viewerData = [
+            'ip_address' => request()->ip(),
+            'hostname' => getHostname(),
+            'user_agent' => request()->header('User-Agent'),
+            'referer' => URL::previous(),
+            'id_user' => $id_user,
+        ];
+        HistoriLoginModel::create($viewerData);
     }
 }

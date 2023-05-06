@@ -48,7 +48,7 @@
                             <div class="widget_info d-flex flex-row align-items-center justify-content-end">
                                 <div class="widget_icon"><i class="flaticon-call"></i></div>
                                 <div class="widget_content">
-                                    <h5 class="widget_title">(0711) 1222112</h5>
+                                    <h5 class="widget_title">(0711) 356-094</h5>
                                     <p class="widget_desc"></p>
                                 </div>
                             </div><!-- widget-info end -->
@@ -104,46 +104,61 @@
                         </div>
                         <nav id="menu" class="menu">
 
-
                             <ul class="dropdown">
-                                <li class="active"><a href="{{route('index')}}">HOME</a></li>
+                                <li class="active"><a href="{{route('index')}}">BERANDA</a></li>
+                                @foreach($menulevel1 as $level1)
+                                <li class="active" style="margin-left:-3px;">
 
-                                <li class="active"><a href="#">PROFIL</a>
+                                    @if ($level1->id_laman == 0)
+                                    <a href="#">{{ strtoupper($level1->nm_menu) }}</a>
+                                    @endif
+
+
                                     <ul>
-                                        <li><a href="{{route('page',['slug'=>'struktur-organisasi'])}}">Struktur Organisasi</a></li>
-                                        <li><a href="{{route('page',['slug'=>'visi-misi'])}}">Visi & Misi</a></li>
-                                        <li><a href="{{route('page',['slug'=>'sejarah'])}}">Sejarah</a></li>
-                                        <li class="active"><a href="#">Tupoksi</a>
+                                        @foreach ($menuLevel2 as $level2)
+                                        @php
+                                        // Pisahkan kode menu level 2 menjadi kode menu level 1 dan kode menu level 2
+                                        $level2_code_parts = explode('.', $level2->kode_menu);
+                                        $level2_code_menu1 = $level2_code_parts[0];
+                                        $level2_code_menu2 = $level2_code_parts[1];
+                                        $linkLevel2 = $level2->id_laman;
+                                        @endphp
+                                        @if ($level2_code_menu1 == $level1->kode_menu)
+
+                                        @if ($linkLevel2 !='0')
+                                        <li><a href="{{route('page',['slug'=>$level2->JLaman->slug_laman ])}}">{{ $level2->nm_menu }}</a></li>
+                                        @elseif($linkLevel2 =='0')
+                                        <li class="active"><a href="#">{{ $level2->nm_menu }}</a>
                                             <ul>
-                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>'kepala-biro'])}}">Kepala Biro</a></li>
-                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>'bagian-tupoksi-pengelolaan-pengadaan-barang-jasa'])}}">Bagian Pengelolaan Pengadaan Barang/ Jasa</a></li>
-                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>'bagian-tupoksi-pengelolaan-layanan-pengadaan-secara-elektronik'])}}">Bagian Pengelolaan Layanan Pengadaan Secara Elektronik</a></li>
-                                                <li><a href="{{route('page',['slug'=>'bagian-tupoksi-pembinaan-dan-advokasi-pengadaan-barang-jasa'])}}">Bagian Pembinaan dan Advokasi Pengadaan Barang/ Jasa</a></li>
+                                                @foreach ($menuLevel3 as $level3)
+
+                                                @php
+                                                $level3_code_parts = explode('.', $level3->kode_menu);
+                                                $level3_code_menu1 = $level3_code_parts[0];
+                                                $level3_code_menu2 = $level3_code_parts[1];
+                                                $level3_code_menu3 = $level3_code_parts[2];
+                                                $linkLevel3 = $level3->id_laman;
+                                                @endphp
+
+                                                @if ($level3_code_menu1 == $level1->kode_menu AND $level3_code_menu2 == $level2_code_menu2)
+                                                <li style="margin-bottom:-15px;"><a href="{{route('page',['slug'=>$level3->JLaman->slug_laman ])}}">{{$level3->nm_menu}}</a></li>
+                                                @endif
+                                                @endforeach
                                             </ul>
                                         </li>
-                                    </ul>
-                                </li>
-                                <!-- <li><a href="#">INFORMASI</a>
-                                    <ul>
-                                        @foreach($menuKategori as $item)
-                                        <li><a href="{{route('jenis',['slug'=> $item->slug_kategori])}}">{{ $item->nm_kategori }}</a></li>
+                                        @endif
+
+                                        @endif
                                         @endforeach
                                     </ul>
+
                                 </li>
-                                <li><a href=" #">GALERI</a>
-                                    <ul>
-                                        <li><a href="{{route('galeriphoto')}}">Foto</a></li>
-                                        <li><a href="{{route('galerivideo')}}">Video</a></li>
-                                    </ul>
+                                @endforeach
+
+                                <li class="active">
+                                    <a href="{{url('page/kontak')}}">KONTAK</a>
                                 </li>
-                                <li class="active"><a href="{{route('page',['slug'=>'kontak'])}}">KONTAK KAMI</a></li> -->
-                                <li class="active"><a href="{{route('pengaduan')}}">PROGRAM KERJA</a></li>
-                                <li class="active"><a href="{{route('pengaduan')}}">REGULASI</a></li>
-                                <li class="active"><a href="{{route('pengaduan')}}">LAPORAN</a></li>
-                                <li class="active"><a href="{{route('pengaduan')}}">GALERI</a></li>
-                                <li class="active"><a href="{{route('pengaduan')}}">UNDUHAN</a></li>
-                                <li class="active"><a href="{{route('pengaduan')}}">TAUTAN</a></li>
-                                <li class="active"><a href="{{route('pengaduan')}}">KONTAK</a></li>
+
                             </ul>
                         </nav>
                     </div><!-- site-navigation end-->

@@ -24,10 +24,17 @@ class PhotoController extends Controller
         return view('private/photo/view')->with($data);
     }
 
-    public function createSlug($title)
+    public function createSlug($title, $kode = null)
     {
         $slug = Str::slug($title);
-        $count = PhotoModel::whereRaw("slug_galeri_photo RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+
+        // Cek apakah post yang diedit memiliki slug yang sama dengan post lain di database
+        $query = PhotoModel::where('slug_galeri_photo', $slug);
+        if ($kode) {
+            $query->where('id_galeri_photo', '<>', $kode);
+        }
+        $count = $query->count();
+
         return ($count > 0) ? "{$slug}-{$count}" : $slug;
     }
 
@@ -122,7 +129,7 @@ class PhotoController extends Controller
             } else {
                 $post = PhotoModel::where('id_galeri_photo', $id)->update([
                     'nm_galeri_photo'  => $r->nm_galeri_photo,
-                    'slug_galeri_photo'  => $this->createSlug($r->nm_galeri_photo),
+                    //'slug_galeri_photo'  => $this->createSlug($r->nm_galeri_photo, $id),
                     'tgl_galeri_photo' => $r->tgl_galeri_photo,
                 ]);
                 return response()->json(['success' => 'Data berhasil disimpan']);

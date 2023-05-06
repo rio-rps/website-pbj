@@ -14,17 +14,26 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
             '-',
             'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
             'alignment', '|',
-            'link', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
-            'specialCharacters', 'horizontalLine', 'pageBreak', '|',
+            'link', 'blockQuote', 'insertTable', 'mediaEmbed', '|',
+            'specialCharacters', 'horizontalLine', '|',
             'textPartLanguage', '|',
             'sourceEditing'
-        ],
+        ], 
 
-
-        // example complate
-        // 'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+        // 'exportPDF', 'exportWord', '|',
+        // 'findAndReplace', 'selectAll', '|',
+        // 'heading', '|',
+        // 'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+        // 'bulletedList', 'numberedList', 'todoList', '|',
+        // 'outdent', 'indent', '|',
+        // 'undo', 'redo',
+        // '-',
+        // 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
+        // 'alignment', '|',
+        // 'link','insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
         // 'specialCharacters', 'horizontalLine', 'pageBreak', '|',
-
+        // 'textPartLanguage', '|',
+        // 'sourceEditing'
 
         shouldNotGroupWhenFull: true
     },

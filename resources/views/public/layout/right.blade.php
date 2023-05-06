@@ -78,6 +78,31 @@
      </ul>
  </div>
 
+ <div class="card mb-35">
+     <div class="card-header ttm-bgcolor-skincolor text-white">
+         PENGUNJUNG WEBSITE
+     </div>
+     <ul class="list-group">
+         <li class="list-group-item d-flex justify-content-between align-items-center">
+             <a href="#">
+                 <i class="fa fa-desktop"></i> Total Hari Ini
+             </a>
+             <span class="badge badge-secondary badge-pill">{{$getRightData['visitor']['visitor_today']}} orang</span>
+         </li>
+         <li class="list-group-item d-flex justify-content-between align-items-center">
+             <a href="#">
+                 <i class="fa fa-desktop"></i> Total Bulan Ini
+             </a>
+             <span class="badge badge-secondary badge-pill">{{$getRightData['visitor']['visitor_month']}} orang</span>
+         </li>
+         <li class="list-group-item d-flex justify-content-between align-items-center">
+             <a href="#">
+                 <i class="fa fa-desktop"></i> Total Seluruh
+             </a>
+             <span class="badge badge-secondary badge-pill">{{$getRightData['visitor']['visitor_all']}} orang</span>
+         </li>
+     </ul>
+ </div>
 
  <style>
      .carousel-inners {

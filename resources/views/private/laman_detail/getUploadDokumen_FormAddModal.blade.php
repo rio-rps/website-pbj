@@ -23,11 +23,11 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label border-bottom">Keterangan Dokumen</label>
                             <div class="col-md-8">
-                                <textarea name="ket_dokumen" cols="30" rows="3"></textarea>
+                                <textarea name="ket_dokumen" cols="30" rows="3" maxlength="225"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="form-body">
+                    <div class=" form-body">
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label border-bottom">Kelompok Tahun Dokumen</label>
                             <div class="col-md-4">

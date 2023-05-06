@@ -3,7 +3,7 @@
 
 <style>
     #container {
-        max-width: 80%;
+        max-width: 100%;
     }
 
     img {
