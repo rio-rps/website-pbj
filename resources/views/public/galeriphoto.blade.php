@@ -30,4 +30,9 @@
         </body>
     </table>
 </div>
+@if (count($result) ==0)
+<div class="alert alert-danger" role="alert">
+    Data Kosong !
+</div>
+@endif
 @endsection

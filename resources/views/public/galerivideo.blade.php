@@ -17,13 +17,11 @@
             </div>
         </div>
         @endforeach
-        @if (count($result) ==0)
-        <div class="container">
-            <div class="bs-callout-danger callout-border-left callout-bordered mt-1 p-1">
-                <h5 class="danger">Data Kosong !</h5>
-            </div>
-        </div>
-        @endif
     </div>
 </div>
+@if (count($result) ==0)
+<div class="alert alert-danger" role="alert">
+    Data Kosong !
+</div>
+@endif
 @endsection
