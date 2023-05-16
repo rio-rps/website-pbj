@@ -396,7 +396,7 @@ class LayoutController extends Controller
         ];
         $comp = [
             'slide' => "",
-            'content' => view('public/kritiksaran', $data),
+            'content' => view('public/KritikSaran', $data),
             'right' => view('public/layout/right', ['getRightData' => getRightData()]),
         ];
         return view('public.layout.main', $comp);
