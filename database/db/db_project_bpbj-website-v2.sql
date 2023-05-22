@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Bulan Mei 2023 pada 18.55
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.1.12
+-- Generation Time: May 22, 2023 at 06:53 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_project_website_umum`
+-- Database: `db_project_bpbj-website-v2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cpar_kategori`
+-- Table structure for table `cpar_kategori`
 --
 
 CREATE TABLE `cpar_kategori` (
@@ -37,7 +37,7 @@ CREATE TABLE `cpar_kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `cpar_kategori`
+-- Dumping data for table `cpar_kategori`
 --
 
 INSERT INTO `cpar_kategori` (`id_kategori`, `nm_kategori`, `slug_kategori`, `ket_kategori`, `created_at`, `updated_at`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `cpar_kategori` (`id_kategori`, `nm_kategori`, `slug_kategori`, `ket
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cpar_kategori_pengaduan`
+-- Table structure for table `cpar_kategori_pengaduan`
 --
 
 CREATE TABLE `cpar_kategori_pengaduan` (
@@ -61,7 +61,7 @@ CREATE TABLE `cpar_kategori_pengaduan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `cpar_kategori_pengaduan`
+-- Dumping data for table `cpar_kategori_pengaduan`
 --
 
 INSERT INTO `cpar_kategori_pengaduan` (`id_kategori_pengaduan`, `nm_kategori_pengaduan`, `no_urut`, `created_at`, `updated_at`) VALUES
@@ -75,7 +75,7 @@ INSERT INTO `cpar_kategori_pengaduan` (`id_kategori_pengaduan`, `nm_kategori_pen
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cpar_link_terkait`
+-- Table structure for table `cpar_link_terkait`
 --
 
 CREATE TABLE `cpar_link_terkait` (
@@ -87,7 +87,7 @@ CREATE TABLE `cpar_link_terkait` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `cpar_link_terkait`
+-- Dumping data for table `cpar_link_terkait`
 --
 
 INSERT INTO `cpar_link_terkait` (`id_link`, `nm_situs`, `link_situs`, `created_at`, `updated_at`) VALUES
@@ -101,7 +101,7 @@ INSERT INTO `cpar_link_terkait` (`id_link`, `nm_situs`, `link_situs`, `created_a
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cpar_slide_show`
+-- Table structure for table `cpar_slide_show`
 --
 
 CREATE TABLE `cpar_slide_show` (
@@ -113,7 +113,7 @@ CREATE TABLE `cpar_slide_show` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `cpar_slide_show`
+-- Dumping data for table `cpar_slide_show`
 --
 
 INSERT INTO `cpar_slide_show` (`id_slide`, `gambar_slide`, `status_actived`, `created_at`, `updated_at`) VALUES
@@ -125,7 +125,7 @@ INSERT INTO `cpar_slide_show` (`id_slide`, `gambar_slide`, `status_actived`, `cr
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ddd_galeri_photo`
+-- Table structure for table `ddd_galeri_photo`
 --
 
 CREATE TABLE `ddd_galeri_photo` (
@@ -137,18 +137,10 @@ CREATE TABLE `ddd_galeri_photo` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data untuk tabel `ddd_galeri_photo`
---
-
-INSERT INTO `ddd_galeri_photo` (`id_galeri_photo`, `nm_galeri_photo`, `slug_galeri_photo`, `tgl_galeri_photo`, `created_at`, `updated_at`) VALUES
-(7, 'Upacara Hari Kartini s', 'upacara-hari-kartini-s', '2023-03-01', '2023-03-18 17:07:37', '2023-05-05 07:00:34'),
-(8, 'Kegiatan Senam Bersama', 'kegiatan-senam-bersama', '2023-03-10', '2023-03-19 06:36:43', '2023-05-05 07:01:19');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ddd_galeri_photo_detail`
+-- Table structure for table `ddd_galeri_photo_detail`
 --
 
 CREATE TABLE `ddd_galeri_photo_detail` (
@@ -162,7 +154,7 @@ CREATE TABLE `ddd_galeri_photo_detail` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ddd_galeri_video`
+-- Table structure for table `ddd_galeri_video`
 --
 
 CREATE TABLE `ddd_galeri_video` (
@@ -173,10 +165,17 @@ CREATE TABLE `ddd_galeri_video` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `ddd_galeri_video`
+--
+
+INSERT INTO `ddd_galeri_video` (`id_galeri_video`, `judul_video`, `link_video`, `created_at`, `updated_at`) VALUES
+(6, 'Profil BPBJ', 'https://www.youtube.com/watch?v=_l3_xgyQybw', '2023-05-09 00:33:43', '2023-05-09 00:33:43');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ddh_kritik_saran`
+-- Table structure for table `ddh_kritik_saran`
 --
 
 CREATE TABLE `ddh_kritik_saran` (
@@ -194,16 +193,16 @@ CREATE TABLE `ddh_kritik_saran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `ddh_kritik_saran`
+-- Dumping data for table `ddh_kritik_saran`
 --
 
 INSERT INTO `ddh_kritik_saran` (`id_kritik_saran`, `nm_pengirim`, `email_pengirim`, `no_tlp_pengirim`, `alamat_pengirim`, `uraian_kritik_saran`, `nilai_pelayanan`, `tgl_kirim`, `validasi_kritik_saran`, `created_at`, `updated_at`) VALUES
-(1, 'Alba', 'alba@gmail.com', '1231231', 'Palembang', 'bagus dan sukses', '4', '2023-05-05 13:11:13', '1', '2023-05-05 04:45:36', '2023-05-05 06:27:45');
+(1, 'Alba', 'alba@gmail.com', '1231231', 'Palembang', 'bagus dan sukses', '4', '2023-05-05 13:11:13', '3', '2023-05-05 04:45:36', '2023-05-09 00:31:28');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ddh_pengaduan`
+-- Table structure for table `ddh_pengaduan`
 --
 
 CREATE TABLE `ddh_pengaduan` (
@@ -224,18 +223,18 @@ CREATE TABLE `ddh_pengaduan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `ddh_pengaduan`
+-- Dumping data for table `ddh_pengaduan`
 --
 
 INSERT INTO `ddh_pengaduan` (`id_pengaduan`, `nm_pelapor`, `email`, `no_hp`, `id_kategori_pengaduan`, `tgl_kejadian`, `lokasi_kejadian`, `oknum_yang_terlibat`, `uraian`, `upload_bukti_dukung`, `validasi_pengaduan`, `tgl_kirim`, `created_at`, `updated_at`) VALUES
 (9, 'asd', 'daaa@gmail.com', '123', 3, '2023-03-29', '23', '123', '231', '230427095527.png', '3', '2022-04-13 00:00:00', '2023-04-27 14:55:27', '2023-04-27 15:09:34'),
-(10, 'asdsa', 'rio.rps007@gmail.com', '2132', 5, '2023-04-26', 'dfs', 'fsd', 'sdf', '230427103340.jpeg', '2', '2023-04-27 22:33:40', '2023-04-27 15:33:40', '2023-04-27 15:35:05'),
-(11, 'Rio Pranata Saputra', 'riopranata.sa1pu1rps@gmail.com', '901239023012', 3, '2023-05-05', 'Palembang', 'asn', 'asdasda', '230505105042.jpg', '1', '2023-05-06 00:00:00', '2023-05-05 03:50:42', '2023-05-05 03:50:42');
+(10, 'asdsa', 'rio.rps007@gmail.com', '2132', 5, '2023-04-26', 'dfs', 'fsd', 'sdf', '230427103340.jpeg', '3', '2023-04-27 22:33:40', '2023-04-27 15:33:40', '2023-05-09 00:31:18'),
+(11, 'Rio Pranata Saputra', 'riopranata.sa1pu1rps@gmail.com', '901239023012', 3, '2023-05-05', 'Palembang', 'asn', 'asdasda', '230505105042.jpg', '3', '2023-05-06 00:00:00', '2023-05-05 03:50:42', '2023-05-09 00:31:21');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dhh_laman`
+-- Table structure for table `dhh_laman`
 --
 
 CREATE TABLE `dhh_laman` (
@@ -251,7 +250,7 @@ CREATE TABLE `dhh_laman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `dhh_laman`
+-- Dumping data for table `dhh_laman`
 --
 
 INSERT INTO `dhh_laman` (`id_laman`, `nm_laman`, `slug_laman`, `isi_laman`, `no_urut`, `icon_laman`, `jenis_laman`, `created_at`, `updated_at`) VALUES
@@ -320,7 +319,7 @@ INSERT INTO `dhh_laman` (`id_laman`, `nm_laman`, `slug_laman`, `isi_laman`, `no_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `edd_upload_dokumen`
+-- Table structure for table `edd_upload_dokumen`
 --
 
 CREATE TABLE `edd_upload_dokumen` (
@@ -332,7 +331,7 @@ CREATE TABLE `edd_upload_dokumen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `edd_upload_dokumen`
+-- Dumping data for table `edd_upload_dokumen`
 --
 
 INSERT INTO `edd_upload_dokumen` (`id_dokumen`, `nm_dokumen`, `file_dokumen`, `created_at`, `updated_at`) VALUES
@@ -342,7 +341,7 @@ INSERT INTO `edd_upload_dokumen` (`id_dokumen`, `nm_dokumen`, `file_dokumen`, `c
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `edd_upload_dokumen_laman`
+-- Table structure for table `edd_upload_dokumen_laman`
 --
 
 CREATE TABLE `edd_upload_dokumen_laman` (
@@ -357,20 +356,19 @@ CREATE TABLE `edd_upload_dokumen_laman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `edd_upload_dokumen_laman`
+-- Dumping data for table `edd_upload_dokumen_laman`
 --
 
 INSERT INTO `edd_upload_dokumen_laman` (`id_dokumen`, `nm_dokumen`, `file_dokumen`, `ket_dokumen`, `tahun_dokumen`, `id_laman`, `created_at`, `updated_at`) VALUES
 (19, 'Pergubss', '230504122619.docx', 'asdada', 2023, 8, '2023-05-03 17:26:19', '2023-05-03 17:26:19'),
 (20, 'hhh', '230504122951.pdf', 'sdfsd', 2021, 8, '2023-05-03 17:29:51', '2023-05-03 17:29:51'),
-(21, 'sad', '230504105944.pdf', 'dsa', 2016, 17, '2023-05-04 15:59:44', '2023-05-04 15:59:44'),
-(22, 'aaaaaaaaa', '230504110001.pdf', 'Dalam contoh di atas, d-m-Y adalah format tanggal dengan urutan hari-bulan-tahun, sedangkan H:i adalah format waktu dalam format 24 jam.\r\nSaat pengguna mengirimkan formulir, Anda bisa menyimpan data tanggal dan waktu ke dalam', 2015, 17, '2023-05-04 16:00:01', '2023-05-05 17:17:00'),
-(23, 'asd', '230505012921.pdf', 'da', 2021, 22, '2023-05-05 06:29:21', '2023-05-05 06:29:21');
+(23, 'asd', '230505012921.pdf', 'da', 2021, 22, '2023-05-05 06:29:21', '2023-05-05 06:29:21'),
+(24, 'aas', '230522115003.pdf', 'dsdasa', 2022, 17, '2023-05-22 04:50:03', '2023-05-22 04:50:03');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `edd_upload_gambar_laman`
+-- Table structure for table `edd_upload_gambar_laman`
 --
 
 CREATE TABLE `edd_upload_gambar_laman` (
@@ -383,19 +381,18 @@ CREATE TABLE `edd_upload_gambar_laman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `edd_upload_gambar_laman`
+-- Dumping data for table `edd_upload_gambar_laman`
 --
 
 INSERT INTO `edd_upload_gambar_laman` (`id_gambar`, `nm_gambar`, `file_gambar`, `id_laman`, `created_at`, `updated_at`) VALUES
 (26, 'Inovasi Pelayanan Publik Tahun 2020', '230503113742.jpeg', 7, '2023-05-03 16:37:42', '2023-05-03 16:37:42'),
 (27, 'asdsa', '230504122818.jpg', 5, '2023-05-03 17:28:18', '2023-05-03 17:28:18'),
-(30, 'Inovasi Pelayanan Publik Tahun 2020', '230504104704.jpeg', 16, '2023-05-04 15:47:04', '2023-05-04 15:47:04'),
 (31, 'Struktur Organisasi', '230504104851.jpg', 14, '2023-05-04 15:48:51', '2023-05-04 15:48:51');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -411,7 +408,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -421,7 +418,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -433,7 +430,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -445,7 +442,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -464,7 +461,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `set_menu`
+-- Table structure for table `set_menu`
 --
 
 CREATE TABLE `set_menu` (
@@ -481,7 +478,7 @@ CREATE TABLE `set_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `set_menu`
+-- Dumping data for table `set_menu`
 --
 
 INSERT INTO `set_menu` (`id_menu`, `kode_menu`, `nm_menu`, `no_urut`, `status_actived`, `icon_menu`, `level_menu`, `id_laman`, `created_at`, `updated_at`) VALUES
@@ -533,7 +530,7 @@ INSERT INTO `set_menu` (`id_menu`, `kode_menu`, `nm_menu`, `no_urut`, `status_ac
 (46, '3.3.10', 'Surat Edaran Deputi II', 8, '1', 'fa fa-clone', '3', 46, '2023-04-28 07:49:28', '2023-04-28 07:49:28'),
 (47, '3.3.11', 'Surat Edaran Kepala LKPP', 8, '1', 'fa fa-clone', '3', 47, '2023-04-28 07:49:28', '2023-04-28 07:49:28'),
 (48, '3.3.12', 'Nota Kesepahaman', 8, '1', 'fa fa-clone', '3', 48, '2023-04-28 07:49:28', '2023-04-28 07:49:28'),
-(49, '3.4', 'PUPR', 8, '1', 'fa fa-clone', '2', 49, '2023-04-28 07:49:28', '2023-04-28 07:49:28'),
+(49, '3.4', 'PUPR', 8, '2', 'fa fa-clone', '2', 49, '2023-04-28 07:49:28', '2023-04-28 07:49:28'),
 (50, '4.1', 'Standar Layanan', 8, '1', 'fa fa-clone', '2', 50, '2023-04-28 07:49:28', '2023-04-28 07:49:28'),
 (51, '4.2', 'Produk / Jenis Pelayanan', 8, '1', 'fa fa-clone', '2', 51, '2023-04-28 07:49:28', '2023-04-28 07:49:28'),
 (52, '4.3', 'Form Pengaduan', 8, '1', 'fa fa-clone', '2', 52, '2023-04-28 07:49:28', '2023-04-28 07:49:28'),
@@ -561,7 +558,7 @@ INSERT INTO `set_menu` (`id_menu`, `kode_menu`, `nm_menu`, `no_urut`, `status_ac
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `set_menu2`
+-- Table structure for table `set_menu2`
 --
 
 CREATE TABLE `set_menu2` (
@@ -579,7 +576,7 @@ CREATE TABLE `set_menu2` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `set_menu2`
+-- Dumping data for table `set_menu2`
 --
 
 INSERT INTO `set_menu2` (`id_menu`, `kode_menu`, `nm_menu`, `slug_menu`, `no_urut`, `status_actived`, `icon_menu`, `level_menu`, `id_laman`, `created_at`, `updated_at`) VALUES
@@ -656,7 +653,7 @@ INSERT INTO `set_menu2` (`id_menu`, `kode_menu`, `nm_menu`, `slug_menu`, `no_uru
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ta_post`
+-- Table structure for table `ta_post`
 --
 
 CREATE TABLE `ta_post` (
@@ -672,17 +669,19 @@ CREATE TABLE `ta_post` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `ta_post`
+-- Dumping data for table `ta_post`
 --
 
 INSERT INTO `ta_post` (`post_kd`, `post_title`, `slug_title`, `post_thumbnail`, `post_content`, `post_status`, `tgl_terbit`, `created_at`, `updated_at`) VALUES
-(66, 'sosialisas kemendagri', 'sosialisas-kemendagri', '230506115157.jpg', '<p>bbb</p>', '1', '2023-03-22 13:54:00', '2023-05-05 06:54:34', '2023-05-06 04:51:57'),
-(68, 'bbbbbbkkkkkksasadaaaaaaaaaaaa', 'bbbbbb', '230505115842.JPG', '<p>ddddkkkcxv</p>', '1', '2020-01-31 18:15:00', '2023-05-05 15:57:25', '2023-05-06 04:34:06');
+(60, 'Pemprov Sumsel Bentuk Biro Pengadaan Barang', 'pemprov-sumsel-bentuk-biro-pengadaan-barang', '230412025930.jpg', '<p>Pemerintah Provinsi Sumatera Selatan membentuk organisasi baru yakni Biro Pengadaan Barang dan Jasa sesuai dengan permintaan Komisi Pemberantasan Korupsi.</p><p>Wakil Gubernur Sumsel Mawardi Yahya, di Palembang, mengatakan Biro Pengadaan Barang dan Jasa di bawah Sekretariat Daerah Sumsel itu berfungsi sebagai pelayanan dalam pengadaan barang dan jasa termasuk menggunakan sistem elektronik.</p><p>Apalagi sekarang ini Layanan Pengadaan Secara Elektronik (LPSE) dan Unit Layanan Pengadaan (ULP) harus satu atap tidak boleh lagi terpisah kelompok kerjanya, katanya pula.</p><p>\"Jadi yang berada di dinas atau instansi lain tidak dibolehkan lagi dan harus satu biro di bawah sekretariat daerah langsung,\" ujar Mawardi.</p><p>Karena itu, pihaknya membentuk Biro Pengadaan Barang dan Jasa untuk memperlancar pelayanan dalam pengadaan barang.</p><p>Dalam upaya mendukung kelancaran tugas kedinasan pada Biro Pengadaan Barang dan Jasa yang baru dibentuk itu, saat ini dipercaya menjadi Pelaksana Tugas Kepala Biro yakni Muzakkir.</p><p>Penunjukan Plt Kepala Biro Pengadaan Barang dan Jasa tersebut diharapkan pengadaan barang dan jasa semakin lancar, sekaligus terpusat, ujar Wagub Sumsel itu pula.</p><p>Berdasarkan laporan Dinas Komunikasi dan Informatika Sumsel, Biro Pengadaan Barang dan Jasa tersebut terbentuk berdasarkan Peraturan Gubernur No.1 Tahun 2019, terhitung pada 14 Januari lalu.</p><p>Plt Kepala Biro Pengadaan Barang dan Jasa Sumsel Muzakkir mengatakan, pihaknya siap mengemban tugas dan amanah ini dengan sebaik-baiknya.</p><p>Kami akan berkoordinasi dengan kelompok kerja yang ada, sehingga tugas yang diemban dapat berjalan lancar, kata dia lagi.</p><p>&nbsp;</p>', '1', '2019-01-30 14:59:00', '2023-04-12 07:59:30', '2023-05-08 14:49:07'),
+(61, 'Kunjungan Biro Pengadaan Barang/Jasa Setda Provinsi Sumatera Selatan', 'kunjungan-biro-pengadaan-barangjasa-setda-provinsi-sumatera-selatan-1', '230412031144.jpeg', '<p>Sehubungan dengan surat Edaran Bersama Menteri Dalam Negeri dan Kepala Lembaga Pengadaan Barang dan Jasa Republik Indonesia tentang Gerakan Nasional Bangga Buatan Indonesia pada Pengadaan Barang/Jasa di Lingkungan Pemerintah Daerah.</p><p>Sehingga Biro Pengadaan Barang/Jasa Setda Provinsi Sumatera Selatan, melaksanakan kunjungan ke Biro Pengadaan Barang/Jasa Setda Provinsi Banten. Bertempat di Palima – Kota Serang – Banten, tepatnya di KP3B Gedung SKPD Terpadu, Ruang Rapat&nbsp;Biro Pengadaan Barang/Jasa Setda Provinsi Banten Lantai 5. Senin (22/7/2022).</p><p>Kunjungan tersebut dalam rangka bertukar informasi mengenai Katalog Lokal, hadir pada kesempatan tersebut Kepala Biro Pengadaan Barang/Jasa Setda Provinsi Banten Ir. Soerjo Soebiandono, MA dan stakeholder&nbsp;lainnya.</p>', '1', '2022-07-22 15:11:00', '2023-04-12 08:11:44', '2023-05-08 14:48:49'),
+(62, 'Wagub Sumsel: Pembentukan Biro Baru Pengadaan Barang / Jasa Merupakan Atensi Dari KPK', 'wagub-sumsel-pembentukan-biro-baru-pengadaan-barang-jasa-merupakan-atensi-dari-kpk', '230412031519.jpg', '<p>Palembang, Adanya Pembentukan biro baru ini merupakan atensi dari Komisi Pemberantas Korupsi (KPK), supaya pelaksanaan pengadaan barang dan jasa tahun 2019 harus dikoordinir dalam satu atap.</p><p>Untuk itu, Pemerintah Provinsi Sumatera Selatan telah membentuk satu biro baru di bawah Sekretariat Daerah, yaitu Biro Pengadaan Barang / Jasa.</p><p>Hal ini disampaikan Wakil Gubernur Sumsel H. Mawardi Yahya saat menyerahkan SK kepada Kepala Bidang Operasi dan Pemeliharaan Dinas Pengelolaan Sumber Daya Air (PSDA) Sumsel Muzakkir, ST MT.yang ditunjuk sebagai Plt Kepala Biro Pengadaan Barang / Jasa Sekretariat Daerah Sumsel, di Ruang Tamu Wakil Gubernur, Selasa (29/1/2019).</p><p>“LPSE (Layanan Pengadaan Secara Elektronik) dan ULP (Unit Layanan Pengadaan) harus satu atap tidak boleh lagi terpisah pokja-pokjanya. Di dinas atau instansi lain tidak boleh lagi,” jelas Mawardi.</p><p>Wakil Gubernur menambahkan, Biro Pengadaan Barang / Jasa ini dibentuk berdasarkan Peraturan Gubernur Sumsel No 1 Tahun 2019, terhitung Tanggal 14 Januari 2019.</p><p>Makanya untuk mendukung kelancaran tugas-tugas kedinasan pada Biro Pengadaan Barang / Jasa yang baru dibentuk ini, kita tunjuk Muzakir untuk memimpin sementara biro ini sampai dengan ada pejabat defenitif.</p><p>\"Saya sangat berharap Pak Muzakkir mampu melaksanakan tugas dan perintah ini secara seksama dan penuh tanggung jawab,” harap Mawardi Yahya.</p><p>Sementara itu Plt Kepala Biro Pengadaan Barang / Jasa Muzakkir siap mengemban tugas dan amanah ini dengan sebaik-baiknya.</p><p>“Saat ini di samping sebagai Kepala Bidang Operasi dan Pemeliharaan Dinas Pengelolaan Sumber Daya Air (PSDA) Sumsel saya diberikan tugas sebagai Plt Kepala Biro Pengadaan Barang / Jasa, saya siap bertugas sebaik-baiknya, dengan mengkoordinir pokja-pokja yang ada, dan segera membentuk pejabat struktural sambil menunggu instruksi dari atasan,” ujar Muzakkir. (MC Diskominfo Prov Sumsel/TM/AM/toeb)<br>&nbsp;</p>', '1', '2019-01-18 15:15:00', '2023-04-12 08:15:19', '2023-05-08 14:49:43'),
+(63, 'Sosialisasi Sistem Informasi Rencana Umum Pengadaan (SIRUP)', 'Sosialisasi Sistem Informasi Rencana Umum Pengadaan (SIRUP)', '230412031953.jpg', '<p>Palembang – Bertempat di Aula Balitbangda Provinsi Sumsel, pada tanggal 3 Februari 2022 mulai pukul 09.00 – 14.30 WIB telah dilaksanakan Sosialisasi Sistem Informasi Rencana Umum Pengadaan (SIRUP) yang diselenggarakan oleh Badan Penelitian dan Pengembangan Daerah (Balitbangda) Provinsi Sumatera Selatan. Sosialisasi ini dilaksanakan dalam rangka : menunjang kinerja PPTK dan PA dalam melaksanakan tugas untuk meminimalisir kesalahan administrasi.</p><p>Acara ini mengundang nara sumber dari Biro Pengadaan Barang dan Jasa Setda Prov. Sumsel yaitu Ibu Tetra Riani S.Kom dan Bapak Rahmat Jaya Putra, S.Sos, M.Si. Acara &nbsp;dibuka oleh Plt. Kepala Balitbangda Provinsi Sumatera Selatan Bapak Dr. Drs. Alamsyah, M.Pd. Nara Sumber Ibu Tetra dan Bapak Rahmat Jaya Putra menyampaikan beberapa hal penting:</p><ol><li>Dasar-dasar SIRUP dan cara serta langkah-langkah yang harus diketahui oleh Operator SIRUP untuk account PPK dan account PA;</li><li>&nbsp;Aplikasi SIRUP berdasarkan RKPP Nomor 11 Tahun 2021;&nbsp;</li><li>&nbsp;Pengadaan Barang yang harus menggunakan mekanisme lelang Melalui PBJ dengan menyertakan HPS dan KAK;</li><li>&nbsp;Pengadaan Barang dan Jasa yang dapat di swakelolakan;</li><li>&nbsp;Untuk pengelolaan admin/operator RUP PA, PPK mendelegasikan ke Pegawai yang ditunjuk.</li></ol><p>Selanjutnya seluruh Peserta Sosialisasi didampingi oleh narasumber melakukan praktik langsung menggunakan aplikasi SIRUP versi latihan hingga acara ini selesai tepat pada jam 14.30 WIB.</p>', '1', '2022-08-08 15:19:00', '2023-04-12 08:19:53', '2023-05-08 14:48:31');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ta_post_categori_relationships`
+-- Table structure for table `ta_post_categori_relationships`
 --
 
 CREATE TABLE `ta_post_categori_relationships` (
@@ -694,7 +693,7 @@ CREATE TABLE `ta_post_categori_relationships` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `ta_post_categori_relationships`
+-- Dumping data for table `ta_post_categori_relationships`
 --
 
 INSERT INTO `ta_post_categori_relationships` (`relationships_kd`, `id_kategori`, `post_kd`, `created_at`, `updated_at`) VALUES
@@ -710,19 +709,15 @@ INSERT INTO `ta_post_categori_relationships` (`relationships_kd`, `id_kategori`,
 (144, 63, 55, '2023-04-11 18:17:55', '2023-04-11 18:17:55'),
 (212, 63, 59, '2023-04-28 04:50:47', '2023-04-28 04:50:47'),
 (213, 64, 59, '2023-04-28 04:50:47', '2023-04-28 04:50:47'),
-(223, 63, 64, '2023-04-30 17:42:11', '2023-04-30 17:42:11'),
-(224, 64, 64, '2023-04-30 17:42:11', '2023-04-30 17:42:11'),
-(225, 65, 64, '2023-04-30 17:42:11', '2023-04-30 17:42:11'),
-(252, 64, 66, '2023-05-05 07:45:54', '2023-05-05 07:45:54'),
-(253, 66, 66, '2023-05-05 07:45:55', '2023-05-05 07:45:55'),
-(271, 65, 68, '2023-05-05 16:23:45', '2023-05-05 16:23:45'),
-(272, 63, 68, '2023-05-05 16:24:07', '2023-05-05 16:24:07'),
-(273, 64, 68, '2023-05-05 16:24:07', '2023-05-05 16:24:07');
+(278, 63, 63, '2023-05-08 14:48:31', '2023-05-08 14:48:31'),
+(279, 64, 61, '2023-05-08 14:48:49', '2023-05-08 14:48:49'),
+(280, 66, 60, '2023-05-08 14:49:07', '2023-05-08 14:49:07'),
+(281, 66, 62, '2023-05-08 14:49:43', '2023-05-08 14:49:43');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ta_post_histori_view_count`
+-- Table structure for table `ta_post_histori_view_count`
 --
 
 CREATE TABLE `ta_post_histori_view_count` (
@@ -737,25 +732,16 @@ CREATE TABLE `ta_post_histori_view_count` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `ta_post_histori_view_count`
+-- Dumping data for table `ta_post_histori_view_count`
 --
 
 INSERT INTO `ta_post_histori_view_count` (`id`, `post_kd`, `ip_address`, `hostname`, `user_agent`, `referer`, `created_at`, `updated_at`) VALUES
-(1, 23, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/', '2023-03-30 02:06:12', '2023-03-30 02:06:12'),
-(2, 43, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost/laravel-simulasi/public/', '2023-03-30 07:16:56', '2023-03-30 07:16:56'),
-(3, 23, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost/laravel-simulasi/public/page/kontak', '2023-04-04 16:10:23', '2023-04-04 16:10:23'),
-(4, 60, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/', '2023-04-28 02:22:18', '2023-04-28 02:22:18'),
-(5, 59, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/', '2023-04-28 04:45:11', '2023-04-28 04:45:11'),
-(6, 59, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/', '2023-04-29 07:33:01', '2023-04-29 07:33:01'),
-(7, 28, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/', '2023-05-05 06:34:53', '2023-05-05 06:34:53'),
-(8, 66, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/', '2023-05-05 16:59:37', '2023-05-05 16:59:37'),
-(9, 66, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/', '2023-05-05 18:46:23', '2023-05-05 18:46:23'),
-(10, 68, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/', '2023-05-06 04:34:23', '2023-05-06 04:34:23');
+(1, 63, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000/', '2023-05-22 04:18:24', '2023-05-22 04:18:24');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -771,17 +757,17 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Dev', 'dev@gmail.com', '2023-02-25 17:44:11', '$2y$10$RN4jC2K6D209YPDUyTOXPOKFGGPcBPJpU8R.EM58.Gw2CPyVko2fm', '1', NULL, '2023-02-25 17:44:54', '2023-05-06 16:49:11'),
-(3, 'admin', 'admin@gmail.com', '2023-02-25 17:44:11', '$2y$10$mwkrr.d49EW2gIJOB37b7eTEBW.5nqiBkGccf5AcCAEDyKsXeXSoe', '1', NULL, '2023-02-25 17:44:54', '2023-03-21 10:47:24');
+(1, 'Dev', 'dev@gmail.com', '2023-02-25 17:44:11', '$2y$10$GfO2PuVENQBanaEGkpT/SOHof2ohXW3rHQQTu30ilWnRO4yGKA93m', '1', NULL, '2023-02-25 17:44:54', '2023-05-08 16:52:05'),
+(3, 'admin', 'admin@gmail.com', '2023-02-25 17:44:11', '$2y$10$Cx7M6uc5Jkl61TLsvVXP8ueVXEK4IL.TIyM2Jee5xozOoRif6Z8uu', '1', NULL, '2023-02-25 17:44:54', '2023-05-08 14:32:40');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `zzz_histori_login`
+-- Table structure for table `zzz_histori_login`
 --
 
 CREATE TABLE `zzz_histori_login` (
@@ -796,25 +782,23 @@ CREATE TABLE `zzz_histori_login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `zzz_histori_login`
+-- Dumping data for table `zzz_histori_login`
 --
 
 INSERT INTO `zzz_histori_login` (`id`, `ip_address`, `hostname`, `user_agent`, `referer`, `id_user`, `created_at`, `updated_at`) VALUES
-(1, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/login', 1, '2023-05-04 19:18:43', '2023-05-05 19:18:43'),
-(2, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/login', 1, '2023-05-05 19:19:04', '2023-05-05 19:19:04'),
-(3, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/login', 1, '2023-05-06 04:17:21', '2023-05-06 04:17:21'),
-(4, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/login', 1, '2023-05-06 04:53:42', '2023-05-06 04:53:42'),
-(5, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/login', 1, '2023-05-06 14:53:44', '2023-05-06 14:53:44'),
-(6, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36', 'http://localhost:8000/login', 1, '2023-05-06 15:05:11', '2023-05-06 15:05:11'),
-(7, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/login', 1, '2023-05-06 16:45:04', '2023-05-06 16:45:04'),
-(8, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/login', 3, '2023-05-06 16:46:17', '2023-05-06 16:46:17'),
-(9, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/login', 1, '2023-05-06 16:48:33', '2023-05-06 16:48:33'),
-(10, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/login', 1, '2023-05-06 16:49:24', '2023-05-06 16:49:24');
+(1, '114.10.119.117', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'https://biropbj.sumselprov.go.id/login', 1, '2023-05-08 16:51:40', '2023-05-08 16:51:40'),
+(2, '114.10.119.117', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'https://biropbj.sumselprov.go.id/login', 3, '2023-05-08 16:54:07', '2023-05-08 16:54:07'),
+(3, '103.169.198.122', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'http://biropbj.sumselprov.go.id/login', 3, '2023-05-09 00:28:22', '2023-05-09 00:28:22'),
+(4, '103.169.198.122', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'https://biropbj.sumselprov.go.id/login', 1, '2023-05-09 00:31:02', '2023-05-09 00:31:02'),
+(5, '103.169.198.122', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'https://biropbj.sumselprov.go.id/login', 1, '2023-05-09 06:09:04', '2023-05-09 06:09:04'),
+(6, '103.169.198.122', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'https://biropbj.sumselprov.go.id/login', 1, '2023-05-10 01:24:24', '2023-05-10 01:24:24'),
+(7, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000/login', 1, '2023-05-15 02:41:14', '2023-05-15 02:41:14'),
+(8, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000/login', 1, '2023-05-22 04:49:12', '2023-05-22 04:49:12');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `zzz_histori_pengunjung`
+-- Table structure for table `zzz_histori_pengunjung`
 --
 
 CREATE TABLE `zzz_histori_pengunjung` (
@@ -828,117 +812,159 @@ CREATE TABLE `zzz_histori_pengunjung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `zzz_histori_pengunjung`
+-- Dumping data for table `zzz_histori_pengunjung`
 --
 
 INSERT INTO `zzz_histori_pengunjung` (`id`, `ip_address`, `hostname`, `user_agent`, `referer`, `created_at`, `updated_at`) VALUES
-(1, '127.0.0.2', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/postdetail/sosialisas-kemendagri', '2023-04-05 19:02:17', '2023-05-05 19:02:17'),
-(2, '127.0.0.6', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/', '2023-05-05 19:02:51', '2023-05-05 19:02:51'),
-(3, '127.0.0.1', 'DESKTOP-AV54JSG', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0', 'http://localhost:8000/page/kontak', '2023-05-05 19:08:19', '2023-05-05 19:08:19');
+(1, '114.10.119.117', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'https://biropbj.sumselprov.go.id/', '2023-05-08 16:49:41', '2023-05-08 16:49:41'),
+(2, '103.169.198.122', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'http://biropbj.sumselprov.go.id', '2023-05-09 00:26:05', '2023-05-09 00:26:05'),
+(3, '52.167.144.40', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-09 00:28:08', '2023-05-09 00:28:08'),
+(4, '180.242.48.107', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Linux; Android 11; Redmi Note 8 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Mobile Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-09 00:38:00', '2023-05-09 00:38:00'),
+(5, '114.124.216.109', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.6.1 Mobile/15E148 Safari/604.1', 'https://www.google.co.id/', '2023-05-09 03:38:40', '2023-05-09 03:38:40'),
+(6, '66.249.69.214', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-09 07:43:38', '2023-05-09 07:43:38'),
+(7, '66.249.69.216', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-09 08:16:35', '2023-05-09 08:16:35'),
+(8, '52.167.144.40', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-09 18:06:12', '2023-05-09 18:06:12'),
+(9, '40.77.167.236', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-09 18:15:07', '2023-05-09 18:15:07'),
+(10, '52.167.144.35', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-09 18:15:17', '2023-05-09 18:15:17'),
+(11, '103.169.198.122', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'https://biropbj.sumselprov.go.id', '2023-05-10 01:24:06', '2023-05-10 01:24:06'),
+(12, '66.249.69.216', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-10 07:59:11', '2023-05-10 07:59:11'),
+(13, '66.249.69.214', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-10 08:10:15', '2023-05-10 08:10:15'),
+(14, '66.249.69.212', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-10 08:29:36', '2023-05-10 08:29:36'),
+(15, '52.167.144.35', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-10 18:33:37', '2023-05-10 18:33:37'),
+(16, '40.77.167.236', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-10 19:56:35', '2023-05-10 19:56:35'),
+(17, '120.188.6.59', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 Edg/112.0.1722.68', 'http://biropbj.sumselprov.go.id', '2023-05-11 05:24:10', '2023-05-11 05:24:10'),
+(18, '140.213.232.227', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Linux; Android 9; Infinix X650C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-11 06:00:22', '2023-05-11 06:00:22'),
+(19, '40.77.167.92', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-11 06:30:13', '2023-05-11 06:30:13'),
+(20, '66.249.69.212', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-11 07:54:53', '2023-05-11 07:54:53'),
+(21, '66.249.69.214', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-11 08:00:28', '2023-05-11 08:00:28'),
+(22, '52.167.144.35', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-11 19:07:54', '2023-05-11 19:07:54'),
+(23, '40.77.167.92', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-12 00:26:53', '2023-05-12 00:26:53'),
+(24, '40.77.167.236', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-12 02:04:05', '2023-05-12 02:04:05'),
+(25, '114.125.235.162', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.43', 'https://www.bing.com/', '2023-05-12 17:33:06', '2023-05-12 17:33:06'),
+(26, '36.77.65.199', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-12 17:50:47', '2023-05-12 17:50:47'),
+(27, '40.77.167.191', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-13 01:27:03', '2023-05-13 01:27:03'),
+(28, '66.249.69.202', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-13 07:39:36', '2023-05-13 07:39:36'),
+(29, '66.249.69.204', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-13 07:53:03', '2023-05-13 07:53:03'),
+(30, '114.10.119.117', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Linux; Android 11; Redmi Note 8 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Mobile Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-13 08:47:58', '2023-05-13 08:47:58'),
+(31, '52.167.144.36', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-13 10:41:16', '2023-05-13 10:41:16'),
+(32, '40.77.167.92', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-13 14:27:44', '2023-05-13 14:27:44'),
+(33, '140.213.65.41', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Linux; Android 11; Redmi Note 8 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Mobile Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-13 16:55:20', '2023-05-13 16:55:20'),
+(34, '40.77.167.191', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-13 18:18:29', '2023-05-13 18:18:29'),
+(35, '40.77.167.92', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-13 18:24:33', '2023-05-13 18:24:33'),
+(36, '52.167.144.36', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-13 18:35:01', '2023-05-13 18:35:01'),
+(37, '66.249.69.202', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-14 08:26:38', '2023-05-14 08:26:38'),
+(38, '66.249.69.204', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'http://biropbj.sumselprov.go.id', '2023-05-14 08:38:24', '2023-05-14 08:38:24'),
+(39, '157.55.39.210', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-14 13:05:16', '2023-05-14 13:05:16'),
+(40, '52.167.144.36', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-14 17:45:21', '2023-05-14 17:45:21'),
+(41, '103.169.198.122', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://biropbj.sumselprov.go.id', '2023-05-15 00:07:13', '2023-05-15 00:07:13'),
+(42, '157.55.39.210', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-15 00:36:22', '2023-05-15 00:36:22'),
+(43, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000', '2023-05-15 02:34:35', '2023-05-15 02:34:35'),
+(44, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8001', '2023-05-16 01:31:19', '2023-05-16 01:31:19'),
+(45, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000', '2023-05-22 04:18:12', '2023-05-22 04:18:12');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `cpar_kategori`
+-- Indexes for table `cpar_kategori`
 --
 ALTER TABLE `cpar_kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `cpar_kategori_pengaduan`
+-- Indexes for table `cpar_kategori_pengaduan`
 --
 ALTER TABLE `cpar_kategori_pengaduan`
   ADD PRIMARY KEY (`id_kategori_pengaduan`);
 
 --
--- Indeks untuk tabel `cpar_link_terkait`
+-- Indexes for table `cpar_link_terkait`
 --
 ALTER TABLE `cpar_link_terkait`
   ADD PRIMARY KEY (`id_link`);
 
 --
--- Indeks untuk tabel `cpar_slide_show`
+-- Indexes for table `cpar_slide_show`
 --
 ALTER TABLE `cpar_slide_show`
   ADD PRIMARY KEY (`id_slide`);
 
 --
--- Indeks untuk tabel `ddd_galeri_photo`
+-- Indexes for table `ddd_galeri_photo`
 --
 ALTER TABLE `ddd_galeri_photo`
   ADD PRIMARY KEY (`id_galeri_photo`);
 
 --
--- Indeks untuk tabel `ddd_galeri_photo_detail`
+-- Indexes for table `ddd_galeri_photo_detail`
 --
 ALTER TABLE `ddd_galeri_photo_detail`
   ADD PRIMARY KEY (`id_galeri_photo_detail`);
 
 --
--- Indeks untuk tabel `ddd_galeri_video`
+-- Indexes for table `ddd_galeri_video`
 --
 ALTER TABLE `ddd_galeri_video`
   ADD PRIMARY KEY (`id_galeri_video`);
 
 --
--- Indeks untuk tabel `ddh_kritik_saran`
+-- Indexes for table `ddh_kritik_saran`
 --
 ALTER TABLE `ddh_kritik_saran`
   ADD PRIMARY KEY (`id_kritik_saran`);
 
 --
--- Indeks untuk tabel `ddh_pengaduan`
+-- Indexes for table `ddh_pengaduan`
 --
 ALTER TABLE `ddh_pengaduan`
   ADD PRIMARY KEY (`id_pengaduan`);
 
 --
--- Indeks untuk tabel `dhh_laman`
+-- Indexes for table `dhh_laman`
 --
 ALTER TABLE `dhh_laman`
   ADD PRIMARY KEY (`id_laman`);
 
 --
--- Indeks untuk tabel `edd_upload_dokumen`
+-- Indexes for table `edd_upload_dokumen`
 --
 ALTER TABLE `edd_upload_dokumen`
   ADD PRIMARY KEY (`id_dokumen`);
 
 --
--- Indeks untuk tabel `edd_upload_dokumen_laman`
+-- Indexes for table `edd_upload_dokumen_laman`
 --
 ALTER TABLE `edd_upload_dokumen_laman`
   ADD PRIMARY KEY (`id_dokumen`);
 
 --
--- Indeks untuk tabel `edd_upload_gambar_laman`
+-- Indexes for table `edd_upload_gambar_laman`
 --
 ALTER TABLE `edd_upload_gambar_laman`
   ADD PRIMARY KEY (`id_gambar`);
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indeks untuk tabel `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -946,201 +972,201 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indeks untuk tabel `set_menu`
+-- Indexes for table `set_menu`
 --
 ALTER TABLE `set_menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indeks untuk tabel `set_menu2`
+-- Indexes for table `set_menu2`
 --
 ALTER TABLE `set_menu2`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indeks untuk tabel `ta_post`
+-- Indexes for table `ta_post`
 --
 ALTER TABLE `ta_post`
   ADD PRIMARY KEY (`post_kd`);
 
 --
--- Indeks untuk tabel `ta_post_categori_relationships`
+-- Indexes for table `ta_post_categori_relationships`
 --
 ALTER TABLE `ta_post_categori_relationships`
   ADD PRIMARY KEY (`relationships_kd`);
 
 --
--- Indeks untuk tabel `ta_post_histori_view_count`
+-- Indexes for table `ta_post_histori_view_count`
 --
 ALTER TABLE `ta_post_histori_view_count`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indeks untuk tabel `zzz_histori_login`
+-- Indexes for table `zzz_histori_login`
 --
 ALTER TABLE `zzz_histori_login`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `zzz_histori_pengunjung`
+-- Indexes for table `zzz_histori_pengunjung`
 --
 ALTER TABLE `zzz_histori_pengunjung`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `cpar_kategori`
+-- AUTO_INCREMENT for table `cpar_kategori`
 --
 ALTER TABLE `cpar_kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
--- AUTO_INCREMENT untuk tabel `cpar_kategori_pengaduan`
+-- AUTO_INCREMENT for table `cpar_kategori_pengaduan`
 --
 ALTER TABLE `cpar_kategori_pengaduan`
   MODIFY `id_kategori_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `cpar_link_terkait`
+-- AUTO_INCREMENT for table `cpar_link_terkait`
 --
 ALTER TABLE `cpar_link_terkait`
   MODIFY `id_link` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `cpar_slide_show`
+-- AUTO_INCREMENT for table `cpar_slide_show`
 --
 ALTER TABLE `cpar_slide_show`
   MODIFY `id_slide` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT untuk tabel `ddd_galeri_photo`
+-- AUTO_INCREMENT for table `ddd_galeri_photo`
 --
 ALTER TABLE `ddd_galeri_photo`
   MODIFY `id_galeri_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `ddd_galeri_photo_detail`
+-- AUTO_INCREMENT for table `ddd_galeri_photo_detail`
 --
 ALTER TABLE `ddd_galeri_photo_detail`
   MODIFY `id_galeri_photo_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `ddd_galeri_video`
+-- AUTO_INCREMENT for table `ddd_galeri_video`
 --
 ALTER TABLE `ddd_galeri_video`
-  MODIFY `id_galeri_video` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_galeri_video` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `ddh_kritik_saran`
+-- AUTO_INCREMENT for table `ddh_kritik_saran`
 --
 ALTER TABLE `ddh_kritik_saran`
   MODIFY `id_kritik_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `ddh_pengaduan`
+-- AUTO_INCREMENT for table `ddh_pengaduan`
 --
 ALTER TABLE `ddh_pengaduan`
   MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `dhh_laman`
+-- AUTO_INCREMENT for table `dhh_laman`
 --
 ALTER TABLE `dhh_laman`
   MODIFY `id_laman` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
--- AUTO_INCREMENT untuk tabel `edd_upload_dokumen`
+-- AUTO_INCREMENT for table `edd_upload_dokumen`
 --
 ALTER TABLE `edd_upload_dokumen`
   MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT untuk tabel `edd_upload_dokumen_laman`
+-- AUTO_INCREMENT for table `edd_upload_dokumen_laman`
 --
 ALTER TABLE `edd_upload_dokumen_laman`
-  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT untuk tabel `edd_upload_gambar_laman`
+-- AUTO_INCREMENT for table `edd_upload_gambar_laman`
 --
 ALTER TABLE `edd_upload_gambar_laman`
   MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `set_menu`
+-- AUTO_INCREMENT for table `set_menu`
 --
 ALTER TABLE `set_menu`
   MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
--- AUTO_INCREMENT untuk tabel `set_menu2`
+-- AUTO_INCREMENT for table `set_menu2`
 --
 ALTER TABLE `set_menu2`
   MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT untuk tabel `ta_post`
+-- AUTO_INCREMENT for table `ta_post`
 --
 ALTER TABLE `ta_post`
-  MODIFY `post_kd` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `post_kd` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
--- AUTO_INCREMENT untuk tabel `ta_post_categori_relationships`
+-- AUTO_INCREMENT for table `ta_post_categori_relationships`
 --
 ALTER TABLE `ta_post_categori_relationships`
-  MODIFY `relationships_kd` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=275;
+  MODIFY `relationships_kd` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=282;
 
 --
--- AUTO_INCREMENT untuk tabel `ta_post_histori_view_count`
+-- AUTO_INCREMENT for table `ta_post_histori_view_count`
 --
 ALTER TABLE `ta_post_histori_view_count`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `zzz_histori_login`
+-- AUTO_INCREMENT for table `zzz_histori_login`
 --
 ALTER TABLE `zzz_histori_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `zzz_histori_pengunjung`
+-- AUTO_INCREMENT for table `zzz_histori_pengunjung`
 --
 ALTER TABLE `zzz_histori_pengunjung`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
