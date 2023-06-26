@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2023 at 06:53 AM
+-- Generation Time: Jun 26, 2023 at 03:53 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -71,6 +71,31 @@ INSERT INTO `cpar_kategori_pengaduan` (`id_kategori_pengaduan`, `nm_kategori_pen
 (4, 'Pelanggaran Peraturan Perundangan', 4, '2023-04-26 09:17:25', '2023-04-26 09:17:25'),
 (5, 'Tindak Pidana Korupsi', 5, '2023-04-26 09:17:25', '2023-04-26 09:17:25'),
 (6, 'Lainnya', 6, '2023-04-26 09:17:25', '2023-04-26 09:17:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cpar_link_header`
+--
+
+CREATE TABLE `cpar_link_header` (
+  `id_link_header` int(8) NOT NULL,
+  `link_header` text NOT NULL,
+  `gambar_link` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cpar_link_header`
+--
+
+INSERT INTO `cpar_link_header` (`id_link_header`, `link_header`, `gambar_link`, `created_at`, `updated_at`) VALUES
+(1, 'https://sirup.lkpp.go.id/sirup/ro/login', '230626020727.png', '2023-06-25 18:33:19', '2023-06-25 19:07:27'),
+(3, 'https://spse.lkpp.go.id/eproc4', '230626020904.png', '2023-06-25 19:09:04', '2023-06-25 19:09:04'),
+(4, 'https://e-katalog.lkpp.go.id/', '230626021134.png', '2023-06-25 19:11:34', '2023-06-25 19:11:34'),
+(5, 'https://www.lapor.go.id', '230626082847.jpg', '2023-06-26 01:28:47', '2023-06-26 01:28:47'),
+(6, 'https://sumselprov.go.id/', '230626082949.png', '2023-06-26 01:29:03', '2023-06-26 01:29:49');
 
 -- --------------------------------------------------------
 
@@ -736,7 +761,8 @@ CREATE TABLE `ta_post_histori_view_count` (
 --
 
 INSERT INTO `ta_post_histori_view_count` (`id`, `post_kd`, `ip_address`, `hostname`, `user_agent`, `referer`, `created_at`, `updated_at`) VALUES
-(1, 63, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000/', '2023-05-22 04:18:24', '2023-05-22 04:18:24');
+(1, 63, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000/', '2023-05-22 04:18:24', '2023-05-22 04:18:24'),
+(2, 62, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000/kritiksaran', '2023-06-14 04:22:18', '2023-06-14 04:22:18');
 
 -- --------------------------------------------------------
 
@@ -793,7 +819,11 @@ INSERT INTO `zzz_histori_login` (`id`, `ip_address`, `hostname`, `user_agent`, `
 (5, '103.169.198.122', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'https://biropbj.sumselprov.go.id/login', 1, '2023-05-09 06:09:04', '2023-05-09 06:09:04'),
 (6, '103.169.198.122', 'hosting.sumselprov.go.id', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'https://biropbj.sumselprov.go.id/login', 1, '2023-05-10 01:24:24', '2023-05-10 01:24:24'),
 (7, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000/login', 1, '2023-05-15 02:41:14', '2023-05-15 02:41:14'),
-(8, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000/login', 1, '2023-05-22 04:49:12', '2023-05-22 04:49:12');
+(8, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000/login', 1, '2023-05-22 04:49:12', '2023-05-22 04:49:12'),
+(9, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/114.0', 'http://localhost:8000/login', 1, '2023-06-25 18:10:37', '2023-06-25 18:10:37'),
+(10, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36', 'http://localhost:8000/login', 1, '2023-06-25 19:06:47', '2023-06-25 19:06:47'),
+(11, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/114.0', 'http://localhost:8000/login', 1, '2023-06-26 01:06:30', '2023-06-26 01:06:30'),
+(12, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/114.0', 'http://localhost:8000/login', 1, '2023-06-26 01:28:17', '2023-06-26 01:28:17');
 
 -- --------------------------------------------------------
 
@@ -860,7 +890,9 @@ INSERT INTO `zzz_histori_pengunjung` (`id`, `ip_address`, `hostname`, `user_agen
 (42, '157.55.39.210', 'hosting.sumselprov.go.id', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36', 'http://biropbj.sumselprov.go.id', '2023-05-15 00:36:22', '2023-05-15 00:36:22'),
 (43, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000', '2023-05-15 02:34:35', '2023-05-15 02:34:35'),
 (44, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8001', '2023-05-16 01:31:19', '2023-05-16 01:31:19'),
-(45, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000', '2023-05-22 04:18:12', '2023-05-22 04:18:12');
+(45, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost:8000', '2023-05-22 04:18:12', '2023-05-22 04:18:12'),
+(46, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0', 'http://localhost/project/website_pbj_v2/', '2023-06-14 03:28:15', '2023-06-14 03:28:15'),
+(47, '127.0.0.1', 'RIO', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/114.0', 'http://localhost:8000/panel', '2023-06-25 17:19:38', '2023-06-25 17:19:38');
 
 --
 -- Indexes for dumped tables
@@ -877,6 +909,12 @@ ALTER TABLE `cpar_kategori`
 --
 ALTER TABLE `cpar_kategori_pengaduan`
   ADD PRIMARY KEY (`id_kategori_pengaduan`);
+
+--
+-- Indexes for table `cpar_link_header`
+--
+ALTER TABLE `cpar_link_header`
+  ADD PRIMARY KEY (`id_link_header`);
 
 --
 -- Indexes for table `cpar_link_terkait`
@@ -1037,6 +1075,12 @@ ALTER TABLE `cpar_kategori_pengaduan`
   MODIFY `id_kategori_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `cpar_link_header`
+--
+ALTER TABLE `cpar_link_header`
+  MODIFY `id_link_header` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `cpar_link_terkait`
 --
 ALTER TABLE `cpar_link_terkait`
@@ -1148,7 +1192,7 @@ ALTER TABLE `ta_post_categori_relationships`
 -- AUTO_INCREMENT for table `ta_post_histori_view_count`
 --
 ALTER TABLE `ta_post_histori_view_count`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1160,13 +1204,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `zzz_histori_login`
 --
 ALTER TABLE `zzz_histori_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `zzz_histori_pengunjung`
 --
 ALTER TABLE `zzz_histori_pengunjung`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
