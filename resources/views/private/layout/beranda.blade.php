@@ -90,9 +90,9 @@
         </div>
         <!--/ Stats -->
         <!--Product sale & buyers -->
-        <div class="row match-height">
-            <div class="col-xl-8 col-lg-12">
-                <div class="card" style="height: 402.817px;">
+        <div class="row ">
+            <div class="col-md-8">
+                <div class="card">
                     <div class="card-header   text-white bg-primary ">
                         <h4 class="card-title"><i class="fa fa-newspaper-o"></i> All Post</h4>
                     </div>
@@ -132,7 +132,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-lg-12">
+            <div class="col-md-4">
                 <div class="bs-callout-primary callout-border-left p-1 mb-2">
                     <a href="{{route('datapengaduan.index')}}" class="btn btn-danger btn-sm pull-right"><i class="fa fa-eye"></i> More</a>
                     <strong><i class="fa fa-file-o"></i> PENGADUAN</strong>
@@ -184,6 +184,7 @@
                     </table>
                 </div>
             </div>
+            
         </div>
 
 

@@ -13,6 +13,7 @@ use App\Http\Controllers\LamanDetailController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\LayoutUtamaController;
+use App\Http\Controllers\LinkHeaderController;
 use App\Http\Controllers\LinkTerkaitController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MappingJenisNPDController;
@@ -142,6 +143,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::resource('slideshow', SlideShowController::class);
         Route::resource('linkterkait', LinkTerkaitController::class);
+        Route::resource('linkheader', LinkHeaderController::class);
         Route::resource('kategori', KategoriController::class);
         Route::resource('photo', PhotoController::class);
         Route::resource('photodetail', PhotoDetailController::class);

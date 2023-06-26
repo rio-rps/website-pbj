@@ -1,15 +1,4 @@
  @section('slide')
-     <!-- <rs-module-wrap id="rev_slider_1_2_wrapper" data-source="gallery">
-         <rs-module id="rev_slider_1_2" data-version="6.0.1" class="rev_slider_1_2_height">
-             <rs-slides>
-                 <rs-slide data-key="rs-5" data-title="Slide" data-thumb="https://via.placeholder.com/1920X650/888888.jpg" data-anim="ei:d;eo:d;s:1000;r:0;t:fade;sl:0;">
-                     <img src="https://via.placeholder.com/1920X650/888888.jpg" title="banner-four.jpg" width="1920" height="651" class="rev-slidebg" data-no-retina>
-                 </rs-slide>
-             </rs-slides>
-         </rs-module>
-     </rs-module-wrap> -->
-
-
      <style>
          .carousel-inner img {
              width: 100%;
@@ -47,6 +36,67 @@
                      <span class="sr-only">Next</span>
                  </a>
              </div>
+
+
+             <link rel="stylesheet" type="text/css"
+                 href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+
+             <div class="card mt-3">
+                 <div class="owl-carousel owl-theme mt-3">
+
+                     @foreach ($getRightData['resultLinkHeader'] as $keys => $link)
+                         <div class="col-lg ttm-box-col-wrapper">
+                             <div class="featured-imagebox featured-imagebox-portfolio style1">
+                                 <div class="featured-thumbnail">
+                                     <img class="img-thumbnail rounded"
+                                         style="width:150px;height: 120px;box-shadow: 1px 2px 2px 1px;"
+                                         src="{{ asset('upload-data/link-header/' . $link->gambar_link) }}" alt="image">
+                                 </div>
+                                 <div class="ttm-box-view-overlay">
+                                     <div class="featured-iconbox ttm-media-link">
+                                         <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]"
+                                             title="" data-rel="prettyPhoto"
+                                             href="{{ asset('upload-data/link-header/' . $link->gambar_link) }}"><i
+                                                 class="ti ti-image"></i></a>
+                                         <a href="{{ $link->link_header }}" target="_blank" class="ttm_link"><i
+                                                 class="ti ti-link"></i></a>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     @endforeach
+                 </div>
+             </div>
+
+
+
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+             <script>
+                 $(document).ready(function() {
+                     $('.owl-carousel').owlCarousel({
+                         loop: true,
+                         margin: 0,
+                         nav: false,
+                         autoplay: true,
+                         autoplayTimeout: 3000,
+                         center: true,
+                         responsive: {
+                             0: {
+                                 items: 1
+                             },
+                             300: {
+                                 items: 3
+                             },
+                             700: {
+                                 items: 5
+                             }
+                         }
+                     });
+                 });
+             </script>
          </div>
+
+
      </main>
  @endsection('slide')

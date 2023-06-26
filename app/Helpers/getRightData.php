@@ -3,6 +3,7 @@
 use App\Http\Controllers\PhotoDetailController;
 use App\Models\HistoriPengunjungWebsiteModel;
 use App\Models\KategoriModel;
+use App\Models\LinkHeaderModel;
 use App\Models\LinkTerkaitModel;
 use App\Models\PostKategoriRelationshipsModel;
 use App\Models\PostModel;
@@ -15,6 +16,9 @@ function getRightData()
 {
     //slide
     $resultSlide = SlideShowModel::where('status_actived', '1')->get();
+
+    //LinkHeader
+    $resultLinkHeader = LinkHeaderModel::get();
 
     // populer 
     $populer = PostModel::select('post_kd', 'slug_title', 'post_title', 'tgl_terbit', 'post_content', 'post_thumbnail')
@@ -69,6 +73,7 @@ function getRightData()
     // return
     return [
         'resultSlide' => $resultSlide,
+        'resultLinkHeader' => $resultLinkHeader,
         'kategori' => $kategoriWithPostCount,
         'linkTerkait' => $linkTerkait,
         'arsip' => $arsip,
